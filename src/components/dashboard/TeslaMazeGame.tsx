@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { useVibeStore } from '../../store/useVibeStore';
 import { useTranslation } from '../../i18n/useTranslation';
 import { soundEngine } from '../../utils/soundEngine';
@@ -22,25 +22,152 @@ import {
   Maximize2,
   ChevronRight as ArrowRight,
   X,
-  Palette,
+  Dices,
+  Layers,
+  MapPin,
 } from 'lucide-react';
 
-// 13x13 Maze Layout (0 = Road, 1 = Neon Wall, 2 = Supercharger, 3 = Lego Core, 4 = Goal)
-const MAZE_GRID = [
-  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-  [1, 0, 0, 0, 1, 2, 0, 0, 0, 0, 0, 2, 1],
-  [1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1],
-  [1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1],
-  [1, 2, 1, 1, 1, 0, 1, 0, 1, 0, 1, 3, 1],
-  [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1],
-  [1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1],
-  [1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1],
-  [1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1],
-  [1, 3, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1],
-  [1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1],
-  [1, 0, 0, 0, 1, 2, 0, 0, 0, 0, 0, 4, 1],
-  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+// Preset Handcrafted Cyberpunk Circuits (13x13)
+const PRESET_CIRCUITS: { nameKo: string; nameEn: string; grid: number[][] }[] = [
+  {
+    nameKo: '기가 텍사스 하이웨이 (Giga Texas)',
+    nameEn: 'Giga Texas Highway Loop',
+    grid: [
+      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      [1, 0, 0, 0, 1, 2, 0, 0, 0, 0, 0, 2, 1],
+      [1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1],
+      [1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1],
+      [1, 2, 1, 1, 1, 0, 1, 0, 1, 0, 1, 3, 1],
+      [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1],
+      [1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1],
+      [1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1],
+      [1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1],
+      [1, 3, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1],
+      [1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1],
+      [1, 0, 0, 0, 1, 2, 0, 0, 0, 0, 0, 4, 1],
+      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    ],
+  },
+  {
+    nameKo: '실리콘 밸리 뉴럴 매트릭스 (Silicon Matrix)',
+    nameEn: 'Silicon Valley Neural Matrix',
+    grid: [
+      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      [1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 2, 1],
+      [1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1],
+      [1, 0, 1, 2, 1, 0, 0, 0, 1, 3, 1, 0, 1],
+      [1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1],
+      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+      [1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1],
+      [1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1],
+      [1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1],
+      [1, 0, 1, 3, 1, 0, 0, 0, 1, 2, 1, 0, 1],
+      [1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1],
+      [1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 1],
+      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    ],
+  },
+  {
+    nameKo: '사이버캡 나이트 앨리 (Cybercab Alley)',
+    nameEn: 'Cybercab Neo-Tokyo Alley',
+    grid: [
+      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      [1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 2, 1],
+      [1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1],
+      [1, 0, 0, 0, 1, 2, 0, 0, 1, 0, 0, 0, 1],
+      [1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1],
+      [1, 3, 0, 0, 0, 0, 1, 0, 0, 0, 0, 3, 1],
+      [1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1],
+      [1, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 1],
+      [1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1],
+      [1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1],
+      [1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1],
+      [1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 1],
+      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    ],
+  },
+  {
+    nameKo: '오토노머스 메가팩토리 (Megafactory)',
+    nameEn: 'Autonomous Megafactory Grid',
+    grid: [
+      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      [1, 0, 0, 0, 0, 0, 0, 0, 1, 2, 0, 0, 1],
+      [1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1],
+      [1, 0, 1, 2, 0, 0, 1, 0, 1, 0, 1, 0, 1],
+      [1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1],
+      [1, 0, 0, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1],
+      [1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1],
+      [1, 3, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1],
+      [1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1],
+      [1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1],
+      [1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1],
+      [1, 2, 1, 1, 1, 0, 0, 0, 1, 2, 0, 4, 1],
+      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    ],
+  },
 ];
+
+// Procedural 100% Solvable Random Maze Generator Function
+function generateRandomSolvableMaze(): number[][] {
+  const size = 13;
+  const grid: number[][] = Array.from({ length: size }, () => Array(size).fill(1));
+
+  // Carve random DFS tree
+  function carve(r: number, c: number) {
+    grid[r][c] = 0;
+    const dirs = [
+      [0, 2],
+      [2, 0],
+      [0, -2],
+      [-2, 0],
+    ].sort(() => Math.random() - 0.5);
+
+    for (const [dr, dc] of dirs) {
+      const nr = r + dr;
+      const nc = c + dc;
+      if (nr > 0 && nr < size - 1 && nc > 0 && nc < size - 1 && grid[nr][nc] === 1) {
+        grid[r + dr / 2][c + dc / 2] = 0;
+        carve(nr, nc);
+      }
+    }
+  }
+
+  carve(1, 1);
+
+  // Guarantee goal path
+  grid[11][11] = 4;
+  grid[11][10] = 0;
+  grid[10][11] = 0;
+
+  // Add random shortcuts for natural loops
+  for (let r = 2; r < size - 2; r += 2) {
+    for (let c = 2; c < size - 2; c += 2) {
+      if (Math.random() < 0.35) {
+        grid[r][c] = 0;
+      }
+    }
+  }
+
+  // Scatter 3 Superchargers (2) and 2 Lego Cores (3) in empty road cells
+  let chargersPlaced = 0;
+  let coresPlaced = 0;
+
+  for (let r = 1; r < size - 1; r++) {
+    for (let c = 1; c < size - 1; c++) {
+      if (grid[r][c] === 0 && !(r === 1 && c === 1) && !(r === 11 && c === 11)) {
+        if (chargersPlaced < 3 && Math.random() < 0.08) {
+          grid[r][c] = 2;
+          chargersPlaced++;
+        } else if (coresPlaced < 2 && Math.random() < 0.06) {
+          grid[r][c] = 3;
+          coresPlaced++;
+        }
+      }
+    }
+  }
+
+  return grid;
+}
 
 interface Position {
   r: number;
@@ -52,6 +179,10 @@ export const TeslaMazeGame: React.FC = () => {
   const { language } = useTranslation();
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [circuitIndex, setCircuitIndex] = useState<number>(0);
+  const [currentGrid, setCurrentGrid] = useState<number[][]>(() => PRESET_CIRCUITS[0].grid);
+  const [circuitName, setCircuitName] = useState<string>(PRESET_CIRCUITS[0].nameKo);
+
   const [carPos, setCarPos] = useState<Position>({ r: 1, c: 1 });
   const [carAngle, setCarAngle] = useState<number>(0);
   const [carColor, setCarColor] = useState<TeslaPaintColor>('white');
@@ -65,47 +196,50 @@ export const TeslaMazeGame: React.FC = () => {
 
   const autopilotTimerRef = useRef<NodeJS.Timeout | null>(null);
 
-  // BFS Pathfinding for Tesla FSD Autopilot
-  const findPathToGoal = useCallback((start: Position, goal: Position): Position[] => {
-    const queue: { pos: Position; path: Position[] }[] = [{ pos: start, path: [start] }];
-    const visited = new Set<string>();
-    visited.add(`${start.r},${start.c}`);
+  // Dynamic BFS Pathfinding for Tesla FSD Autopilot across ANY grid
+  const findPathToGoal = useCallback(
+    (start: Position, goal: Position, grid: number[][]): Position[] => {
+      const queue: { pos: Position; path: Position[] }[] = [{ pos: start, path: [start] }];
+      const visited = new Set<string>();
+      visited.add(`${start.r},${start.c}`);
 
-    const directions = [
-      { r: 0, c: 1, angle: 0 },
-      { r: 1, c: 0, angle: 90 },
-      { r: 0, c: -1, angle: 180 },
-      { r: -1, c: 0, angle: 270 },
-    ];
+      const directions = [
+        { r: 0, c: 1, angle: 0 },
+        { r: 1, c: 0, angle: 90 },
+        { r: 0, c: -1, angle: 180 },
+        { r: -1, c: 0, angle: 270 },
+      ];
 
-    while (queue.length > 0) {
-      const { pos, path } = queue.shift()!;
-      if (pos.r === goal.r && pos.c === goal.c) {
-        return path;
-      }
+      while (queue.length > 0) {
+        const { pos, path } = queue.shift()!;
+        if (pos.r === goal.r && pos.c === goal.c) {
+          return path;
+        }
 
-      for (const d of directions) {
-        const nr = pos.r + d.r;
-        const nc = pos.c + d.c;
-        const key = `${nr},${nc}`;
+        for (const d of directions) {
+          const nr = pos.r + d.r;
+          const nc = pos.c + d.c;
+          const key = `${nr},${nc}`;
 
-        if (
-          nr >= 0 &&
-          nr < MAZE_GRID.length &&
-          nc >= 0 &&
-          nc < MAZE_GRID[0].length &&
-          MAZE_GRID[nr][nc] !== 1 &&
-          !visited.has(key)
-        ) {
-          visited.add(key);
-          queue.push({ pos: { r: nr, c: nc }, path: [...path, { r: nr, c: nc }] });
+          if (
+            nr >= 0 &&
+            nr < grid.length &&
+            nc >= 0 &&
+            nc < grid[0].length &&
+            grid[nr][nc] !== 1 &&
+            !visited.has(key)
+          ) {
+            visited.add(key);
+            queue.push({ pos: { r: nr, c: nc }, path: [...path, { r: nr, c: nc }] });
+          }
         }
       }
-    }
-    return [];
-  }, []);
+      return [];
+    },
+    []
+  );
 
-  // Movement handler
+  // Car Movement
   const moveCar = useCallback(
     (dr: number, dc: number, targetAngle: number) => {
       if (hasWon) return;
@@ -114,7 +248,13 @@ export const TeslaMazeGame: React.FC = () => {
         const nr = prev.r + dr;
         const nc = prev.c + dc;
 
-        if (nr < 0 || nr >= MAZE_GRID.length || nc < 0 || nc >= MAZE_GRID[0].length || MAZE_GRID[nr][nc] === 1) {
+        if (
+          nr < 0 ||
+          nr >= currentGrid.length ||
+          nc < 0 ||
+          nc >= currentGrid[0].length ||
+          currentGrid[nr][nc] === 1
+        ) {
           soundEngine.playClick();
           return prev;
         }
@@ -124,7 +264,7 @@ export const TeslaMazeGame: React.FC = () => {
         setSpeed((s) => Math.min(110, s + 15));
 
         const itemKey = `${nr},${nc}`;
-        const cellType = MAZE_GRID[nr][nc];
+        const cellType = currentGrid[nr][nc];
 
         // Supercharger
         if (!collectedItems.has(itemKey)) {
@@ -160,7 +300,7 @@ export const TeslaMazeGame: React.FC = () => {
         return { r: nr, c: nc };
       });
     },
-    [hasWon, collectedItems, projects, showToast]
+    [hasWon, collectedItems, currentGrid, projects, showToast]
   );
 
   // Toggle FSD Autopilot
@@ -172,7 +312,7 @@ export const TeslaMazeGame: React.FC = () => {
       setIsFsdActive(true);
       showToast('⚡ Tesla FSD V13 Autopilot Engaged! Navigating cyber maze...', 'info');
 
-      const path = findPathToGoal(carPos, { r: 11, c: 11 });
+      const path = findPathToGoal(carPos, { r: 11, c: 11 }, currentGrid);
       setLaserPath(path);
     } else {
       soundEngine.playClick();
@@ -190,7 +330,7 @@ export const TeslaMazeGame: React.FC = () => {
     }
 
     autopilotTimerRef.current = setInterval(() => {
-      const path = findPathToGoal(carPos, { r: 11, c: 11 });
+      const path = findPathToGoal(carPos, { r: 11, c: 11 }, currentGrid);
       if (path.length > 1) {
         const next = path[1];
         const dr = next.r - carPos.r;
@@ -208,7 +348,7 @@ export const TeslaMazeGame: React.FC = () => {
     return () => {
       if (autopilotTimerRef.current) clearInterval(autopilotTimerRef.current);
     };
-  }, [isOpen, isFsdActive, carPos, hasWon, findPathToGoal, moveCar]);
+  }, [isOpen, isFsdActive, carPos, hasWon, currentGrid, findPathToGoal, moveCar]);
 
   // Keyboard navigation
   useEffect(() => {
@@ -241,17 +381,45 @@ export const TeslaMazeGame: React.FC = () => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isOpen, moveCar]);
 
-  const handleReset = () => {
-    soundEngine.playClick();
+  // RESET / RE-GENERATE NEW MAZE
+  const handleResetAndShuffle = (forceRandom = false) => {
+    soundEngine.playTeslaFsdEngage();
+
+    let nextGrid: number[][];
+    let nextName: string;
+
+    if (forceRandom || Math.random() > 0.4) {
+      // Generate unique procedural random solvable maze
+      nextGrid = generateRandomSolvableMaze();
+      const seedNum = Math.floor(Math.random() * 900 + 100);
+      nextName = `사이버 뉴럴 미로 #${seedNum} (Procedural Matrix)`;
+    } else {
+      // Pick next curated preset
+      const nextIdx = (circuitIndex + 1) % PRESET_CIRCUITS.length;
+      setCircuitIndex(nextIdx);
+      nextGrid = PRESET_CIRCUITS[nextIdx].grid;
+      nextName = language === 'ko' ? PRESET_CIRCUITS[nextIdx].nameKo : PRESET_CIRCUITS[nextIdx].nameEn;
+    }
+
+    setCurrentGrid(nextGrid);
+    setCircuitName(nextName);
     setCarPos({ r: 1, c: 1 });
     setCarAngle(0);
     setBattery(100);
     setSpeed(0);
-    setScore(0);
+    setScore((sc) => sc + 50);
     setHasWon(false);
-    setIsFsdActive(false);
     setCollectedItems(new Set());
-    setLaserPath([]);
+
+    // If FSD was active, immediately recalculate new trajectory
+    if (isFsdActive) {
+      const path = findPathToGoal({ r: 1, c: 1 }, { r: 11, c: 11 }, nextGrid);
+      setLaserPath(path);
+    } else {
+      setLaserPath([]);
+    }
+
+    showToast(`🎲 Loaded new circuit: "${nextName}"! FSD Ready!`, 'info');
   };
 
   const colorsList: { id: TeslaPaintColor; label: string; bg: string }[] = [
@@ -267,7 +435,6 @@ export const TeslaMazeGame: React.FC = () => {
       {/* Sleek Arcade Banner Card on Dashboard */}
       <div className="p-4 sm:p-5 rounded-3xl bg-gradient-to-r from-[#0B0F19] via-slate-900 to-[#0B0F19] border border-cyan-500/30 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-xl relative overflow-hidden group">
         <div className="flex items-center gap-4 relative z-10">
-          {/* Realistic Tesla Model Y Preview Vehicle */}
           <div className="p-2 rounded-2xl bg-slate-950/80 border border-slate-800 flex items-center justify-center shrink-0 shadow-inner">
             <TeslaModelYSprite color={carColor} angle={0} size={54} headlights={true} />
           </div>
@@ -283,23 +450,34 @@ export const TeslaMazeGame: React.FC = () => {
             </div>
             <p className="text-xs text-slate-400 font-mono mt-0.5">
               {language === 'ko'
-                ? '테슬라 모델 Y로 사이버 회로 미로를 주행하거나 FSD 자율주행으로 프로덕션 코어를 공략하세요.'
-                : 'Navigate through the cyber circuit maze with Tesla Model Y or engage FSD Autopilot.'}
+                ? `현재 트랙: ${circuitName} — 리셋 시 무한 랜덤 미로 생성 및 AI 자율주행 지원`
+                : `Active Track: ${circuitName} — Infinite procedural mazes & FSD Autopilot on Reset`}
             </p>
           </div>
         </div>
 
-        <button
-          onClick={() => {
-            soundEngine.playTeslaFsdEngage();
-            setIsOpen(true);
-          }}
-          className="flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 text-white text-xs font-bold font-mono transition-all shadow-lg shadow-red-600/30 hover:scale-[1.02] shrink-0 active:scale-95"
-        >
-          <Gamepad2 className="w-4 h-4" />
-          <span>{language === 'ko' ? '테슬라 미로 게임 시작' : 'Launch Tesla Maze'}</span>
-          <ArrowRight className="w-3.5 h-3.5" />
-        </button>
+        <div className="flex items-center gap-2 shrink-0">
+          <button
+            onClick={() => handleResetAndShuffle(true)}
+            className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-slate-900 border border-slate-700 hover:bg-slate-800 text-slate-300 text-xs font-bold font-mono transition-all"
+            title="Generate Random Maze"
+          >
+            <Dices className="w-3.5 h-3.5 text-cyan-400" />
+            <span>Shuffle</span>
+          </button>
+
+          <button
+            onClick={() => {
+              soundEngine.playTeslaFsdEngage();
+              setIsOpen(true);
+            }}
+            className="flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 text-white text-xs font-bold font-mono transition-all shadow-lg shadow-red-600/30 hover:scale-[1.02] active:scale-95"
+          >
+            <Gamepad2 className="w-4 h-4" />
+            <span>{language === 'ko' ? '테슬라 미로 게임 시작' : 'Launch Tesla Maze'}</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </button>
+        </div>
       </div>
 
       {/* Fullscreen / Modal Cyber Arcade Cabinet */}
@@ -311,11 +489,16 @@ export const TeslaMazeGame: React.FC = () => {
               <div className="flex items-center gap-3">
                 <TeslaModelYSprite color={carColor} angle={0} size={42} headlights={false} />
                 <div>
-                  <h2 className="text-sm sm:text-base font-bold text-white font-mono">
-                    Tesla Model Y Cyber Maze FSD Autopilot
-                  </h2>
+                  <div className="flex items-center gap-2">
+                    <h2 className="text-sm sm:text-base font-bold text-white font-mono">
+                      Tesla Model Y Cyber Maze FSD Autopilot
+                    </h2>
+                    <span className="text-[10px] font-mono px-2 py-0.5 rounded-md bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+                      {circuitName}
+                    </span>
+                  </div>
                   <span className="text-[10px] text-slate-400 font-mono">
-                    WASD / Arrow keys | Spacebar: FSD Autopilot | Esc: Exit
+                    WASD / Arrow keys | Spacebar: FSD Autopilot | Reset: New Random Maze
                   </span>
                 </div>
               </div>
@@ -332,7 +515,9 @@ export const TeslaMazeGame: React.FC = () => {
                         setCarColor(c.id);
                       }}
                       className={`w-4 h-4 rounded-full ${c.bg} border transition-all ${
-                        carColor === c.id ? 'scale-125 border-cyan-400 shadow-sm shadow-cyan-400' : 'border-slate-700 opacity-60 hover:opacity-100'
+                        carColor === c.id
+                          ? 'scale-125 border-cyan-400 shadow-sm shadow-cyan-400'
+                          : 'border-slate-700 opacity-60 hover:opacity-100'
                       }`}
                       title={c.label}
                     />
@@ -349,6 +534,7 @@ export const TeslaMazeGame: React.FC = () => {
                   <span className="text-amber-300 font-bold">{score} PTS</span>
                 </div>
 
+                {/* FSD Button */}
                 <button
                   onClick={toggleFsd}
                   className={`px-3 py-1 rounded-xl text-xs font-bold font-mono transition-all ${
@@ -360,12 +546,14 @@ export const TeslaMazeGame: React.FC = () => {
                   {isFsdActive ? '⚡ FSD ENGAGED' : 'ENGAGE FSD'}
                 </button>
 
+                {/* Reset & Random Maze Generator Button */}
                 <button
-                  onClick={handleReset}
-                  className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
-                  title="Reset Circuit"
+                  onClick={() => handleResetAndShuffle(true)}
+                  className="flex items-center gap-1 px-3 py-1 rounded-xl bg-gradient-to-r from-cyan-600 to-indigo-600 text-white text-xs font-bold font-mono shadow-md hover:scale-105 transition-all"
+                  title="Generate New Random Maze & Reset"
                 >
-                  <RotateCcw className="w-4 h-4" />
+                  <Dices className="w-3.5 h-3.5" />
+                  <span>New Maze</span>
                 </button>
 
                 <button
@@ -389,7 +577,7 @@ export const TeslaMazeGame: React.FC = () => {
                     gridTemplateRows: 'repeat(13, minmax(0, 1fr))',
                   }}
                 >
-                  {MAZE_GRID.map((row, r) =>
+                  {currentGrid.map((row, r) =>
                     row.map((cell, c) => {
                       const isCarHere = carPos.r === r && carPos.c === c;
                       const isCollected = collectedItems.has(`${r},${c}`);
@@ -448,10 +636,14 @@ export const TeslaMazeGame: React.FC = () => {
                 </div>
               </div>
 
-              {/* D-Pad & Vehicle Telemetry */}
+              {/* D-Pad & Circuit Selector */}
               <div className="space-y-4 font-mono w-full max-w-xs">
-                {/* Vehicle Specs */}
+                {/* Circuit Info */}
                 <div className="p-3.5 rounded-2xl bg-slate-950 border border-slate-800 space-y-1.5 text-xs">
+                  <div className="flex justify-between text-slate-400">
+                    <span>Circuit Track:</span>
+                    <span className="text-cyan-300 font-bold truncate max-w-[140px]">{circuitName}</span>
+                  </div>
                   <div className="flex justify-between text-slate-400">
                     <span>Model:</span>
                     <span className="text-white font-bold">Model Y Dual Motor AWD</span>
@@ -463,12 +655,8 @@ export const TeslaMazeGame: React.FC = () => {
                   <div className="flex justify-between text-slate-400">
                     <span>Autopilot:</span>
                     <span className={isFsdActive ? 'text-cyan-400 font-bold' : 'text-slate-400'}>
-                      {isFsdActive ? 'FSD V13 (Active)' : 'Manual'}
+                      {isFsdActive ? 'FSD V13 (Autopilot Active)' : 'Manual Drive'}
                     </span>
-                  </div>
-                  <div className="flex justify-between text-slate-400">
-                    <span>Battery Range:</span>
-                    <span className="text-emerald-400 font-bold">{Math.round(battery * 5.2)} km</span>
                   </div>
                 </div>
 
@@ -491,7 +679,9 @@ export const TeslaMazeGame: React.FC = () => {
                     <button
                       onClick={toggleFsd}
                       className={`px-3 py-1.5 rounded-xl text-xs font-bold font-mono border ${
-                        isFsdActive ? 'bg-cyan-500 text-slate-950 border-cyan-400 shadow-md shadow-cyan-500/40' : 'bg-slate-900 text-cyan-400 border-slate-700'
+                        isFsdActive
+                          ? 'bg-cyan-500 text-slate-950 border-cyan-400 shadow-md shadow-cyan-500/40'
+                          : 'bg-slate-900 text-cyan-400 border-slate-700'
                       }`}
                     >
                       FSD
