@@ -24,6 +24,7 @@ import { TechStackRadar } from './TechStackRadar';
 import { DeveloperRpgHud } from './DeveloperRpgHud';
 import { DeveloperQuestBoard } from './DeveloperQuestBoard';
 import { TeslaMazeGame } from './TeslaMazeGame';
+import { DomainConquestRpg } from './DomainConquestRpg';
 import { LiveActivityFeed } from './LiveActivityFeed';
 import { ParticleField } from '../visual/ParticleField';
 import {
@@ -223,8 +224,11 @@ export const ExecutiveSummary: React.FC = () => {
       {/* Developer Growth Timeline */}
       <ProjectTimeline />
 
-      {/* Tesla Model Y Cyber Maze FSD Autopilot Mini-Game */}
+      {/* Tesla Cyber Fleet FSD Autopilot Mini-Game */}
       <TeslaMazeGame />
+
+      {/* Cyber Domain Territory Conquest RPG (땅따먹기 RPG) */}
+      <DomainConquestRpg />
 
       {/* Daily Quests & Weekly Boss Bounty Board */}
       <DeveloperQuestBoard />
