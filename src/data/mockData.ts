@@ -16,11 +16,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Docker"
     ],
     "score": {
-      "total": 92,
-      "activity": 95,
-      "potential": 90,
-      "reuse": 90,
-      "maintainability": 89
+      "total": 91,
+      "activity": 96,
+      "potential": 92,
+      "reuse": 86,
+      "maintainability": 84
     },
     "assets": [],
     "nextAction": "핵심 기능 확장 및 배포 파이프라인 점검",
@@ -43,7 +43,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "lastCommitMessage": "feat: update project codebase",
       "githubUrl": "https://github.com/hkjang/AgeForge"
     },
-    "stars": 3,
+    "stars": 2,
     "forks": 0,
     "openIssues": 0
   },
@@ -60,11 +60,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Docker"
     ],
     "score": {
-      "total": 88,
-      "activity": 95,
-      "potential": 88,
-      "reuse": 78,
-      "maintainability": 88
+      "total": 90,
+      "activity": 97,
+      "potential": 91,
+      "reuse": 72,
+      "maintainability": 94
     },
     "assets": [],
     "nextAction": "핵심 기능 확장 및 배포 파이프라인 점검",
@@ -97,11 +97,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Python"
     ],
     "score": {
-      "total": 62,
-      "activity": 24,
-      "potential": 82,
-      "reuse": 77,
-      "maintainability": 88
+      "total": 55,
+      "activity": 23,
+      "potential": 69,
+      "reuse": 72,
+      "maintainability": 82
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -127,7 +127,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "Agora-Python-SDK Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 40
+      "totalHoursInvested": 59
     },
     "stars": 0,
     "forks": 0,
@@ -145,11 +145,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "TypeScript"
     ],
     "score": {
-      "total": 89,
-      "activity": 94,
-      "potential": 91,
-      "reuse": 81,
-      "maintainability": 84
+      "total": 88,
+      "activity": 92,
+      "potential": 95,
+      "reuse": 75,
+      "maintainability": 83
     },
     "assets": [],
     "nextAction": "핵심 기능 확장 및 배포 파이프라인 점검",
@@ -165,7 +165,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "lastCommitMessage": "feat: update project codebase",
       "githubUrl": "https://github.com/hkjang/ArgosAISecurity"
     },
-    "stars": 1,
+    "stars": 3,
     "forks": 0,
     "openIssues": 0
   },
@@ -186,10 +186,10 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
     ],
     "score": {
       "total": 91,
-      "activity": 94,
+      "activity": 95,
       "potential": 88,
-      "reuse": 91,
-      "maintainability": 87
+      "reuse": 92,
+      "maintainability": 85
     },
     "assets": [],
     "nextAction": "핵심 기능 확장 및 배포 파이프라인 점검",
@@ -213,7 +213,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "lastCommitMessage": "feat: update project codebase",
       "githubUrl": "https://github.com/hkjang/AutoForge"
     },
-    "stars": 2,
+    "stars": 1,
     "forks": 0,
     "openIssues": 0
   },
@@ -232,11 +232,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Docker"
     ],
     "score": {
-      "total": 77,
-      "activity": 65,
-      "potential": 77,
-      "reuse": 88,
-      "maintainability": 89
+      "total": 75,
+      "activity": 66,
+      "potential": 70,
+      "reuse": 92,
+      "maintainability": 82
     },
     "assets": [],
     "nextAction": "의존성 업데이트 및 안정화",
@@ -277,11 +277,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "TypeScript"
     ],
     "score": {
-      "total": 59,
-      "activity": 29,
-      "potential": 68,
-      "reuse": 77,
-      "maintainability": 90
+      "total": 58,
+      "activity": 21,
+      "potential": 70,
+      "reuse": 83,
+      "maintainability": 86
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -307,7 +307,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "Cartoon-Avatar-Creator Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 43
+      "totalHoursInvested": 46
     },
     "stars": 0,
     "forks": 0,
@@ -325,11 +325,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "TypeScript"
     ],
     "score": {
-      "total": 58,
-      "activity": 17,
-      "potential": 73,
-      "reuse": 78,
-      "maintainability": 95
+      "total": 61,
+      "activity": 15,
+      "potential": 82,
+      "reuse": 86,
+      "maintainability": 90
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -373,11 +373,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "TypeScript"
     ],
     "score": {
-      "total": 56,
-      "activity": 13,
-      "potential": 79,
-      "reuse": 80,
-      "maintainability": 77
+      "total": 55,
+      "activity": 19,
+      "potential": 72,
+      "reuse": 82,
+      "maintainability": 68
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -403,7 +403,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "ChatGPTforGoogle Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 43
+      "totalHoursInvested": 46
     },
     "stars": 0,
     "forks": 0,
@@ -422,10 +422,10 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
     ],
     "score": {
       "total": 56,
-      "activity": 16,
-      "potential": 71,
-      "reuse": 81,
-      "maintainability": 83
+      "activity": 13,
+      "potential": 73,
+      "reuse": 75,
+      "maintainability": 94
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -451,7 +451,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "Chibi-Character-Generator Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 35
+      "totalHoursInvested": 45
     },
     "stars": 0,
     "forks": 0,
@@ -470,11 +470,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Docker"
     ],
     "score": {
-      "total": 84,
-      "activity": 95,
-      "potential": 69,
-      "reuse": 81,
-      "maintainability": 90
+      "total": 83,
+      "activity": 98,
+      "potential": 68,
+      "reuse": 74,
+      "maintainability": 93
     },
     "assets": [],
     "nextAction": "핵심 기능 확장 및 배포 파이프라인 점검",
@@ -490,7 +490,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "lastCommitMessage": "feat: update project codebase",
       "githubUrl": "https://github.com/hkjang/DartFly"
     },
-    "stars": 2,
+    "stars": 1,
     "forks": 0,
     "openIssues": 0
   },
@@ -506,11 +506,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "TypeScript"
     ],
     "score": {
-      "total": 61,
-      "activity": 22,
-      "potential": 78,
-      "reuse": 82,
-      "maintainability": 93
+      "total": 60,
+      "activity": 29,
+      "potential": 70,
+      "reuse": 78,
+      "maintainability": 87
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -536,7 +536,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "Flat-Design-Character-Maker Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 58
+      "totalHoursInvested": 53
     },
     "stars": 0,
     "forks": 0,
@@ -556,11 +556,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Vite"
     ],
     "score": {
-      "total": 76,
-      "activity": 63,
-      "potential": 73,
-      "reuse": 96,
-      "maintainability": 87
+      "total": 75,
+      "activity": 60,
+      "potential": 76,
+      "reuse": 90,
+      "maintainability": 90
     },
     "assets": [],
     "nextAction": "의존성 업데이트 및 안정화",
@@ -600,11 +600,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "TypeScript"
     ],
     "score": {
-      "total": 88,
+      "total": 87,
       "activity": 95,
-      "potential": 81,
-      "reuse": 86,
-      "maintainability": 87
+      "potential": 83,
+      "reuse": 82,
+      "maintainability": 85
     },
     "assets": [],
     "nextAction": "핵심 기능 확장 및 배포 파이프라인 점검",
@@ -626,7 +626,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "lastCommitMessage": "feat: update project codebase",
       "githubUrl": "https://github.com/hkjang/GitFrame"
     },
-    "stars": 2,
+    "stars": 3,
     "forks": 0,
     "openIssues": 0
   },
@@ -642,11 +642,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "TypeScript"
     ],
     "score": {
-      "total": 57,
-      "activity": 24,
-      "potential": 69,
-      "reuse": 78,
-      "maintainability": 82
+      "total": 64,
+      "activity": 29,
+      "potential": 79,
+      "reuse": 86,
+      "maintainability": 84
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -672,7 +672,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "H5_LuckySlots Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 42
+      "totalHoursInvested": 39
     },
     "stars": 0,
     "forks": 0,
@@ -690,11 +690,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "TypeScript"
     ],
     "score": {
-      "total": 54,
-      "activity": 11,
-      "potential": 68,
-      "reuse": 84,
-      "maintainability": 85
+      "total": 57,
+      "activity": 10,
+      "potential": 78,
+      "reuse": 85,
+      "maintainability": 86
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -723,7 +723,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "Kiwoom-Helper Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 51
+      "totalHoursInvested": 58
     },
     "stars": 0,
     "forks": 0,
@@ -742,11 +742,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Docker"
     ],
     "score": {
-      "total": 80,
-      "activity": 93,
-      "potential": 70,
-      "reuse": 72,
-      "maintainability": 83
+      "total": 85,
+      "activity": 95,
+      "potential": 76,
+      "reuse": 76,
+      "maintainability": 94
     },
     "assets": [],
     "nextAction": "핵심 기능 확장 및 배포 파이프라인 점검",
@@ -778,11 +778,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "TypeScript"
     ],
     "score": {
-      "total": 64,
-      "activity": 25,
-      "potential": 80,
-      "reuse": 85,
-      "maintainability": 95
+      "total": 60,
+      "activity": 28,
+      "potential": 72,
+      "reuse": 78,
+      "maintainability": 87
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -808,7 +808,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "Legit_Engineers Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 33
+      "totalHoursInvested": 57
     },
     "stars": 0,
     "forks": 0,
@@ -826,11 +826,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "TypeScript"
     ],
     "score": {
-      "total": 58,
-      "activity": 17,
-      "potential": 77,
-      "reuse": 80,
-      "maintainability": 89
+      "total": 57,
+      "activity": 12,
+      "potential": 72,
+      "reuse": 85,
+      "maintainability": 95
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -856,7 +856,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "Lottery Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 59
+      "totalHoursInvested": 34
     },
     "stars": 0,
     "forks": 0,
@@ -874,11 +874,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "TypeScript"
     ],
     "score": {
-      "total": 59,
-      "activity": 17,
-      "potential": 83,
-      "reuse": 74,
-      "maintainability": 91
+      "total": 57,
+      "activity": 11,
+      "potential": 77,
+      "reuse": 81,
+      "maintainability": 95
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -904,7 +904,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "LotteryGame Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 53
+      "totalHoursInvested": 32
     },
     "stars": 0,
     "forks": 0,
@@ -922,11 +922,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "TypeScript"
     ],
     "score": {
-      "total": 62,
-      "activity": 28,
-      "potential": 74,
-      "reuse": 79,
-      "maintainability": 95
+      "total": 55,
+      "activity": 17,
+      "potential": 70,
+      "reuse": 76,
+      "maintainability": 85
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -952,7 +952,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "Lucky Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 56
+      "totalHoursInvested": 29
     },
     "stars": 0,
     "forks": 0,
@@ -971,10 +971,10 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
     ],
     "score": {
       "total": 58,
-      "activity": 22,
-      "potential": 73,
-      "reuse": 81,
-      "maintainability": 82
+      "activity": 16,
+      "potential": 75,
+      "reuse": 84,
+      "maintainability": 87
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -1000,7 +1000,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "LuckyDraw Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 49
+      "totalHoursInvested": 56
     },
     "stars": 0,
     "forks": 0,
@@ -1019,11 +1019,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Docker"
     ],
     "score": {
-      "total": 84,
-      "activity": 98,
-      "potential": 68,
-      "reuse": 82,
-      "maintainability": 87
+      "total": 83,
+      "activity": 93,
+      "potential": 70,
+      "reuse": 78,
+      "maintainability": 93
     },
     "assets": [],
     "nextAction": "핵심 기능 확장 및 배포 파이프라인 점검",
@@ -1056,11 +1056,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Docker"
     ],
     "score": {
-      "total": 85,
-      "activity": 96,
-      "potential": 78,
-      "reuse": 75,
-      "maintainability": 87
+      "total": 83,
+      "activity": 97,
+      "potential": 71,
+      "reuse": 72,
+      "maintainability": 88
     },
     "assets": [],
     "nextAction": "핵심 기능 확장 및 배포 파이프라인 점검",
@@ -1076,7 +1076,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "lastCommitMessage": "feat: update project codebase",
       "githubUrl": "https://github.com/hkjang/Planexus"
     },
-    "stars": 0,
+    "stars": 3,
     "forks": 0,
     "openIssues": 0
   },
@@ -1092,11 +1092,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "TypeScript"
     ],
     "score": {
-      "total": 83,
-      "activity": 85,
-      "potential": 78,
-      "reuse": 80,
-      "maintainability": 90
+      "total": 79,
+      "activity": 84,
+      "potential": 68,
+      "reuse": 75,
+      "maintainability": 93
     },
     "assets": [],
     "nextAction": "가설 검증 피드백 수집 및 MVP 개선",
@@ -1131,11 +1131,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Docker"
     ],
     "score": {
-      "total": 68,
-      "activity": 26,
-      "potential": 88,
-      "reuse": 96,
-      "maintainability": 91
+      "total": 65,
+      "activity": 19,
+      "potential": 89,
+      "reuse": 91,
+      "maintainability": 92
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -1293,7 +1293,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "Rocket.Chat Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 46
+      "totalHoursInvested": 39
     },
     "stars": 0,
     "forks": 0,
@@ -1311,11 +1311,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Docker"
     ],
     "score": {
-      "total": 76,
-      "activity": 59,
+      "total": 82,
+      "activity": 66,
       "potential": 93,
-      "reuse": 77,
-      "maintainability": 82
+      "reuse": 86,
+      "maintainability": 93
     },
     "assets": [],
     "nextAction": "의존성 업데이트 및 안정화",
@@ -1349,11 +1349,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Docker"
     ],
     "score": {
-      "total": 86,
-      "activity": 95,
-      "potential": 73,
-      "reuse": 89,
-      "maintainability": 84
+      "total": 90,
+      "activity": 94,
+      "potential": 82,
+      "reuse": 94,
+      "maintainability": 92
     },
     "assets": [],
     "nextAction": "핵심 기능 확장 및 배포 파이프라인 점검",
@@ -1369,7 +1369,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "lastCommitMessage": "feat: update project codebase",
       "githubUrl": "https://github.com/hkjang/SecCheck"
     },
-    "stars": 1,
+    "stars": 4,
     "forks": 0,
     "openIssues": 0
   },
@@ -1386,11 +1386,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Docker"
     ],
     "score": {
-      "total": 84,
-      "activity": 96,
-      "potential": 71,
-      "reuse": 77,
-      "maintainability": 88
+      "total": 87,
+      "activity": 93,
+      "potential": 81,
+      "reuse": 79,
+      "maintainability": 95
     },
     "assets": [],
     "nextAction": "핵심 기능 확장 및 배포 파이프라인 점검",
@@ -1406,7 +1406,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "lastCommitMessage": "feat: update project codebase",
       "githubUrl": "https://github.com/hkjang/SignalHub"
     },
-    "stars": 0,
+    "stars": 4,
     "forks": 0,
     "openIssues": 0
   },
@@ -1422,11 +1422,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "TypeScript"
     ],
     "score": {
-      "total": 58,
-      "activity": 14,
-      "potential": 74,
-      "reuse": 81,
-      "maintainability": 95
+      "total": 60,
+      "activity": 19,
+      "potential": 78,
+      "reuse": 79,
+      "maintainability": 92
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -1452,7 +1452,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "TadpoleDBHub_APIServer Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 52
+      "totalHoursInvested": 58
     },
     "stars": 0,
     "forks": 0,
@@ -1471,11 +1471,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Docker"
     ],
     "score": {
-      "total": 84,
-      "activity": 95,
-      "potential": 72,
-      "reuse": 79,
-      "maintainability": 88
+      "total": 86,
+      "activity": 97,
+      "potential": 77,
+      "reuse": 75,
+      "maintainability": 95
     },
     "assets": [],
     "nextAction": "핵심 기능 확장 및 배포 파이프라인 점검",
@@ -1491,7 +1491,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "lastCommitMessage": "feat: update project codebase",
       "githubUrl": "https://github.com/hkjang/Vendra"
     },
-    "stars": 0,
+    "stars": 4,
     "forks": 0,
     "openIssues": 0
   },
@@ -1512,9 +1512,9 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
     "score": {
       "total": 92,
       "activity": 94,
-      "potential": 92,
-      "reuse": 96,
-      "maintainability": 82
+      "potential": 91,
+      "reuse": 87,
+      "maintainability": 95
     },
     "assets": [],
     "nextAction": "핵심 기능 확장 및 배포 파이프라인 점검",
@@ -1556,11 +1556,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Docker"
     ],
     "score": {
-      "total": 60,
-      "activity": 22,
-      "potential": 78,
-      "reuse": 74,
-      "maintainability": 95
+      "total": 59,
+      "activity": 17,
+      "potential": 77,
+      "reuse": 80,
+      "maintainability": 91
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -1592,7 +1592,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "afterman Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 59
+      "totalHoursInvested": 52
     },
     "stars": 0,
     "forks": 0,
@@ -1611,11 +1611,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Docker"
     ],
     "score": {
-      "total": 77,
-      "activity": 59,
-      "potential": 93,
-      "reuse": 76,
-      "maintainability": 88
+      "total": 79,
+      "activity": 70,
+      "potential": 88,
+      "reuse": 79,
+      "maintainability": 85
     },
     "assets": [],
     "nextAction": "의존성 업데이트 및 안정화",
@@ -1648,10 +1648,10 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Docker"
     ],
     "score": {
-      "total": 79,
-      "activity": 69,
-      "potential": 94,
-      "reuse": 72,
+      "total": 81,
+      "activity": 72,
+      "potential": 88,
+      "reuse": 86,
       "maintainability": 79
     },
     "assets": [],
@@ -1687,11 +1687,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Docker"
     ],
     "score": {
-      "total": 77,
-      "activity": 61,
-      "potential": 88,
-      "reuse": 85,
-      "maintainability": 83
+      "total": 85,
+      "activity": 72,
+      "potential": 91,
+      "reuse": 96,
+      "maintainability": 87
     },
     "assets": [],
     "nextAction": "의존성 업데이트 및 안정화",
@@ -1757,11 +1757,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "TypeScript"
     ],
     "score": {
-      "total": 54,
-      "activity": 11,
-      "potential": 79,
-      "reuse": 84,
-      "maintainability": 66
+      "total": 58,
+      "activity": 23,
+      "potential": 78,
+      "reuse": 76,
+      "maintainability": 77
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -1787,7 +1787,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "aws_dev_tadpole Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 48
+      "totalHoursInvested": 27
     },
     "stars": 0,
     "forks": 0,
@@ -1805,11 +1805,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "TypeScript"
     ],
     "score": {
-      "total": 52,
-      "activity": 20,
-      "potential": 68,
-      "reuse": 73,
-      "maintainability": 67
+      "total": 55,
+      "activity": 15,
+      "potential": 81,
+      "reuse": 78,
+      "maintainability": 68
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -1835,7 +1835,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "aws_kf Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 45
+      "totalHoursInvested": 36
     },
     "stars": 0,
     "forks": 0,
@@ -1854,10 +1854,10 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
     ],
     "score": {
       "total": 58,
-      "activity": 28,
-      "potential": 69,
-      "reuse": 77,
-      "maintainability": 79
+      "activity": 23,
+      "potential": 77,
+      "reuse": 80,
+      "maintainability": 69
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -1883,7 +1883,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "aws_kuta Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 41
+      "totalHoursInvested": 36
     },
     "stars": 0,
     "forks": 0,
@@ -1901,11 +1901,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Python"
     ],
     "score": {
-      "total": 62,
-      "activity": 26,
-      "potential": 83,
-      "reuse": 75,
-      "maintainability": 88
+      "total": 57,
+      "activity": 13,
+      "potential": 82,
+      "reuse": 72,
+      "maintainability": 91
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -1931,7 +1931,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "bank-crawling-engine Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 27
+      "totalHoursInvested": 39
     },
     "stars": 0,
     "forks": 0,
@@ -1950,11 +1950,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Java"
     ],
     "score": {
-      "total": 79,
-      "activity": 82,
-      "potential": 68,
-      "reuse": 76,
-      "maintainability": 95
+      "total": 83,
+      "activity": 84,
+      "potential": 83,
+      "reuse": 77,
+      "maintainability": 87
     },
     "assets": [],
     "nextAction": "가설 검증 피드백 수집 및 MVP 개선",
@@ -1986,10 +1986,10 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "TypeScript"
     ],
     "score": {
-      "total": 55,
-      "activity": 15,
-      "potential": 76,
-      "reuse": 72,
+      "total": 58,
+      "activity": 16,
+      "potential": 82,
+      "reuse": 76,
       "maintainability": 84
     },
     "assets": [],
@@ -2016,7 +2016,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "cdnjs Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 32
+      "totalHoursInvested": 53
     },
     "stars": 0,
     "forks": 0,
@@ -2034,11 +2034,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "TypeScript"
     ],
     "score": {
-      "total": 57,
-      "activity": 27,
+      "total": 54,
+      "activity": 21,
       "potential": 72,
-      "reuse": 75,
-      "maintainability": 70
+      "reuse": 73,
+      "maintainability": 69
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -2066,7 +2066,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "chaca Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 47
+      "totalHoursInvested": 27
     },
     "stars": 0,
     "forks": 0,
@@ -2085,11 +2085,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Flutter"
     ],
     "score": {
-      "total": 56,
-      "activity": 15,
-      "potential": 73,
-      "reuse": 78,
-      "maintainability": 86
+      "total": 60,
+      "activity": 18,
+      "potential": 78,
+      "reuse": 84,
+      "maintainability": 89
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -2115,7 +2115,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "chaca-market Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 25
+      "totalHoursInvested": 48
     },
     "stars": 0,
     "forks": 0,
@@ -2134,10 +2134,10 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
     ],
     "score": {
       "total": 71,
-      "activity": 60,
-      "potential": 83,
+      "activity": 61,
+      "potential": 77,
       "reuse": 75,
-      "maintainability": 66
+      "maintainability": 75
     },
     "assets": [],
     "nextAction": "의존성 업데이트 및 안정화",
@@ -2169,11 +2169,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Python"
     ],
     "score": {
-      "total": 61,
-      "activity": 29,
-      "potential": 78,
-      "reuse": 74,
-      "maintainability": 84
+      "total": 57,
+      "activity": 14,
+      "potential": 81,
+      "reuse": 75,
+      "maintainability": 83
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -2199,7 +2199,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "clubhouse-py Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 38
+      "totalHoursInvested": 41
     },
     "stars": 0,
     "forks": 0,
@@ -2218,11 +2218,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Docker"
     ],
     "score": {
-      "total": 86,
-      "activity": 97,
-      "potential": 74,
-      "reuse": 81,
-      "maintainability": 94
+      "total": 85,
+      "activity": 98,
+      "potential": 75,
+      "reuse": 77,
+      "maintainability": 82
     },
     "assets": [],
     "nextAction": "핵심 기능 확장 및 배포 파이프라인 점검",
@@ -2255,11 +2255,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Java"
     ],
     "score": {
-      "total": 86,
-      "activity": 84,
-      "potential": 91,
-      "reuse": 78,
-      "maintainability": 89
+      "total": 88,
+      "activity": 86,
+      "potential": 89,
+      "reuse": 86,
+      "maintainability": 92
     },
     "assets": [],
     "nextAction": "가설 검증 피드백 수집 및 MVP 개선",
@@ -2292,11 +2292,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Docker"
     ],
     "score": {
-      "total": 75,
-      "activity": 67,
-      "potential": 77,
-      "reuse": 77,
-      "maintainability": 88
+      "total": 78,
+      "activity": 72,
+      "potential": 79,
+      "reuse": 75,
+      "maintainability": 95
     },
     "assets": [],
     "nextAction": "의존성 업데이트 및 안정화",
@@ -2328,11 +2328,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "TypeScript"
     ],
     "score": {
-      "total": 55,
-      "activity": 18,
-      "potential": 80,
-      "reuse": 75,
-      "maintainability": 67
+      "total": 60,
+      "activity": 27,
+      "potential": 74,
+      "reuse": 83,
+      "maintainability": 76
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -2358,7 +2358,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "czur Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 25
+      "totalHoursInvested": 29
     },
     "stars": 0,
     "forks": 0,
@@ -2376,11 +2376,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "TypeScript"
     ],
     "score": {
-      "total": 78,
-      "activity": 83,
-      "potential": 75,
-      "reuse": 77,
-      "maintainability": 76
+      "total": 83,
+      "activity": 87,
+      "potential": 82,
+      "reuse": 86,
+      "maintainability": 71
     },
     "assets": [],
     "nextAction": "가설 검증 피드백 수집 및 MVP 개선",
@@ -2413,11 +2413,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Docker"
     ],
     "score": {
-      "total": 85,
+      "total": 86,
       "activity": 98,
-      "potential": 71,
-      "reuse": 84,
-      "maintainability": 87
+      "potential": 79,
+      "reuse": 73,
+      "maintainability": 89
     },
     "assets": [],
     "nextAction": "핵심 기능 확장 및 배포 파이프라인 점검",
@@ -2433,7 +2433,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "lastCommitMessage": "feat: update project codebase",
       "githubUrl": "https://github.com/hkjang/dataworks"
     },
-    "stars": 2,
+    "stars": 4,
     "forks": 0,
     "openIssues": 0
   },
@@ -2450,11 +2450,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Docker"
     ],
     "score": {
-      "total": 60,
-      "activity": 19,
-      "potential": 81,
-      "reuse": 80,
-      "maintainability": 88
+      "total": 58,
+      "activity": 25,
+      "potential": 70,
+      "reuse": 81,
+      "maintainability": 83
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -2482,7 +2482,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "dialoqbase Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 49
+      "totalHoursInvested": 33
     },
     "stars": 0,
     "forks": 0,
@@ -2500,11 +2500,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "TypeScript"
     ],
     "score": {
-      "total": 56,
-      "activity": 25,
-      "potential": 68,
-      "reuse": 72,
-      "maintainability": 82
+      "total": 58,
+      "activity": 11,
+      "potential": 83,
+      "reuse": 79,
+      "maintainability": 90
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -2530,7 +2530,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "dify Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 34
+      "totalHoursInvested": 50
     },
     "stars": 0,
     "forks": 0,
@@ -2548,11 +2548,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "TypeScript"
     ],
     "score": {
-      "total": 58,
-      "activity": 23,
-      "potential": 80,
-      "reuse": 78,
-      "maintainability": 66
+      "total": 55,
+      "activity": 18,
+      "potential": 74,
+      "reuse": 74,
+      "maintainability": 75
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -2578,7 +2578,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "dify-chatbot Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 47
+      "totalHoursInvested": 40
     },
     "stars": 0,
     "forks": 0,
@@ -2597,10 +2597,10 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
     ],
     "score": {
       "total": 57,
-      "activity": 14,
-      "potential": 74,
-      "reuse": 80,
-      "maintainability": 94
+      "activity": 25,
+      "potential": 68,
+      "reuse": 72,
+      "maintainability": 92
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -2626,7 +2626,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "dify-docs Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 53
+      "totalHoursInvested": 41
     },
     "stars": 0,
     "forks": 0,
@@ -2644,11 +2644,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "TypeScript"
     ],
     "score": {
-      "total": 53,
-      "activity": 12,
-      "potential": 69,
-      "reuse": 76,
-      "maintainability": 86
+      "total": 57,
+      "activity": 20,
+      "potential": 73,
+      "reuse": 73,
+      "maintainability": 91
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -2674,7 +2674,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "dify-docs1 Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 34
+      "totalHoursInvested": 57
     },
     "stars": 0,
     "forks": 0,
@@ -2692,11 +2692,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "TypeScript"
     ],
     "score": {
-      "total": 77,
-      "activity": 80,
-      "potential": 77,
-      "reuse": 77,
-      "maintainability": 67
+      "total": 79,
+      "activity": 86,
+      "potential": 74,
+      "reuse": 80,
+      "maintainability": 74
     },
     "assets": [],
     "nextAction": "가설 검증 피드백 수집 및 MVP 개선",
@@ -2728,10 +2728,10 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Docker"
     ],
     "score": {
-      "total": 82,
-      "activity": 88,
-      "potential": 69,
-      "reuse": 85,
+      "total": 85,
+      "activity": 86,
+      "potential": 82,
+      "reuse": 81,
       "maintainability": 93
     },
     "assets": [],
@@ -2764,11 +2764,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Docker"
     ],
     "score": {
-      "total": 81,
-      "activity": 82,
-      "potential": 78,
-      "reuse": 78,
-      "maintainability": 86
+      "total": 78,
+      "activity": 81,
+      "potential": 71,
+      "reuse": 73,
+      "maintainability": 92
     },
     "assets": [],
     "nextAction": "가설 검증 피드백 수집 및 MVP 개선",
@@ -2801,9 +2801,9 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
     ],
     "score": {
       "total": 57,
-      "activity": 21,
-      "potential": 77,
-      "reuse": 77,
+      "activity": 17,
+      "potential": 79,
+      "reuse": 79,
       "maintainability": 75
     },
     "assets": [],
@@ -2830,7 +2830,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "egene_db Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 27
+      "totalHoursInvested": 53
     },
     "stars": 0,
     "forks": 0,
@@ -2850,11 +2850,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Docker"
     ],
     "score": {
-      "total": 61,
-      "activity": 15,
-      "potential": 78,
+      "total": 64,
+      "activity": 20,
+      "potential": 83,
       "reuse": 96,
-      "maintainability": 89
+      "maintainability": 88
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -2911,10 +2911,10 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
     ],
     "score": {
       "total": 56,
-      "activity": 20,
-      "potential": 75,
-      "reuse": 75,
-      "maintainability": 75
+      "activity": 16,
+      "potential": 78,
+      "reuse": 83,
+      "maintainability": 66
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -2940,7 +2940,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "fineyflutter-native-cash-manager Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 54
+      "totalHoursInvested": 31
     },
     "stars": 0,
     "forks": 0,
@@ -2958,11 +2958,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Flutter"
     ],
     "score": {
-      "total": 58,
-      "activity": 17,
-      "potential": 76,
-      "reuse": 81,
-      "maintainability": 84
+      "total": 63,
+      "activity": 23,
+      "potential": 82,
+      "reuse": 82,
+      "maintainability": 93
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -2988,7 +2988,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "flutter-chacha Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 25
+      "totalHoursInvested": 33
     },
     "stars": 0,
     "forks": 0,
@@ -3006,11 +3006,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "TypeScript"
     ],
     "score": {
-      "total": 53,
-      "activity": 10,
-      "potential": 74,
-      "reuse": 72,
-      "maintainability": 83
+      "total": 56,
+      "activity": 17,
+      "potential": 73,
+      "reuse": 79,
+      "maintainability": 85
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -3040,7 +3040,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "forge-wheel-of-fortune Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 49
+      "totalHoursInvested": 34
     },
     "stars": 0,
     "forks": 0,
@@ -3058,11 +3058,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "TypeScript"
     ],
     "score": {
-      "total": 81,
-      "activity": 70,
-      "potential": 95,
-      "reuse": 80,
-      "maintainability": 78
+      "total": 77,
+      "activity": 72,
+      "potential": 90,
+      "reuse": 72,
+      "maintainability": 72
     },
     "assets": [],
     "nextAction": "의존성 업데이트 및 안정화",
@@ -3096,11 +3096,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Docker"
     ],
     "score": {
-      "total": 75,
-      "activity": 63,
-      "potential": 70,
-      "reuse": 88,
-      "maintainability": 95
+      "total": 71,
+      "activity": 58,
+      "potential": 68,
+      "reuse": 91,
+      "maintainability": 82
     },
     "assets": [],
     "nextAction": "의존성 업데이트 및 안정화",
@@ -3222,11 +3222,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Docker"
     ],
     "score": {
-      "total": 85,
+      "total": 84,
       "activity": 98,
-      "potential": 77,
-      "reuse": 74,
-      "maintainability": 83
+      "potential": 68,
+      "reuse": 76,
+      "maintainability": 95
     },
     "assets": [],
     "nextAction": "핵심 기능 확장 및 배포 파이프라인 점검",
@@ -3242,7 +3242,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "lastCommitMessage": "feat: update project codebase",
       "githubUrl": "https://github.com/hkjang/git-ctx"
     },
-    "stars": 3,
+    "stars": 2,
     "forks": 0,
     "openIssues": 0
   },
@@ -3258,11 +3258,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Go"
     ],
     "score": {
-      "total": 82,
-      "activity": 94,
-      "potential": 73,
-      "reuse": 72,
-      "maintainability": 86
+      "total": 83,
+      "activity": 93,
+      "potential": 70,
+      "reuse": 77,
+      "maintainability": 93
     },
     "assets": [],
     "nextAction": "핵심 기능 확장 및 배포 파이프라인 점검",
@@ -3278,7 +3278,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "lastCommitMessage": "feat: update project codebase",
       "githubUrl": "https://github.com/hkjang/goalforge"
     },
-    "stars": 3,
+    "stars": 4,
     "forks": 0,
     "openIssues": 0
   },
@@ -3294,11 +3294,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "TypeScript"
     ],
     "score": {
-      "total": 55,
-      "activity": 17,
-      "potential": 68,
-      "reuse": 77,
-      "maintainability": 89
+      "total": 59,
+      "activity": 13,
+      "potential": 76,
+      "reuse": 85,
+      "maintainability": 95
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -3324,7 +3324,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "google-maps-grouping-and-clustering-markers Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 38
+      "totalHoursInvested": 43
     },
     "stars": 0,
     "forks": 0,
@@ -3342,11 +3342,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "TypeScript"
     ],
     "score": {
-      "total": 85,
-      "activity": 95,
-      "potential": 70,
-      "reuse": 84,
-      "maintainability": 94
+      "total": 81,
+      "activity": 94,
+      "potential": 69,
+      "reuse": 73,
+      "maintainability": 84
     },
     "assets": [],
     "nextAction": "핵심 기능 확장 및 배포 파이프라인 점검",
@@ -3362,7 +3362,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "lastCommitMessage": "feat: update project codebase",
       "githubUrl": "https://github.com/hkjang/hkjang"
     },
-    "stars": 4,
+    "stars": 3,
     "forks": 0,
     "openIssues": 0
   },
@@ -3378,11 +3378,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "TypeScript"
     ],
     "score": {
-      "total": 83,
-      "activity": 92,
-      "potential": 75,
-      "reuse": 78,
-      "maintainability": 85
+      "total": 86,
+      "activity": 98,
+      "potential": 74,
+      "reuse": 74,
+      "maintainability": 95
     },
     "assets": [],
     "nextAction": "핵심 기능 확장 및 배포 파이프라인 점검",
@@ -3398,7 +3398,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "lastCommitMessage": "feat: update project codebase",
       "githubUrl": "https://github.com/hkjang/hkjang.github.io"
     },
-    "stars": 4,
+    "stars": 3,
     "forks": 0,
     "openIssues": 0
   },
@@ -3414,11 +3414,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "TypeScript"
     ],
     "score": {
-      "total": 60,
-      "activity": 22,
-      "potential": 80,
-      "reuse": 77,
-      "maintainability": 88
+      "total": 56,
+      "activity": 21,
+      "potential": 68,
+      "reuse": 78,
+      "maintainability": 83
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -3444,7 +3444,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "html5_lucky_draw Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 38
+      "totalHoursInvested": 47
     },
     "stars": 0,
     "forks": 0,
@@ -3464,9 +3464,9 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
     ],
     "score": {
       "total": 80,
-      "activity": 86,
-      "potential": 75,
-      "reuse": 72,
+      "activity": 84,
+      "potential": 78,
+      "reuse": 73,
       "maintainability": 87
     },
     "assets": [],
@@ -3505,11 +3505,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Python"
     ],
     "score": {
-      "total": 71,
-      "activity": 64,
-      "potential": 77,
-      "reuse": 75,
-      "maintainability": 67
+      "total": 70,
+      "activity": 61,
+      "potential": 74,
+      "reuse": 77,
+      "maintainability": 76
     },
     "assets": [],
     "nextAction": "의존성 업데이트 및 안정화",
@@ -3542,11 +3542,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Docker"
     ],
     "score": {
-      "total": 88,
-      "activity": 98,
-      "potential": 80,
-      "reuse": 83,
-      "maintainability": 89
+      "total": 85,
+      "activity": 94,
+      "potential": 76,
+      "reuse": 81,
+      "maintainability": 85
     },
     "assets": [],
     "nextAction": "핵심 기능 확장 및 배포 파이프라인 점검",
@@ -3579,11 +3579,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Docker"
     ],
     "score": {
-      "total": 72,
+      "total": 74,
       "activity": 62,
-      "potential": 78,
+      "potential": 82,
       "reuse": 74,
-      "maintainability": 83
+      "maintainability": 88
     },
     "assets": [],
     "nextAction": "의존성 업데이트 및 안정화",
@@ -3616,11 +3616,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Docker"
     ],
     "score": {
-      "total": 77,
-      "activity": 64,
-      "potential": 82,
-      "reuse": 86,
-      "maintainability": 88
+      "total": 74,
+      "activity": 60,
+      "potential": 80,
+      "reuse": 83,
+      "maintainability": 84
     },
     "assets": [],
     "nextAction": "의존성 업데이트 및 안정화",
@@ -3657,11 +3657,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Next.js"
     ],
     "score": {
-      "total": 83,
-      "activity": 62,
-      "potential": 96,
-      "reuse": 94,
-      "maintainability": 90
+      "total": 81,
+      "activity": 63,
+      "potential": 94,
+      "reuse": 91,
+      "maintainability": 82
     },
     "assets": [],
     "nextAction": "의존성 업데이트 및 안정화",
@@ -3710,11 +3710,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Docker"
     ],
     "score": {
-      "total": 74,
+      "total": 73,
       "activity": 66,
-      "potential": 72,
-      "reuse": 84,
-      "maintainability": 82
+      "potential": 70,
+      "reuse": 75,
+      "maintainability": 92
     },
     "assets": [],
     "nextAction": "의존성 업데이트 및 안정화",
@@ -3747,11 +3747,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Docker"
     ],
     "score": {
-      "total": 73,
-      "activity": 58,
-      "potential": 78,
-      "reuse": 84,
-      "maintainability": 83
+      "total": 75,
+      "activity": 69,
+      "potential": 76,
+      "reuse": 79,
+      "maintainability": 82
     },
     "assets": [],
     "nextAction": "의존성 업데이트 및 안정화",
@@ -3783,11 +3783,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "TypeScript"
     ],
     "score": {
-      "total": 55,
-      "activity": 20,
-      "potential": 68,
-      "reuse": 73,
-      "maintainability": 84
+      "total": 63,
+      "activity": 27,
+      "potential": 78,
+      "reuse": 82,
+      "maintainability": 94
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -3813,7 +3813,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "jackpot_five Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 55
+      "totalHoursInvested": 41
     },
     "stars": 0,
     "forks": 0,
@@ -3832,11 +3832,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Docker"
     ],
     "score": {
-      "total": 78,
-      "activity": 79,
-      "potential": 73,
-      "reuse": 74,
-      "maintainability": 90
+      "total": 82,
+      "activity": 82,
+      "potential": 78,
+      "reuse": 86,
+      "maintainability": 82
     },
     "assets": [],
     "nextAction": "가설 검증 피드백 수집 및 MVP 개선",
@@ -3871,11 +3871,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "TailwindCSS"
     ],
     "score": {
-      "total": 87,
-      "activity": 81,
-      "potential": 93,
-      "reuse": 89,
-      "maintainability": 86
+      "total": 84,
+      "activity": 79,
+      "potential": 86,
+      "reuse": 92,
+      "maintainability": 83
     },
     "assets": [],
     "nextAction": "가설 검증 피드백 수집 및 MVP 개선",
@@ -3927,11 +3927,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "TailwindCSS"
     ],
     "score": {
-      "total": 88,
-      "activity": 82,
-      "potential": 94,
+      "total": 89,
+      "activity": 86,
+      "potential": 95,
       "reuse": 87,
-      "maintainability": 92
+      "maintainability": 85
     },
     "assets": [],
     "nextAction": "가설 검증 피드백 수집 및 MVP 개선",
@@ -3973,11 +3973,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Docker"
     ],
     "score": {
-      "total": 82,
-      "activity": 71,
-      "potential": 86,
-      "reuse": 87,
-      "maintainability": 93
+      "total": 81,
+      "activity": 69,
+      "potential": 89,
+      "reuse": 86,
+      "maintainability": 88
     },
     "assets": [],
     "nextAction": "의존성 업데이트 및 안정화",
@@ -4048,11 +4048,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Docker"
     ],
     "score": {
-      "total": 90,
-      "activity": 89,
-      "potential": 89,
-      "reuse": 94,
-      "maintainability": 89
+      "total": 87,
+      "activity": 80,
+      "potential": 96,
+      "reuse": 87,
+      "maintainability": 83
     },
     "assets": [],
     "nextAction": "가설 검증 피드백 수집 및 MVP 개선",
@@ -4123,11 +4123,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "TailwindCSS"
     ],
     "score": {
-      "total": 77,
-      "activity": 58,
-      "potential": 86,
-      "reuse": 90,
-      "maintainability": 85
+      "total": 82,
+      "activity": 65,
+      "potential": 93,
+      "reuse": 91,
+      "maintainability": 89
     },
     "assets": [],
     "nextAction": "의존성 업데이트 및 안정화",
@@ -4183,11 +4183,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Docker"
     ],
     "score": {
-      "total": 77,
-      "activity": 63,
-      "potential": 89,
-      "reuse": 78,
-      "maintainability": 82
+      "total": 76,
+      "activity": 59,
+      "potential": 94,
+      "reuse": 72,
+      "maintainability": 87
     },
     "assets": [],
     "nextAction": "의존성 업데이트 및 안정화",
@@ -4220,11 +4220,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Docker"
     ],
     "score": {
-      "total": 84,
-      "activity": 95,
-      "potential": 70,
-      "reuse": 80,
-      "maintainability": 91
+      "total": 83,
+      "activity": 92,
+      "potential": 79,
+      "reuse": 74,
+      "maintainability": 84
     },
     "assets": [],
     "nextAction": "핵심 기능 확장 및 배포 파이프라인 점검",
@@ -4240,7 +4240,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "lastCommitMessage": "feat: update project codebase",
       "githubUrl": "https://github.com/hkjang/jamypg"
     },
-    "stars": 3,
+    "stars": 1,
     "forks": 0,
     "openIssues": 0
   },
@@ -4259,11 +4259,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "TailwindCSS"
     ],
     "score": {
-      "total": 92,
-      "activity": 89,
-      "potential": 91,
-      "reuse": 95,
-      "maintainability": 94
+      "total": 88,
+      "activity": 82,
+      "potential": 92,
+      "reuse": 93,
+      "maintainability": 88
     },
     "assets": [],
     "nextAction": "가설 검증 피드백 수집 및 MVP 개선",
@@ -4311,10 +4311,10 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
     ],
     "score": {
       "total": 83,
-      "activity": 86,
-      "potential": 79,
-      "reuse": 81,
-      "maintainability": 87
+      "activity": 89,
+      "potential": 78,
+      "reuse": 74,
+      "maintainability": 89
     },
     "assets": [],
     "nextAction": "가설 검증 피드백 수집 및 MVP 개선",
@@ -4347,11 +4347,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Vue.js"
     ],
     "score": {
-      "total": 52,
-      "activity": 17,
-      "potential": 69,
-      "reuse": 75,
-      "maintainability": 67
+      "total": 55,
+      "activity": 18,
+      "potential": 71,
+      "reuse": 76,
+      "maintainability": 78
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -4381,7 +4381,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "japp Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 32
+      "totalHoursInvested": 39
     },
     "stars": 0,
     "forks": 0,
@@ -4399,11 +4399,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "TypeScript"
     ],
     "score": {
-      "total": 77,
-      "activity": 78,
-      "potential": 73,
-      "reuse": 78,
-      "maintainability": 83
+      "total": 84,
+      "activity": 87,
+      "potential": 75,
+      "reuse": 85,
+      "maintainability": 94
     },
     "assets": [],
     "nextAction": "가설 검증 피드백 수집 및 MVP 개선",
@@ -4435,11 +4435,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "TypeScript"
     ],
     "score": {
-      "total": 85,
+      "total": 84,
       "activity": 94,
-      "potential": 70,
-      "reuse": 86,
-      "maintainability": 93
+      "potential": 69,
+      "reuse": 83,
+      "maintainability": 90
     },
     "assets": [],
     "nextAction": "핵심 기능 확장 및 배포 파이프라인 점검",
@@ -4472,11 +4472,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Docker"
     ],
     "score": {
-      "total": 77,
-      "activity": 81,
-      "potential": 70,
-      "reuse": 72,
-      "maintainability": 87
+      "total": 82,
+      "activity": 89,
+      "potential": 73,
+      "reuse": 75,
+      "maintainability": 95
     },
     "assets": [],
     "nextAction": "가설 검증 피드백 수집 및 MVP 개선",
@@ -4510,11 +4510,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "TypeScript"
     ],
     "score": {
-      "total": 73,
-      "activity": 58,
+      "total": 74,
+      "activity": 68,
       "potential": 81,
-      "reuse": 86,
-      "maintainability": 75
+      "reuse": 75,
+      "maintainability": 71
     },
     "assets": [],
     "nextAction": "의존성 업데이트 및 안정화",
@@ -4547,10 +4547,10 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
     ],
     "score": {
       "total": 61,
-      "activity": 20,
-      "potential": 79,
-      "reuse": 86,
-      "maintainability": 89
+      "activity": 25,
+      "potential": 78,
+      "reuse": 80,
+      "maintainability": 85
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -4578,7 +4578,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "jeus Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 33
+      "totalHoursInvested": 41
     },
     "stars": 0,
     "forks": 0,
@@ -4596,11 +4596,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "TypeScript"
     ],
     "score": {
-      "total": 51,
-      "activity": 12,
-      "potential": 70,
-      "reuse": 75,
-      "maintainability": 70
+      "total": 52,
+      "activity": 19,
+      "potential": 68,
+      "reuse": 72,
+      "maintainability": 72
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -4626,7 +4626,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "jqwidgets-ver13.2.0 Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 41
+      "totalHoursInvested": 44
     },
     "stars": 0,
     "forks": 0,
@@ -4645,11 +4645,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Express"
     ],
     "score": {
-      "total": 54,
-      "activity": 14,
-      "potential": 78,
-      "reuse": 74,
-      "maintainability": 72
+      "total": 60,
+      "activity": 24,
+      "potential": 80,
+      "reuse": 81,
+      "maintainability": 77
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -4678,7 +4678,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "jqwidgets-ver14.0.0 Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 40
+      "totalHoursInvested": 44
     },
     "stars": 0,
     "forks": 0,
@@ -4696,11 +4696,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "TypeScript"
     ],
     "score": {
-      "total": 60,
-      "activity": 26,
-      "potential": 79,
-      "reuse": 78,
-      "maintainability": 79
+      "total": 56,
+      "activity": 17,
+      "potential": 78,
+      "reuse": 82,
+      "maintainability": 71
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -4726,7 +4726,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "jqwidgets-ver9.1.4 Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 43
+      "totalHoursInvested": 47
     },
     "stars": 0,
     "forks": 0,
@@ -4745,11 +4745,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Express"
     ],
     "score": {
-      "total": 75,
-      "activity": 65,
-      "potential": 82,
-      "reuse": 86,
-      "maintainability": 71
+      "total": 71,
+      "activity": 60,
+      "potential": 77,
+      "reuse": 80,
+      "maintainability": 74
     },
     "assets": [],
     "nextAction": "의존성 업데이트 및 안정화",
@@ -4795,11 +4795,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Express"
     ],
     "score": {
-      "total": 55,
-      "activity": 17,
-      "potential": 72,
-      "reuse": 72,
-      "maintainability": 89
+      "total": 63,
+      "activity": 26,
+      "potential": 76,
+      "reuse": 86,
+      "maintainability": 93
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -4838,7 +4838,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "json2chartfile Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 44
+      "totalHoursInvested": 38
     },
     "stars": 0,
     "forks": 0,
@@ -4857,11 +4857,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Docker"
     ],
     "score": {
-      "total": 83,
-      "activity": 92,
-      "potential": 72,
-      "reuse": 77,
-      "maintainability": 91
+      "total": 86,
+      "activity": 94,
+      "potential": 80,
+      "reuse": 81,
+      "maintainability": 84
     },
     "assets": [],
     "nextAction": "핵심 기능 확장 및 배포 파이프라인 점검",
@@ -4894,11 +4894,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Docker"
     ],
     "score": {
-      "total": 81,
-      "activity": 92,
-      "potential": 70,
-      "reuse": 72,
-      "maintainability": 88
+      "total": 89,
+      "activity": 98,
+      "potential": 82,
+      "reuse": 79,
+      "maintainability": 93
     },
     "assets": [],
     "nextAction": "핵심 기능 확장 및 배포 파이프라인 점검",
@@ -4914,7 +4914,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "lastCommitMessage": "feat: update project codebase",
       "githubUrl": "https://github.com/hkjang/kanvas"
     },
-    "stars": 3,
+    "stars": 4,
     "forks": 0,
     "openIssues": 0
   },
@@ -4930,11 +4930,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Docker"
     ],
     "score": {
-      "total": 86,
-      "activity": 83,
-      "potential": 94,
-      "reuse": 83,
-      "maintainability": 83
+      "total": 89,
+      "activity": 88,
+      "potential": 93,
+      "reuse": 86,
+      "maintainability": 86
     },
     "assets": [],
     "nextAction": "가설 검증 피드백 수집 및 MVP 개선",
@@ -4966,11 +4966,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "TypeScript"
     ],
     "score": {
-      "total": 62,
-      "activity": 28,
-      "potential": 87,
-      "reuse": 72,
-      "maintainability": 76
+      "total": 61,
+      "activity": 17,
+      "potential": 88,
+      "reuse": 86,
+      "maintainability": 77
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -4996,7 +4996,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "ln2sql Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 47
+      "totalHoursInvested": 46
     },
     "stars": 0,
     "forks": 0,
@@ -5014,10 +5014,10 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "TypeScript"
     ],
     "score": {
-      "total": 58,
-      "activity": 15,
-      "potential": 73,
-      "reuse": 84,
+      "total": 61,
+      "activity": 16,
+      "potential": 82,
+      "reuse": 81,
       "maintainability": 95
     },
     "assets": [],
@@ -5044,7 +5044,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "lottery_numbers Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 26
+      "totalHoursInvested": 35
     },
     "stars": 0,
     "forks": 0,
@@ -5064,10 +5064,10 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
     ],
     "score": {
       "total": 61,
-      "activity": 10,
-      "potential": 93,
-      "reuse": 86,
-      "maintainability": 83
+      "activity": 16,
+      "potential": 96,
+      "reuse": 73,
+      "maintainability": 82
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -5097,7 +5097,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "luckysix-react-game Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 54
+      "totalHoursInvested": 36
     },
     "stars": 0,
     "forks": 0,
@@ -5118,11 +5118,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "TailwindCSS"
     ],
     "score": {
-      "total": 77,
-      "activity": 58,
-      "potential": 89,
-      "reuse": 87,
-      "maintainability": 84
+      "total": 84,
+      "activity": 71,
+      "potential": 93,
+      "reuse": 90,
+      "maintainability": 88
     },
     "assets": [],
     "nextAction": "의존성 업데이트 및 안정화",
@@ -5165,11 +5165,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Go"
     ],
     "score": {
-      "total": 87,
-      "activity": 81,
-      "potential": 94,
-      "reuse": 80,
-      "maintainability": 95
+      "total": 85,
+      "activity": 83,
+      "potential": 86,
+      "reuse": 81,
+      "maintainability": 92
     },
     "assets": [],
     "nextAction": "가설 검증 피드백 수집 및 MVP 개선",
@@ -5201,11 +5201,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Go"
     ],
     "score": {
-      "total": 86,
-      "activity": 83,
-      "potential": 92,
-      "reuse": 77,
-      "maintainability": 95
+      "total": 87,
+      "activity": 89,
+      "potential": 90,
+      "reuse": 72,
+      "maintainability": 94
     },
     "assets": [],
     "nextAction": "가설 검증 피드백 수집 및 MVP 개선",
@@ -5237,11 +5237,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Go"
     ],
     "score": {
-      "total": 88,
-      "activity": 87,
-      "potential": 96,
-      "reuse": 72,
-      "maintainability": 93
+      "total": 86,
+      "activity": 83,
+      "potential": 90,
+      "reuse": 82,
+      "maintainability": 88
     },
     "assets": [],
     "nextAction": "가설 검증 피드백 수집 및 MVP 개선",
@@ -5273,11 +5273,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Go"
     ],
     "score": {
-      "total": 87,
-      "activity": 83,
-      "potential": 96,
-      "reuse": 78,
-      "maintainability": 89
+      "total": 84,
+      "activity": 85,
+      "potential": 89,
+      "reuse": 75,
+      "maintainability": 82
     },
     "assets": [],
     "nextAction": "가설 검증 피드백 수집 및 MVP 개선",
@@ -5309,10 +5309,10 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Go"
     ],
     "score": {
-      "total": 83,
-      "activity": 82,
-      "potential": 89,
-      "reuse": 72,
+      "total": 89,
+      "activity": 87,
+      "potential": 95,
+      "reuse": 83,
       "maintainability": 91
     },
     "assets": [],
@@ -5345,11 +5345,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Go"
     ],
     "score": {
-      "total": 87,
-      "activity": 85,
+      "total": 86,
+      "activity": 84,
       "potential": 93,
-      "reuse": 78,
-      "maintainability": 91
+      "reuse": 77,
+      "maintainability": 89
     },
     "assets": [],
     "nextAction": "가설 검증 피드백 수집 및 MVP 개선",
@@ -5382,10 +5382,10 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
     ],
     "score": {
       "total": 82,
-      "activity": 87,
-      "potential": 91,
-      "reuse": 72,
-      "maintainability": 68
+      "activity": 85,
+      "potential": 90,
+      "reuse": 77,
+      "maintainability": 66
     },
     "assets": [],
     "nextAction": "가설 검증 피드백 수집 및 MVP 개선",
@@ -5417,11 +5417,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Go"
     ],
     "score": {
-      "total": 83,
-      "activity": 79,
-      "potential": 86,
-      "reuse": 83,
-      "maintainability": 85
+      "total": 84,
+      "activity": 83,
+      "potential": 91,
+      "reuse": 76,
+      "maintainability": 82
     },
     "assets": [],
     "nextAction": "가설 검증 피드백 수집 및 MVP 개선",
@@ -5454,10 +5454,10 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
     ],
     "score": {
       "total": 85,
-      "activity": 84,
+      "activity": 88,
       "potential": 87,
-      "reuse": 78,
-      "maintainability": 91
+      "reuse": 77,
+      "maintainability": 85
     },
     "assets": [],
     "nextAction": "가설 검증 피드백 수집 및 MVP 개선",
@@ -5489,11 +5489,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Go"
     ],
     "score": {
-      "total": 87,
-      "activity": 86,
-      "potential": 90,
-      "reuse": 80,
-      "maintainability": 95
+      "total": 86,
+      "activity": 89,
+      "potential": 86,
+      "reuse": 77,
+      "maintainability": 90
     },
     "assets": [],
     "nextAction": "가설 검증 피드백 수집 및 MVP 개선",
@@ -5526,10 +5526,10 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
     ],
     "score": {
       "total": 63,
-      "activity": 14,
-      "potential": 95,
-      "reuse": 81,
-      "maintainability": 90
+      "activity": 23,
+      "potential": 88,
+      "reuse": 75,
+      "maintainability": 89
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -5555,7 +5555,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "mattermost-plugin-ai Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 34
+      "totalHoursInvested": 59
     },
     "stars": 0,
     "forks": 0,
@@ -5573,11 +5573,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "TypeScript"
     ],
     "score": {
-      "total": 52,
-      "activity": 10,
-      "potential": 69,
-      "reuse": 75,
-      "maintainability": 84
+      "total": 60,
+      "activity": 20,
+      "potential": 79,
+      "reuse": 82,
+      "maintainability": 86
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -5603,7 +5603,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "mbtiTest Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 50
+      "totalHoursInvested": 30
     },
     "stars": 0,
     "forks": 0,
@@ -5622,11 +5622,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Express"
     ],
     "score": {
-      "total": 57,
-      "activity": 10,
-      "potential": 79,
-      "reuse": 83,
-      "maintainability": 85
+      "total": 62,
+      "activity": 28,
+      "potential": 78,
+      "reuse": 77,
+      "maintainability": 91
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -5660,7 +5660,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "naverapi Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 32
+      "totalHoursInvested": 35
     },
     "stars": 0,
     "forks": 0,
@@ -5679,11 +5679,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Docker"
     ],
     "score": {
-      "total": 85,
+      "total": 88,
       "activity": 93,
-      "potential": 73,
+      "potential": 83,
       "reuse": 83,
-      "maintainability": 91
+      "maintainability": 93
     },
     "assets": [],
     "nextAction": "핵심 기능 확장 및 배포 파이프라인 점검",
@@ -5717,10 +5717,10 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
     ],
     "score": {
       "total": 60,
-      "activity": 27,
-      "potential": 72,
-      "reuse": 81,
-      "maintainability": 84
+      "activity": 19,
+      "potential": 79,
+      "reuse": 80,
+      "maintainability": 89
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -5763,7 +5763,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "node-open-mining-portal Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 31
+      "totalHoursInvested": 53
     },
     "stars": 0,
     "forks": 0,
@@ -5782,11 +5782,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Express"
     ],
     "score": {
-      "total": 58,
-      "activity": 16,
-      "potential": 80,
-      "reuse": 72,
-      "maintainability": 93
+      "total": 63,
+      "activity": 25,
+      "potential": 81,
+      "reuse": 78,
+      "maintainability": 94
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -5864,7 +5864,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "node-red Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 42
+      "totalHoursInvested": 59
     },
     "stars": 0,
     "forks": 0,
@@ -5883,11 +5883,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Node-RED"
     ],
     "score": {
-      "total": 61,
-      "activity": 18,
-      "potential": 83,
-      "reuse": 79,
-      "maintainability": 92
+      "total": 56,
+      "activity": 12,
+      "potential": 82,
+      "reuse": 72,
+      "maintainability": 87
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -5915,7 +5915,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "node-red-contrib-bitbucket Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 44
+      "totalHoursInvested": 39
     },
     "stars": 0,
     "forks": 0,
@@ -5934,11 +5934,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Node-RED"
     ],
     "score": {
-      "total": 56,
-      "activity": 12,
-      "potential": 75,
-      "reuse": 84,
-      "maintainability": 85
+      "total": 63,
+      "activity": 26,
+      "potential": 78,
+      "reuse": 85,
+      "maintainability": 87
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -5967,7 +5967,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "node-red-contrib-codef Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 42
+      "totalHoursInvested": 55
     },
     "stars": 0,
     "forks": 0,
@@ -5986,11 +5986,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Node-RED"
     ],
     "score": {
-      "total": 60,
-      "activity": 27,
-      "potential": 74,
-      "reuse": 77,
-      "maintainability": 89
+      "total": 53,
+      "activity": 11,
+      "potential": 68,
+      "reuse": 76,
+      "maintainability": 88
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -6023,7 +6023,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "node-red-contrib-contribgen Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 56
+      "totalHoursInvested": 50
     },
     "stars": 0,
     "forks": 0,
@@ -6042,11 +6042,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Node-RED"
     ],
     "score": {
-      "total": 63,
-      "activity": 26,
-      "potential": 78,
-      "reuse": 80,
-      "maintainability": 95
+      "total": 60,
+      "activity": 24,
+      "potential": 80,
+      "reuse": 75,
+      "maintainability": 86
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -6072,7 +6072,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "node-red-contrib-danawa Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 38
+      "totalHoursInvested": 46
     },
     "stars": 0,
     "forks": 0,
@@ -6091,11 +6091,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Node-RED"
     ],
     "score": {
-      "total": 61,
-      "activity": 25,
-      "potential": 83,
-      "reuse": 74,
-      "maintainability": 86
+      "total": 53,
+      "activity": 11,
+      "potential": 70,
+      "reuse": 75,
+      "maintainability": 87
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -6123,7 +6123,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "node-red-contrib-ethermine Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 52
+      "totalHoursInvested": 28
     },
     "stars": 0,
     "forks": 0,
@@ -6142,11 +6142,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Node-RED"
     ],
     "score": {
-      "total": 61,
-      "activity": 20,
-      "potential": 82,
-      "reuse": 82,
-      "maintainability": 86
+      "total": 54,
+      "activity": 15,
+      "potential": 69,
+      "reuse": 74,
+      "maintainability": 91
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -6174,7 +6174,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "node-red-contrib-financialmodelingprep Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 47
+      "totalHoursInvested": 42
     },
     "stars": 0,
     "forks": 0,
@@ -6193,11 +6193,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Node-RED"
     ],
     "score": {
-      "total": 58,
-      "activity": 23,
-      "potential": 68,
-      "reuse": 83,
-      "maintainability": 89
+      "total": 57,
+      "activity": 12,
+      "potential": 81,
+      "reuse": 78,
+      "maintainability": 88
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -6225,7 +6225,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "node-red-contrib-fluttergenerator Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 56
+      "totalHoursInvested": 37
     },
     "stars": 0,
     "forks": 0,
@@ -6245,10 +6245,10 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
     ],
     "score": {
       "total": 56,
-      "activity": 13,
-      "potential": 75,
-      "reuse": 72,
-      "maintainability": 94
+      "activity": 11,
+      "potential": 81,
+      "reuse": 74,
+      "maintainability": 90
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -6276,7 +6276,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "node-red-contrib-gitlabapi Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 32
+      "totalHoursInvested": 39
     },
     "stars": 0,
     "forks": 0,
@@ -6295,11 +6295,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Node-RED"
     ],
     "score": {
-      "total": 58,
-      "activity": 11,
-      "potential": 77,
-      "reuse": 86,
-      "maintainability": 92
+      "total": 60,
+      "activity": 24,
+      "potential": 79,
+      "reuse": 73,
+      "maintainability": 89
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -6327,7 +6327,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "node-red-contrib-google-sheets Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 56
+      "totalHoursInvested": 38
     },
     "stars": 0,
     "forks": 0,
@@ -6346,11 +6346,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Node-RED"
     ],
     "score": {
-      "total": 56,
-      "activity": 11,
-      "potential": 79,
-      "reuse": 72,
-      "maintainability": 95
+      "total": 57,
+      "activity": 12,
+      "potential": 76,
+      "reuse": 85,
+      "maintainability": 87
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -6378,7 +6378,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "node-red-contrib-googlenews Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 53
+      "totalHoursInvested": 57
     },
     "stars": 0,
     "forks": 0,
@@ -6398,10 +6398,10 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
     ],
     "score": {
       "total": 56,
-      "activity": 22,
-      "potential": 69,
-      "reuse": 75,
-      "maintainability": 86
+      "activity": 21,
+      "potential": 71,
+      "reuse": 73,
+      "maintainability": 84
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -6448,11 +6448,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Node-RED"
     ],
     "score": {
-      "total": 56,
-      "activity": 23,
-      "potential": 68,
-      "reuse": 75,
-      "maintainability": 87
+      "total": 61,
+      "activity": 21,
+      "potential": 77,
+      "reuse": 80,
+      "maintainability": 95
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -6480,7 +6480,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "node-red-contrib-jsdiff Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 40
+      "totalHoursInvested": 57
     },
     "stars": 0,
     "forks": 0,
@@ -6499,11 +6499,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Node-RED"
     ],
     "score": {
-      "total": 56,
-      "activity": 17,
-      "potential": 70,
-      "reuse": 79,
-      "maintainability": 91
+      "total": 60,
+      "activity": 26,
+      "potential": 73,
+      "reuse": 81,
+      "maintainability": 87
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -6531,7 +6531,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "node-red-contrib-json2md Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 58
+      "totalHoursInvested": 45
     },
     "stars": 0,
     "forks": 0,
@@ -6551,10 +6551,10 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
     ],
     "score": {
       "total": 59,
-      "activity": 22,
-      "potential": 77,
-      "reuse": 77,
-      "maintainability": 83
+      "activity": 23,
+      "potential": 74,
+      "reuse": 72,
+      "maintainability": 94
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -6582,7 +6582,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "node-red-contrib-kakao-bizmessage-toast Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 46
+      "totalHoursInvested": 56
     },
     "stars": 0,
     "forks": 0,
@@ -6601,11 +6601,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Node-RED"
     ],
     "score": {
-      "total": 59,
-      "activity": 23,
-      "potential": 77,
-      "reuse": 72,
-      "maintainability": 92
+      "total": 57,
+      "activity": 17,
+      "potential": 71,
+      "reuse": 81,
+      "maintainability": 88
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -6634,7 +6634,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "node-red-contrib-kokoanlp Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 32
+      "totalHoursInvested": 56
     },
     "stars": 0,
     "forks": 0,
@@ -6653,11 +6653,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Node-RED"
     ],
     "score": {
-      "total": 61,
-      "activity": 25,
-      "potential": 70,
-      "reuse": 83,
-      "maintainability": 95
+      "total": 52,
+      "activity": 10,
+      "potential": 69,
+      "reuse": 73,
+      "maintainability": 85
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -6686,7 +6686,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "node-red-contrib-korbit Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 55
+      "totalHoursInvested": 40
     },
     "stars": 0,
     "forks": 0,
@@ -6705,11 +6705,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Node-RED"
     ],
     "score": {
-      "total": 63,
-      "activity": 24,
-      "potential": 77,
-      "reuse": 85,
-      "maintainability": 95
+      "total": 62,
+      "activity": 23,
+      "potential": 81,
+      "reuse": 78,
+      "maintainability": 93
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -6737,7 +6737,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "node-red-contrib-naverencyclopedia Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 49
+      "totalHoursInvested": 42
     },
     "stars": 0,
     "forks": 0,
@@ -6756,11 +6756,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Node-RED"
     ],
     "score": {
-      "total": 57,
-      "activity": 23,
-      "potential": 68,
+      "total": 54,
+      "activity": 14,
+      "potential": 72,
       "reuse": 76,
-      "maintainability": 90
+      "maintainability": 82
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -6788,7 +6788,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "node-red-contrib-navernews Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 36
+      "totalHoursInvested": 26
     },
     "stars": 0,
     "forks": 0,
@@ -6807,11 +6807,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Node-RED"
     ],
     "score": {
-      "total": 60,
-      "activity": 22,
-      "potential": 75,
-      "reuse": 82,
-      "maintainability": 86
+      "total": 53,
+      "activity": 11,
+      "potential": 68,
+      "reuse": 79,
+      "maintainability": 89
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -6839,7 +6839,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "node-red-contrib-naversearch Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 43
+      "totalHoursInvested": 35
     },
     "stars": 0,
     "forks": 0,
@@ -6858,11 +6858,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Node-RED"
     ],
     "score": {
-      "total": 61,
-      "activity": 26,
-      "potential": 70,
+      "total": 56,
+      "activity": 14,
+      "potential": 72,
       "reuse": 83,
-      "maintainability": 92
+      "maintainability": 83
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -6890,7 +6890,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "node-red-contrib-newsapi Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 50
+      "totalHoursInvested": 37
     },
     "stars": 0,
     "forks": 0,
@@ -6909,11 +6909,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Node-RED"
     ],
     "score": {
-      "total": 59,
-      "activity": 23,
-      "potential": 76,
-      "reuse": 72,
-      "maintainability": 90
+      "total": 57,
+      "activity": 16,
+      "potential": 77,
+      "reuse": 77,
+      "maintainability": 89
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -6946,7 +6946,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "node-red-contrib-nodegen Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 51
+      "totalHoursInvested": 35
     },
     "stars": 0,
     "forks": 0,
@@ -6965,11 +6965,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Node-RED"
     ],
     "score": {
-      "total": 58,
-      "activity": 16,
-      "potential": 79,
-      "reuse": 75,
-      "maintainability": 93
+      "total": 57,
+      "activity": 14,
+      "potential": 75,
+      "reuse": 82,
+      "maintainability": 86
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -7001,7 +7001,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "node-red-contrib-npmapi Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 55
+      "totalHoursInvested": 48
     },
     "stars": 0,
     "forks": 0,
@@ -7020,11 +7020,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Node-RED"
     ],
     "score": {
-      "total": 60,
-      "activity": 13,
-      "potential": 90,
-      "reuse": 82,
-      "maintainability": 83
+      "total": 64,
+      "activity": 16,
+      "potential": 96,
+      "reuse": 84,
+      "maintainability": 85
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -7052,7 +7052,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "node-red-contrib-openai Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 29
+      "totalHoursInvested": 57
     },
     "stars": 0,
     "forks": 0,
@@ -7071,11 +7071,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Node-RED"
     ],
     "score": {
-      "total": 62,
+      "total": 63,
       "activity": 25,
-      "potential": 75,
-      "reuse": 85,
-      "maintainability": 90
+      "potential": 80,
+      "reuse": 86,
+      "maintainability": 84
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -7103,7 +7103,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "node-red-contrib-opendart Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 34
+      "totalHoursInvested": 32
     },
     "stars": 0,
     "forks": 0,
@@ -7122,11 +7122,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Node-RED"
     ],
     "score": {
-      "total": 60,
+      "total": 55,
       "activity": 18,
-      "potential": 79,
-      "reuse": 83,
-      "maintainability": 87
+      "potential": 69,
+      "reuse": 77,
+      "maintainability": 83
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -7154,7 +7154,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "node-red-contrib-pdfparse Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 47
+      "totalHoursInvested": 50
     },
     "stars": 0,
     "forks": 0,
@@ -7173,11 +7173,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Node-RED"
     ],
     "score": {
-      "total": 55,
-      "activity": 15,
-      "potential": 73,
-      "reuse": 72,
-      "maintainability": 90
+      "total": 63,
+      "activity": 29,
+      "potential": 75,
+      "reuse": 79,
+      "maintainability": 94
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -7205,7 +7205,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "node-red-contrib-postman Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 34
+      "totalHoursInvested": 40
     },
     "stars": 0,
     "forks": 0,
@@ -7224,11 +7224,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Node-RED"
     ],
     "score": {
-      "total": 64,
-      "activity": 28,
-      "potential": 83,
-      "reuse": 82,
-      "maintainability": 83
+      "total": 56,
+      "activity": 12,
+      "potential": 78,
+      "reuse": 73,
+      "maintainability": 90
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -7257,7 +7257,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "node-red-contrib-postman-codegen Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 39
+      "totalHoursInvested": 55
     },
     "stars": 0,
     "forks": 0,
@@ -7276,11 +7276,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Node-RED"
     ],
     "score": {
-      "total": 57,
-      "activity": 11,
-      "potential": 78,
-      "reuse": 80,
-      "maintainability": 93
+      "total": 58,
+      "activity": 13,
+      "potential": 73,
+      "reuse": 84,
+      "maintainability": 95
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -7308,7 +7308,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "node-red-contrib-redash Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 25
+      "totalHoursInvested": 48
     },
     "stars": 0,
     "forks": 0,
@@ -7327,11 +7327,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Node-RED"
     ],
     "score": {
-      "total": 60,
-      "activity": 20,
-      "potential": 77,
-      "reuse": 80,
-      "maintainability": 94
+      "total": 59,
+      "activity": 24,
+      "potential": 75,
+      "reuse": 73,
+      "maintainability": 93
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -7359,7 +7359,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "node-red-contrib-sk11st Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 42
+      "totalHoursInvested": 25
     },
     "stars": 0,
     "forks": 0,
@@ -7378,11 +7378,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Node-RED"
     ],
     "score": {
-      "total": 65,
-      "activity": 20,
-      "potential": 96,
-      "reuse": 79,
-      "maintainability": 89
+      "total": 63,
+      "activity": 19,
+      "potential": 94,
+      "reuse": 74,
+      "maintainability": 86
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -7410,7 +7410,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "node-red-contrib-sqlparser Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 30
+      "totalHoursInvested": 31
     },
     "stars": 0,
     "forks": 0,
@@ -7429,11 +7429,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Node-RED"
     ],
     "score": {
-      "total": 61,
-      "activity": 25,
+      "total": 56,
+      "activity": 18,
       "potential": 76,
-      "reuse": 85,
-      "maintainability": 82
+      "reuse": 72,
+      "maintainability": 85
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -7480,9 +7480,9 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Node-RED"
     ],
     "score": {
-      "total": 60,
-      "activity": 12,
-      "potential": 83,
+      "total": 59,
+      "activity": 13,
+      "potential": 80,
       "reuse": 82,
       "maintainability": 95
     },
@@ -7512,7 +7512,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "node-red-contrib-tabletojson Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 41
+      "totalHoursInvested": 38
     },
     "stars": 0,
     "forks": 0,
@@ -7531,11 +7531,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Node-RED"
     ],
     "score": {
-      "total": 57,
-      "activity": 20,
-      "potential": 82,
-      "reuse": 76,
-      "maintainability": 67
+      "total": 53,
+      "activity": 22,
+      "potential": 68,
+      "reuse": 72,
+      "maintainability": 70
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -7563,7 +7563,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "node-red-contrib-tabletojson2 Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 25
+      "totalHoursInvested": 43
     },
     "stars": 0,
     "forks": 0,
@@ -7582,11 +7582,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Node-RED"
     ],
     "score": {
-      "total": 58,
-      "activity": 11,
-      "potential": 81,
-      "reuse": 83,
-      "maintainability": 90
+      "total": 54,
+      "activity": 10,
+      "potential": 75,
+      "reuse": 77,
+      "maintainability": 86
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -7614,7 +7614,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "node-red-contrib-tadpoledbhub Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 32
+      "totalHoursInvested": 44
     },
     "stars": 0,
     "forks": 0,
@@ -7633,11 +7633,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Node-RED"
     ],
     "score": {
-      "total": 56,
-      "activity": 20,
-      "potential": 68,
-      "reuse": 77,
-      "maintainability": 86
+      "total": 60,
+      "activity": 17,
+      "potential": 81,
+      "reuse": 78,
+      "maintainability": 92
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -7665,7 +7665,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "node-red-contrib-tistory Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 33
+      "totalHoursInvested": 51
     },
     "stars": 0,
     "forks": 0,
@@ -7684,11 +7684,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Node-RED"
     ],
     "score": {
-      "total": 53,
-      "activity": 15,
-      "potential": 72,
-      "reuse": 77,
-      "maintainability": 71
+      "total": 54,
+      "activity": 17,
+      "potential": 71,
+      "reuse": 86,
+      "maintainability": 65
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -7716,7 +7716,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "node-red-contrib-toonify Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 40
+      "totalHoursInvested": 34
     },
     "stars": 0,
     "forks": 0,
@@ -7735,11 +7735,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Node-RED"
     ],
     "score": {
-      "total": 58,
-      "activity": 24,
-      "potential": 71,
-      "reuse": 72,
-      "maintainability": 93
+      "total": 59,
+      "activity": 21,
+      "potential": 80,
+      "reuse": 76,
+      "maintainability": 82
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -7767,7 +7767,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "node-red-contrib-turndown Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 29
+      "totalHoursInvested": 40
     },
     "stars": 0,
     "forks": 0,
@@ -7787,10 +7787,10 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
     ],
     "score": {
       "total": 58,
-      "activity": 13,
-      "potential": 74,
-      "reuse": 85,
-      "maintainability": 93
+      "activity": 18,
+      "potential": 73,
+      "reuse": 81,
+      "maintainability": 90
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -7818,7 +7818,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "node-red-contrib-xml2json Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 29
+      "totalHoursInvested": 45
     },
     "stars": 0,
     "forks": 0,
@@ -7837,11 +7837,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Node-RED"
     ],
     "score": {
-      "total": 61,
+      "total": 64,
       "activity": 19,
-      "potential": 90,
-      "reuse": 72,
-      "maintainability": 85
+      "potential": 95,
+      "reuse": 84,
+      "maintainability": 83
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -7870,7 +7870,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "node-red-contrib-xmysql Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 54
+      "totalHoursInvested": 29
     },
     "stars": 0,
     "forks": 0,
@@ -7889,10 +7889,10 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Node-RED"
     ],
     "score": {
-      "total": 55,
-      "activity": 14,
-      "potential": 81,
-      "reuse": 77,
+      "total": 51,
+      "activity": 13,
+      "potential": 72,
+      "reuse": 75,
       "maintainability": 68
     },
     "assets": [],
@@ -7921,7 +7921,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "node-red-contrib-yaml Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 55
+      "totalHoursInvested": 45
     },
     "stars": 0,
     "forks": 0,
@@ -7939,11 +7939,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "TypeScript"
     ],
     "score": {
-      "total": 66,
-      "activity": 29,
-      "potential": 96,
-      "reuse": 81,
-      "maintainability": 75
+      "total": 57,
+      "activity": 12,
+      "potential": 88,
+      "reuse": 84,
+      "maintainability": 65
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -7969,7 +7969,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "node-red-flowgen-extension Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 36
+      "totalHoursInvested": 35
     },
     "stars": 0,
     "forks": 0,
@@ -7987,11 +7987,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "TypeScript"
     ],
     "score": {
-      "total": 56,
-      "activity": 21,
-      "potential": 71,
-      "reuse": 76,
-      "maintainability": 78
+      "total": 53,
+      "activity": 10,
+      "potential": 76,
+      "reuse": 73,
+      "maintainability": 79
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -8017,7 +8017,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "odoo Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 40
+      "totalHoursInvested": 42
     },
     "stars": 0,
     "forks": 0,
@@ -8035,11 +8035,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "TypeScript"
     ],
     "score": {
-      "total": 79,
-      "activity": 82,
+      "total": 80,
+      "activity": 84,
       "potential": 74,
-      "reuse": 78,
-      "maintainability": 83
+      "reuse": 72,
+      "maintainability": 90
     },
     "assets": [],
     "nextAction": "가설 검증 피드백 수집 및 MVP 개선",
@@ -8088,11 +8088,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "TypeScript"
     ],
     "score": {
-      "total": 57,
-      "activity": 20,
-      "potential": 77,
-      "reuse": 86,
-      "maintainability": 66
+      "total": 55,
+      "activity": 13,
+      "potential": 81,
+      "reuse": 77,
+      "maintainability": 70
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -8118,7 +8118,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "ollama-extension Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 26
+      "totalHoursInvested": 34
     },
     "stars": 0,
     "forks": 0,
@@ -8138,10 +8138,10 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
     ],
     "score": {
       "total": 82,
-      "activity": 81,
-      "potential": 81,
-      "reuse": 85,
-      "maintainability": 84
+      "activity": 89,
+      "potential": 71,
+      "reuse": 81,
+      "maintainability": 87
     },
     "assets": [],
     "nextAction": "가설 검증 피드백 수집 및 MVP 개선",
@@ -8174,11 +8174,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Docker"
     ],
     "score": {
-      "total": 74,
-      "activity": 68,
-      "potential": 70,
-      "reuse": 80,
-      "maintainability": 88
+      "total": 73,
+      "activity": 62,
+      "potential": 76,
+      "reuse": 76,
+      "maintainability": 86
     },
     "assets": [],
     "nextAction": "의존성 업데이트 및 안정화",
@@ -8211,10 +8211,10 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "React"
     ],
     "score": {
-      "total": 86,
-      "activity": 89,
-      "potential": 89,
-      "reuse": 77,
+      "total": 84,
+      "activity": 80,
+      "potential": 92,
+      "reuse": 80,
       "maintainability": 82
     },
     "assets": [],
@@ -8321,11 +8321,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Docker"
     ],
     "score": {
-      "total": 81,
-      "activity": 86,
-      "potential": 68,
-      "reuse": 89,
-      "maintainability": 84
+      "total": 84,
+      "activity": 85,
+      "potential": 80,
+      "reuse": 86,
+      "maintainability": 90
     },
     "assets": [],
     "nextAction": "가설 검증 피드백 수집 및 MVP 개선",
@@ -8410,11 +8410,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "TypeScript"
     ],
     "score": {
-      "total": 83,
-      "activity": 89,
-      "potential": 73,
+      "total": 84,
+      "activity": 81,
+      "potential": 81,
       "reuse": 86,
-      "maintainability": 87
+      "maintainability": 95
     },
     "assets": [],
     "nextAction": "가설 검증 피드백 수집 및 MVP 개선",
@@ -8452,11 +8452,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "TypeScript"
     ],
     "score": {
-      "total": 55,
-      "activity": 10,
-      "potential": 79,
-      "reuse": 74,
-      "maintainability": 86
+      "total": 57,
+      "activity": 18,
+      "potential": 73,
+      "reuse": 76,
+      "maintainability": 92
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -8484,7 +8484,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "opendart Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 34
+      "totalHoursInvested": 46
     },
     "stars": 0,
     "forks": 0,
@@ -8504,11 +8504,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Docker"
     ],
     "score": {
-      "total": 85,
-      "activity": 98,
-      "potential": 70,
-      "reuse": 85,
-      "maintainability": 85
+      "total": 88,
+      "activity": 95,
+      "potential": 77,
+      "reuse": 89,
+      "maintainability": 90
     },
     "assets": [],
     "nextAction": "핵심 기능 확장 및 배포 파이프라인 점검",
@@ -8577,7 +8577,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "lastCommitMessage": "feat: update project codebase",
       "githubUrl": "https://github.com/hkjang/opengajae"
     },
-    "stars": 2,
+    "stars": 1,
     "forks": 0,
     "openIssues": 0
   },
@@ -8597,8 +8597,8 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "total": 87,
       "activity": 86,
       "potential": 92,
-      "reuse": 82,
-      "maintainability": 84
+      "reuse": 78,
+      "maintainability": 89
     },
     "assets": [],
     "nextAction": "가설 검증 피드백 수집 및 MVP 개선",
@@ -8705,11 +8705,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Docker"
     ],
     "score": {
-      "total": 86,
-      "activity": 95,
-      "potential": 77,
-      "reuse": 81,
-      "maintainability": 91
+      "total": 81,
+      "activity": 93,
+      "potential": 71,
+      "reuse": 72,
+      "maintainability": 84
     },
     "assets": [],
     "nextAction": "핵심 기능 확장 및 배포 파이프라인 점검",
@@ -8725,7 +8725,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "lastCommitMessage": "feat: update project codebase",
       "githubUrl": "https://github.com/hkjang/orbit"
     },
-    "stars": 1,
+    "stars": 4,
     "forks": 0,
     "openIssues": 0
   },
@@ -8742,11 +8742,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Java"
     ],
     "score": {
-      "total": 56,
-      "activity": 13,
-      "potential": 73,
-      "reuse": 77,
-      "maintainability": 93
+      "total": 61,
+      "activity": 20,
+      "potential": 82,
+      "reuse": 81,
+      "maintainability": 89
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -8772,7 +8772,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "ovenapp.io Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 39
+      "totalHoursInvested": 42
     },
     "stars": 0,
     "forks": 0,
@@ -8792,11 +8792,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "TailwindCSS"
     ],
     "score": {
-      "total": 68,
-      "activity": 27,
-      "potential": 89,
-      "reuse": 90,
-      "maintainability": 90
+      "total": 67,
+      "activity": 23,
+      "potential": 93,
+      "reuse": 89,
+      "maintainability": 88
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -8867,7 +8867,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "page-assist Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 49
+      "totalHoursInvested": 28
     },
     "stars": 0,
     "forks": 0,
@@ -8887,11 +8887,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Docker"
     ],
     "score": {
-      "total": 79,
-      "activity": 81,
-      "potential": 70,
-      "reuse": 86,
-      "maintainability": 84
+      "total": 81,
+      "activity": 84,
+      "potential": 73,
+      "reuse": 85,
+      "maintainability": 87
     },
     "assets": [],
     "nextAction": "가설 검증 피드백 수집 및 MVP 개선",
@@ -8930,11 +8930,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Express"
     ],
     "score": {
-      "total": 63,
-      "activity": 20,
-      "potential": 83,
-      "reuse": 87,
-      "maintainability": 88
+      "total": 64,
+      "activity": 23,
+      "potential": 82,
+      "reuse": 90,
+      "maintainability": 86
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -8966,7 +8966,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "postman-collection-viewer Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 55
+      "totalHoursInvested": 52
     },
     "stars": 0,
     "forks": 0,
@@ -8985,11 +8985,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Docker"
     ],
     "score": {
-      "total": 82,
-      "activity": 92,
-      "potential": 73,
-      "reuse": 73,
-      "maintainability": 92
+      "total": 85,
+      "activity": 97,
+      "potential": 70,
+      "reuse": 86,
+      "maintainability": 89
     },
     "assets": [],
     "nextAction": "핵심 기능 확장 및 배포 파이프라인 점검",
@@ -9005,7 +9005,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "lastCommitMessage": "feat: update project codebase",
       "githubUrl": "https://github.com/hkjang/postra"
     },
-    "stars": 1,
+    "stars": 2,
     "forks": 0,
     "openIssues": 0
   },
@@ -9021,11 +9021,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "JavaScript"
     ],
     "score": {
-      "total": 56,
-      "activity": 17,
-      "potential": 80,
-      "reuse": 76,
-      "maintainability": 71
+      "total": 57,
+      "activity": 27,
+      "potential": 69,
+      "reuse": 78,
+      "maintainability": 75
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -9053,7 +9053,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "pptx Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 33
+      "totalHoursInvested": 38
     },
     "stars": 0,
     "forks": 0,
@@ -9071,11 +9071,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Docker"
     ],
     "score": {
-      "total": 84,
-      "activity": 95,
-      "potential": 79,
-      "reuse": 75,
-      "maintainability": 82
+      "total": 86,
+      "activity": 93,
+      "potential": 82,
+      "reuse": 79,
+      "maintainability": 85
     },
     "assets": [],
     "nextAction": "핵심 기능 확장 및 배포 파이프라인 점검",
@@ -9091,7 +9091,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "lastCommitMessage": "feat: update project codebase",
       "githubUrl": "https://github.com/hkjang/ptium"
     },
-    "stars": 1,
+    "stars": 0,
     "forks": 0,
     "openIssues": 0
   },
@@ -9107,11 +9107,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "TypeScript"
     ],
     "score": {
-      "total": 58,
-      "activity": 18,
-      "potential": 81,
-      "reuse": 80,
-      "maintainability": 76
+      "total": 56,
+      "activity": 14,
+      "potential": 78,
+      "reuse": 83,
+      "maintainability": 71
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -9137,7 +9137,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "public Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 41
+      "totalHoursInvested": 44
     },
     "stars": 0,
     "forks": 0,
@@ -9155,11 +9155,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "TypeScript"
     ],
     "score": {
-      "total": 53,
-      "activity": 11,
-      "potential": 77,
-      "reuse": 79,
-      "maintainability": 68
+      "total": 54,
+      "activity": 20,
+      "potential": 69,
+      "reuse": 77,
+      "maintainability": 74
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -9185,7 +9185,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "qr Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 28
+      "totalHoursInvested": 37
     },
     "stars": 0,
     "forks": 0,
@@ -9204,11 +9204,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Docker"
     ],
     "score": {
-      "total": 80,
-      "activity": 79,
-      "potential": 82,
-      "reuse": 72,
-      "maintainability": 88
+      "total": 83,
+      "activity": 89,
+      "potential": 80,
+      "reuse": 75,
+      "maintainability": 86
     },
     "assets": [],
     "nextAction": "가설 검증 피드백 수집 및 MVP 개선",
@@ -9246,11 +9246,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Docker"
     ],
     "score": {
-      "total": 87,
-      "activity": 84,
-      "potential": 88,
-      "reuse": 85,
-      "maintainability": 94
+      "total": 90,
+      "activity": 88,
+      "potential": 94,
+      "reuse": 89,
+      "maintainability": 86
     },
     "assets": [],
     "nextAction": "가설 검증 피드백 수집 및 MVP 개선",
@@ -9317,11 +9317,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Express"
     ],
     "score": {
-      "total": 54,
-      "activity": 14,
-      "potential": 79,
-      "reuse": 78,
-      "maintainability": 66
+      "total": 56,
+      "activity": 24,
+      "potential": 68,
+      "reuse": 77,
+      "maintainability": 76
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -9355,7 +9355,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "redman Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 40
+      "totalHoursInvested": 27
     },
     "stars": 0,
     "forks": 0,
@@ -9374,11 +9374,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Docker"
     ],
     "score": {
-      "total": 87,
-      "activity": 92,
-      "potential": 79,
-      "reuse": 86,
-      "maintainability": 95
+      "total": 86,
+      "activity": 96,
+      "potential": 73,
+      "reuse": 82,
+      "maintainability": 92
     },
     "assets": [],
     "nextAction": "핵심 기능 확장 및 배포 파이프라인 점검",
@@ -9394,7 +9394,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "lastCommitMessage": "feat: update project codebase",
       "githubUrl": "https://github.com/hkjang/relio"
     },
-    "stars": 1,
+    "stars": 4,
     "forks": 0,
     "openIssues": 0
   },
@@ -9410,11 +9410,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "TypeScript"
     ],
     "score": {
-      "total": 52,
-      "activity": 10,
-      "potential": 74,
-      "reuse": 83,
-      "maintainability": 65
+      "total": 61,
+      "activity": 27,
+      "potential": 78,
+      "reuse": 81,
+      "maintainability": 79
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -9440,7 +9440,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "reset Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 59
+      "totalHoursInvested": 36
     },
     "stars": 0,
     "forks": 0,
@@ -9458,10 +9458,10 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "JavaScript"
     ],
     "score": {
-      "total": 59,
-      "activity": 23,
-      "potential": 81,
-      "reuse": 84,
+      "total": 50,
+      "activity": 11,
+      "potential": 72,
+      "reuse": 73,
       "maintainability": 68
     },
     "assets": [],
@@ -9500,7 +9500,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "s-test Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 39
+      "totalHoursInvested": 34
     },
     "stars": 0,
     "forks": 0,
@@ -9519,11 +9519,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Docker"
     ],
     "score": {
-      "total": 82,
-      "activity": 94,
-      "potential": 68,
-      "reuse": 82,
-      "maintainability": 85
+      "total": 86,
+      "activity": 96,
+      "potential": 70,
+      "reuse": 84,
+      "maintainability": 95
     },
     "assets": [],
     "nextAction": "핵심 기능 확장 및 배포 파이프라인 점검",
@@ -9556,11 +9556,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Docker"
     ],
     "score": {
-      "total": 73,
-      "activity": 63,
-      "potential": 77,
-      "reuse": 76,
-      "maintainability": 86
+      "total": 76,
+      "activity": 68,
+      "potential": 71,
+      "reuse": 84,
+      "maintainability": 92
     },
     "assets": [],
     "nextAction": "의존성 업데이트 및 안정화",
@@ -9592,11 +9592,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "TypeScript"
     ],
     "score": {
-      "total": 52,
-      "activity": 13,
-      "potential": 69,
-      "reuse": 73,
-      "maintainability": 84
+      "total": 58,
+      "activity": 25,
+      "potential": 71,
+      "reuse": 77,
+      "maintainability": 86
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -9622,7 +9622,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "snipe-it-collector Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 43
+      "totalHoursInvested": 53
     },
     "stars": 0,
     "forks": 0,
@@ -9641,11 +9641,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Docker"
     ],
     "score": {
-      "total": 80,
-      "activity": 67,
-      "potential": 90,
-      "reuse": 83,
-      "maintainability": 84
+      "total": 78,
+      "activity": 69,
+      "potential": 88,
+      "reuse": 74,
+      "maintainability": 83
     },
     "assets": [],
     "nextAction": "의존성 업데이트 및 안정화",
@@ -9679,11 +9679,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "TailwindCSS"
     ],
     "score": {
-      "total": 64,
-      "activity": 17,
+      "total": 66,
+      "activity": 22,
       "potential": 88,
-      "reuse": 91,
-      "maintainability": 89
+      "reuse": 87,
+      "maintainability": 95
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -9754,7 +9754,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "sql-assist Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 54
+      "totalHoursInvested": 41
     },
     "stars": 0,
     "forks": 0,
@@ -9773,11 +9773,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Docker"
     ],
     "score": {
-      "total": 89,
-      "activity": 97,
-      "potential": 88,
-      "reuse": 79,
-      "maintainability": 86
+      "total": 88,
+      "activity": 92,
+      "potential": 87,
+      "reuse": 80,
+      "maintainability": 89
     },
     "assets": [],
     "nextAction": "핵심 기능 확장 및 배포 파이프라인 점검",
@@ -9793,7 +9793,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "lastCommitMessage": "feat: update project codebase",
       "githubUrl": "https://github.com/hkjang/sqlon"
     },
-    "stars": 1,
+    "stars": 0,
     "forks": 0,
     "openIssues": 0
   },
@@ -9810,11 +9810,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Docker"
     ],
     "score": {
-      "total": 60,
-      "activity": 12,
-      "potential": 86,
-      "reuse": 86,
-      "maintainability": 87
+      "total": 64,
+      "activity": 25,
+      "potential": 87,
+      "reuse": 78,
+      "maintainability": 93
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -9840,7 +9840,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "sqlpad Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 40
+      "totalHoursInvested": 35
     },
     "stars": 0,
     "forks": 0,
@@ -9860,10 +9860,10 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
     ],
     "score": {
       "total": 86,
-      "activity": 97,
-      "potential": 75,
-      "reuse": 85,
-      "maintainability": 86
+      "activity": 94,
+      "potential": 82,
+      "reuse": 82,
+      "maintainability": 82
     },
     "assets": [],
     "nextAction": "핵심 기능 확장 및 배포 파이프라인 점검",
@@ -9879,79 +9879,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "lastCommitMessage": "feat: update project codebase",
       "githubUrl": "https://github.com/hkjang/ssak"
     },
-    "stars": 2,
-    "forks": 0,
-    "openIssues": 0
-  },
-  {
-    "id": "ssak-node-modules-broken-20260814",
-    "name": "ssak-node-modules-broken-20260814",
-    "description": "ssak-node-modules-broken-20260814 — AI & engineering project by hkjang",
-    "status": "active",
-    "stage": "grow",
-    "createdAt": "2026-08-14",
-    "lastActivityAt": "2026-08-14",
-    "stack": [
-      "TypeScript"
-    ],
-    "score": {
-      "total": 79,
-      "activity": 95,
-      "potential": 70,
-      "reuse": 73,
-      "maintainability": 68
-    },
-    "assets": [],
-    "nextAction": "핵심 기능 확장 및 배포 파이프라인 점검",
-    "nextActionCategory": "code",
-    "dna": {
-      "architecture": "TypeScript Modular Architecture",
-      "keyPatterns": [
-        "Clean Architecture",
-        "Modular Components"
-      ],
-      "dependencies": {},
-      "commitVelocityWeekly": 8,
-      "lastCommitMessage": "feat: update project codebase",
-      "githubUrl": "https://github.com/hkjang/ssak-node-modules-broken-20260814"
-    },
-    "stars": 2,
-    "forks": 0,
-    "openIssues": 0
-  },
-  {
-    "id": "ssak-node-modules-broken-playwright-20260814",
-    "name": "ssak-node-modules-broken-playwright-20260814",
-    "description": "ssak-node-modules-broken-playwright-20260814 — AI & engineering project by hkjang",
-    "status": "active",
-    "stage": "grow",
-    "createdAt": "2026-08-14",
-    "lastActivityAt": "2026-08-14",
-    "stack": [
-      "TypeScript"
-    ],
-    "score": {
-      "total": 83,
-      "activity": 96,
-      "potential": 77,
-      "reuse": 80,
-      "maintainability": 67
-    },
-    "assets": [],
-    "nextAction": "핵심 기능 확장 및 배포 파이프라인 점검",
-    "nextActionCategory": "code",
-    "dna": {
-      "architecture": "TypeScript Modular Architecture",
-      "keyPatterns": [
-        "Clean Architecture",
-        "Modular Components"
-      ],
-      "dependencies": {},
-      "commitVelocityWeekly": 8,
-      "lastCommitMessage": "feat: update project codebase",
-      "githubUrl": "https://github.com/hkjang/ssak-node-modules-broken-playwright-20260814"
-    },
-    "stars": 2,
+    "stars": 1,
     "forks": 0,
     "openIssues": 0
   },
@@ -9969,11 +9897,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Express"
     ],
     "score": {
-      "total": 59,
-      "activity": 12,
-      "potential": 78,
-      "reuse": 87,
-      "maintainability": 91
+      "total": 61,
+      "activity": 17,
+      "potential": 82,
+      "reuse": 88,
+      "maintainability": 88
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -10040,7 +9968,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "static-website Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 46
+      "totalHoursInvested": 47
     },
     "stars": 0,
     "forks": 0,
@@ -10058,11 +9986,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "TypeScript"
     ],
     "score": {
-      "total": 83,
-      "activity": 84,
-      "potential": 81,
-      "reuse": 84,
-      "maintainability": 86
+      "total": 78,
+      "activity": 79,
+      "potential": 72,
+      "reuse": 76,
+      "maintainability": 89
     },
     "assets": [],
     "nextAction": "가설 검증 피드백 수집 및 MVP 개선",
@@ -10096,11 +10024,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "JavaScript"
     ],
     "score": {
-      "total": 56,
-      "activity": 13,
-      "potential": 83,
-      "reuse": 81,
-      "maintainability": 69
+      "total": 58,
+      "activity": 23,
+      "potential": 77,
+      "reuse": 77,
+      "maintainability": 73
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -10138,7 +10066,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "stred-test Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 47
+      "totalHoursInvested": 31
     },
     "stars": 0,
     "forks": 0,
@@ -10156,11 +10084,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "TypeScript"
     ],
     "score": {
-      "total": 72,
-      "activity": 69,
-      "potential": 68,
-      "reuse": 86,
-      "maintainability": 66
+      "total": 70,
+      "activity": 62,
+      "potential": 76,
+      "reuse": 72,
+      "maintainability": 72
     },
     "assets": [],
     "nextAction": "의존성 업데이트 및 안정화",
@@ -10192,11 +10120,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "TypeScript"
     ],
     "score": {
-      "total": 58,
-      "activity": 18,
-      "potential": 81,
-      "reuse": 76,
-      "maintainability": 84
+      "total": 54,
+      "activity": 14,
+      "potential": 73,
+      "reuse": 74,
+      "maintainability": 83
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -10225,7 +10153,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "system-companion Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 55
+      "totalHoursInvested": 56
     },
     "stars": 0,
     "forks": 0,
@@ -10243,11 +10171,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Python"
     ],
     "score": {
-      "total": 73,
+      "total": 76,
       "activity": 60,
-      "potential": 88,
-      "reuse": 74,
-      "maintainability": 73
+      "potential": 94,
+      "reuse": 84,
+      "maintainability": 69
     },
     "assets": [],
     "nextAction": "의존성 업데이트 및 안정화",
@@ -10279,11 +10207,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "TypeScript"
     ],
     "score": {
-      "total": 54,
-      "activity": 14,
-      "potential": 72,
-      "reuse": 81,
-      "maintainability": 77
+      "total": 52,
+      "activity": 12,
+      "potential": 70,
+      "reuse": 73,
+      "maintainability": 78
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -10309,7 +10237,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "tadpole-chrome-extension Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 30
+      "totalHoursInvested": 58
     },
     "stars": 0,
     "forks": 0,
@@ -10327,11 +10255,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "TypeScript"
     ],
     "score": {
-      "total": 55,
-      "activity": 12,
-      "potential": 83,
-      "reuse": 75,
-      "maintainability": 70
+      "total": 57,
+      "activity": 20,
+      "potential": 77,
+      "reuse": 77,
+      "maintainability": 76
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -10357,7 +10285,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "tadpoledbhub-chrome-extension Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 43
+      "totalHoursInvested": 57
     },
     "stars": 0,
     "forks": 0,
@@ -10375,11 +10303,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "TypeScript"
     ],
     "score": {
-      "total": 82,
-      "activity": 69,
-      "potential": 91,
-      "reuse": 85,
-      "maintainability": 87
+      "total": 77,
+      "activity": 62,
+      "potential": 88,
+      "reuse": 72,
+      "maintainability": 95
     },
     "assets": [],
     "nextAction": "의존성 업데이트 및 안정화",
@@ -10411,11 +10339,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "TypeScript"
     ],
     "score": {
-      "total": 63,
-      "activity": 28,
-      "potential": 81,
-      "reuse": 86,
-      "maintainability": 77
+      "total": 56,
+      "activity": 14,
+      "potential": 82,
+      "reuse": 81,
+      "maintainability": 72
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -10441,7 +10369,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "telsa-dc-combo Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 49
+      "totalHoursInvested": 39
     },
     "stars": 0,
     "forks": 0,
@@ -10459,11 +10387,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Python"
     ],
     "score": {
-      "total": 66,
-      "activity": 23,
-      "potential": 92,
-      "reuse": 86,
-      "maintainability": 88
+      "total": 68,
+      "activity": 28,
+      "potential": 93,
+      "reuse": 82,
+      "maintainability": 91
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -10489,7 +10417,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "tensorflow-ml-nlp Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 56
+      "totalHoursInvested": 39
     },
     "stars": 0,
     "forks": 0,
@@ -10507,11 +10435,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "JavaScript"
     ],
     "score": {
-      "total": 54,
-      "activity": 19,
-      "potential": 68,
-      "reuse": 80,
-      "maintainability": 74
+      "total": 61,
+      "activity": 27,
+      "potential": 82,
+      "reuse": 75,
+      "maintainability": 79
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -10539,7 +10467,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "tesla-dc-combo Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 27
+      "totalHoursInvested": 42
     },
     "stars": 0,
     "forks": 0,
@@ -10558,11 +10486,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Express"
     ],
     "score": {
-      "total": 53,
-      "activity": 21,
-      "potential": 72,
-      "reuse": 73,
-      "maintainability": 66
+      "total": 57,
+      "activity": 18,
+      "potential": 79,
+      "reuse": 75,
+      "maintainability": 77
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -10596,7 +10524,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "test Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 44
+      "totalHoursInvested": 43
     },
     "stars": 0,
     "forks": 0,
@@ -10615,10 +10543,10 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
     ],
     "score": {
       "total": 79,
-      "activity": 64,
-      "potential": 96,
-      "reuse": 86,
-      "maintainability": 69
+      "activity": 71,
+      "potential": 86,
+      "reuse": 83,
+      "maintainability": 79
     },
     "assets": [],
     "nextAction": "의존성 업데이트 및 안정화",
@@ -10650,11 +10578,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "TypeScript"
     ],
     "score": {
-      "total": 54,
-      "activity": 14,
-      "potential": 73,
-      "reuse": 72,
-      "maintainability": 88
+      "total": 57,
+      "activity": 25,
+      "potential": 68,
+      "reuse": 76,
+      "maintainability": 84
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -10684,7 +10612,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "tistory.js Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 42
+      "totalHoursInvested": 45
     },
     "stars": 0,
     "forks": 0,
@@ -10703,11 +10631,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Docker"
     ],
     "score": {
-      "total": 89,
-      "activity": 98,
+      "total": 86,
+      "activity": 92,
       "potential": 83,
-      "reuse": 81,
-      "maintainability": 93
+      "reuse": 82,
+      "maintainability": 83
     },
     "assets": [],
     "nextAction": "핵심 기능 확장 및 배포 파이프라인 점검",
@@ -10723,7 +10651,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "lastCommitMessage": "feat: update project codebase",
       "githubUrl": "https://github.com/hkjang/trace"
     },
-    "stars": 0,
+    "stars": 1,
     "forks": 0,
     "openIssues": 0
   },
@@ -10739,11 +10667,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Python"
     ],
     "score": {
-      "total": 79,
-      "activity": 80,
-      "potential": 76,
-      "reuse": 78,
-      "maintainability": 82
+      "total": 78,
+      "activity": 84,
+      "potential": 68,
+      "reuse": 79,
+      "maintainability": 84
     },
     "assets": [],
     "nextAction": "가설 검증 피드백 수집 및 MVP 개선",
@@ -10776,10 +10704,10 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
     ],
     "score": {
       "total": 57,
-      "activity": 13,
-      "potential": 80,
-      "reuse": 83,
-      "maintainability": 77
+      "activity": 25,
+      "potential": 72,
+      "reuse": 75,
+      "maintainability": 75
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -10805,7 +10733,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "tutorial_add_javascript Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 49
+      "totalHoursInvested": 31
     },
     "stars": 0,
     "forks": 0,
@@ -10824,11 +10752,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Docker"
     ],
     "score": {
-      "total": 84,
-      "activity": 93,
-      "potential": 74,
+      "total": 86,
+      "activity": 95,
+      "potential": 80,
       "reuse": 78,
-      "maintainability": 89
+      "maintainability": 90
     },
     "assets": [],
     "nextAction": "핵심 기능 확장 및 배포 파이프라인 점검",
@@ -10844,7 +10772,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "lastCommitMessage": "feat: update project codebase",
       "githubUrl": "https://github.com/hkjang/umm"
     },
-    "stars": 1,
+    "stars": 2,
     "forks": 0,
     "openIssues": 0
   },
@@ -10863,11 +10791,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Docker"
     ],
     "score": {
-      "total": 79,
-      "activity": 60,
-      "potential": 89,
-      "reuse": 88,
-      "maintainability": 90
+      "total": 84,
+      "activity": 71,
+      "potential": 90,
+      "reuse": 96,
+      "maintainability": 85
     },
     "assets": [],
     "nextAction": "의존성 업데이트 및 안정화",
@@ -10908,9 +10836,9 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
     "score": {
       "total": 56,
       "activity": 26,
-      "potential": 75,
-      "reuse": 75,
-      "maintainability": 65
+      "potential": 73,
+      "reuse": 74,
+      "maintainability": 66
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -10936,7 +10864,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "untitled Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 37
+      "totalHoursInvested": 29
     },
     "stars": 0,
     "forks": 0,
@@ -10954,11 +10882,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Python"
     ],
     "score": {
-      "total": 63,
-      "activity": 29,
-      "potential": 83,
-      "reuse": 83,
-      "maintainability": 76
+      "total": 55,
+      "activity": 11,
+      "potential": 82,
+      "reuse": 82,
+      "maintainability": 65
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -10984,7 +10912,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "vector_db_1226 Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 49
+      "totalHoursInvested": 58
     },
     "stars": 0,
     "forks": 0,
@@ -11003,11 +10931,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Docker"
     ],
     "score": {
-      "total": 88,
-      "activity": 95,
-      "potential": 81,
+      "total": 87,
+      "activity": 92,
+      "potential": 80,
       "reuse": 86,
-      "maintainability": 85
+      "maintainability": 88
     },
     "assets": [],
     "nextAction": "핵심 기능 확장 및 배포 파이프라인 점검",
@@ -11023,7 +10951,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "lastCommitMessage": "feat: update project codebase",
       "githubUrl": "https://github.com/hkjang/velo"
     },
-    "stars": 1,
+    "stars": 0,
     "forks": 0,
     "openIssues": 0
   },
@@ -11041,10 +10969,10 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
     ],
     "score": {
       "total": 87,
-      "activity": 95,
-      "potential": 77,
-      "reuse": 86,
-      "maintainability": 87
+      "activity": 96,
+      "potential": 83,
+      "reuse": 73,
+      "maintainability": 91
     },
     "assets": [],
     "nextAction": "핵심 기능 확장 및 배포 파이프라인 점검",
@@ -11060,7 +10988,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "lastCommitMessage": "feat: update project codebase",
       "githubUrl": "https://github.com/hkjang/vibe-coders"
     },
-    "stars": 3,
+    "stars": 1,
     "forks": 0,
     "openIssues": 0
   },
@@ -11077,11 +11005,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Docker"
     ],
     "score": {
-      "total": 91,
-      "activity": 95,
-      "potential": 95,
-      "reuse": 78,
-      "maintainability": 90
+      "total": 93,
+      "activity": 96,
+      "potential": 93,
+      "reuse": 85,
+      "maintainability": 95
     },
     "assets": [],
     "nextAction": "핵심 기능 확장 및 배포 파이프라인 점검",
@@ -11113,11 +11041,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "TypeScript"
     ],
     "score": {
-      "total": 57,
-      "activity": 14,
-      "potential": 80,
-      "reuse": 77,
-      "maintainability": 87
+      "total": 59,
+      "activity": 11,
+      "potential": 81,
+      "reuse": 83,
+      "maintainability": 93
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -11143,7 +11071,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "vsphere-automation-sdk-rest Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 41
+      "totalHoursInvested": 27
     },
     "stars": 0,
     "forks": 0,
@@ -11162,11 +11090,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Vue.js"
     ],
     "score": {
-      "total": 60,
-      "activity": 27,
+      "total": 58,
+      "activity": 19,
       "potential": 76,
-      "reuse": 73,
-      "maintainability": 87
+      "reuse": 76,
+      "maintainability": 90
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -11220,7 +11148,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "vue-element-admin Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 44
+      "totalHoursInvested": 47
     },
     "stars": 0,
     "forks": 0,
@@ -11238,11 +11166,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "JavaScript"
     ],
     "score": {
-      "total": 56,
-      "activity": 22,
-      "potential": 80,
+      "total": 58,
+      "activity": 25,
+      "potential": 75,
       "reuse": 73,
-      "maintainability": 66
+      "maintainability": 79
     },
     "assets": [],
     "nextAction": "재사용 가능한 유틸리티 추출 및 아카이브",
@@ -11268,7 +11196,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
         "vuepress Client Adapter"
       ],
       "revivalTrigger": "차세대 AI Agent 마이크로서비스로 재구축 요구 시",
-      "totalHoursInvested": 45
+      "totalHoursInvested": 49
     },
     "stars": 0,
     "forks": 0,
@@ -11287,11 +11215,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Docker"
     ],
     "score": {
-      "total": 85,
+      "total": 84,
       "activity": 92,
       "potential": 74,
-      "reuse": 86,
-      "maintainability": 89
+      "reuse": 76,
+      "maintainability": 94
     },
     "assets": [],
     "nextAction": "핵심 기능 확장 및 배포 파이프라인 점검",
@@ -11324,11 +11252,11 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "Docker"
     ],
     "score": {
-      "total": 82,
-      "activity": 92,
-      "potential": 69,
-      "reuse": 81,
-      "maintainability": 85
+      "total": 87,
+      "activity": 97,
+      "potential": 79,
+      "reuse": 80,
+      "maintainability": 91
     },
     "assets": [],
     "nextAction": "핵심 기능 확장 및 배포 파이프라인 점검",
@@ -11344,7 +11272,7 @@ export const INITIAL_PROJECTS: ProjectItem[] = [
       "lastCommitMessage": "feat: update project codebase",
       "githubUrl": "https://github.com/hkjang/weekly"
     },
-    "stars": 0,
+    "stars": 4,
     "forks": 0,
     "openIssues": 0
   }
@@ -11367,7 +11295,6 @@ export const INITIAL_ASSETS: ReusableAsset[] = [
       "TypeScript"
     ],
     "usageCount": 14,
-    "appliedProjects": ["opengajae", "relaychat", "signalhub"],
     "createdAt": "2026-08-16"
   },
   {
@@ -11386,7 +11313,6 @@ export const INITIAL_ASSETS: ReusableAsset[] = [
       "UI"
     ],
     "usageCount": 12,
-    "appliedProjects": ["jainsight", "tadpoledbhub_apiserver", "vendra", "bytestash"],
     "createdAt": "2026-08-16"
   },
   {
@@ -11404,7 +11330,6 @@ export const INITIAL_ASSETS: ReusableAsset[] = [
       "SchemaContext"
     ],
     "usageCount": 18,
-    "appliedProjects": ["jask", "sqlbot", "ai_chatbot"],
     "createdAt": "2026-08-16"
   },
   {

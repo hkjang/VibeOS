@@ -2,12 +2,24 @@ const fs = require('fs');
 const path = require('path');
 
 const baseDir = '/mnt/d/project';
+const IGNORE_PATTERNS = [
+  /node_modules/i,
+  /node-modules/i,
+  /broken/i,
+  /backup/i,
+  /bak$/i,
+  /tmp$/i,
+  /temp$/i,
+  /old$/i,
+  /copy$/i,
+];
+
 const dirNames = fs.readdirSync(baseDir, { withFileTypes: true })
-  .filter(d => d.isDirectory() && !d.name.startsWith('.'))
+  .filter(d => d.isDirectory() && !d.name.startsWith('.') && !IGNORE_PATTERNS.some(pat => pat.test(d.name)))
   .map(d => d.name)
   .sort();
 
-console.log(`Processing ${dirNames.length} total repositories from ${baseDir}...`);
+console.log(`Processing ${dirNames.length} valid repositories from ${baseDir}...`);
 
 const allProjects = [];
 

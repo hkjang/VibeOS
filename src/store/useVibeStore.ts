@@ -79,8 +79,8 @@ interface VibeState {
   persistState: () => void;
 }
 
-const STORAGE_KEY = 'vibeos_state_v5';
-const PREV_KEYS = ['vibeos_state_v4', 'vibeos_state_v3', 'vibeos_state_v2', 'vibeos_state'];
+const STORAGE_KEY = 'vibeos_state_v6';
+const PREV_KEYS = ['vibeos_state_v5', 'vibeos_state_v4', 'vibeos_state_v3', 'vibeos_state_v2', 'vibeos_state'];
 
 function loadPersistedState(): Partial<VibeState> {
   const detectedLang = detectBrowserLanguage();
@@ -97,8 +97,18 @@ function loadPersistedState(): Partial<VibeState> {
       const parsed = JSON.parse(saved);
       let projects = parsed.projects;
 
-      // If stored projects are fewer than the real 234 dataset (e.g. old 15-project demo state),
-      // intelligently merge so users get the complete 234 repositories while preserving favorites & edits
+      // Filter out any temporary backup/broken directories
+      if (Array.isArray(projects)) {
+        projects = projects.filter(
+          (p: ProjectItem) =>
+            !p.id?.includes('node-modules') &&
+            !p.id?.includes('broken') &&
+            !p.name?.includes('node-modules') &&
+            !p.name?.includes('broken')
+        );
+      }
+
+      // If stored projects are fewer than the real dataset, merge with clean INITIAL_PROJECTS
       if (!Array.isArray(projects) || projects.length < INITIAL_PROJECTS.length) {
         const userProjectMap = new Map<string, ProjectItem>();
         if (Array.isArray(projects)) {
