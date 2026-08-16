@@ -20,6 +20,8 @@ import { ContributionHeatmap } from './ContributionHeatmap';
 import { RoiLeverageCalculator } from './RoiLeverageCalculator';
 import { ProjectTimeline } from './ProjectTimeline';
 import { AchievementBadges } from './AchievementBadges';
+import { TechStackRadar } from './TechStackRadar';
+import { LiveActivityFeed } from './LiveActivityFeed';
 import { ParticleField } from '../visual/ParticleField';
 import {
   ResponsiveContainer,
@@ -217,6 +219,12 @@ export const ExecutiveSummary: React.FC = () => {
 
       {/* Achievement Badge Collection */}
       <AchievementBadges />
+
+      {/* Tech Stack Distribution & Live Activity Feed */}
+      <section className="grid grid-cols-1 lg:grid-cols-2 gap-5 sm:gap-6" aria-label="Portfolio Analytics">
+        <TechStackRadar />
+        <LiveActivityFeed />
+      </section>
 
       {/* TODAY High-Leverage Actions & Monthly Synthesis */}
       <section className="grid grid-cols-1 lg:grid-cols-3 gap-5 sm:gap-6" aria-label="Today Actions">

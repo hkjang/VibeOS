@@ -16,6 +16,7 @@ import { GitHubActionsRunner } from './components/actions/GitHubActionsRunner';
 import { SettingsModal } from './components/settings/SettingsModal';
 import { NewProjectModal } from './components/settings/NewProjectModal';
 import { NotificationToast } from './components/common/NotificationToast';
+import { KeyboardShortcutOverlay } from './components/common/KeyboardShortcutOverlay';
 import {
   LayoutDashboard,
   Radar,
@@ -90,6 +91,7 @@ export const App: React.FC = () => {
       <SettingsModal />
       <NewProjectModal />
       <NotificationToast />
+      <KeyboardShortcutOverlay />
     </div>
   );
 };

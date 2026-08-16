@@ -11367,6 +11367,7 @@ export const INITIAL_ASSETS: ReusableAsset[] = [
       "TypeScript"
     ],
     "usageCount": 14,
+    "appliedProjects": ["opengajae", "relaychat", "signalhub"],
     "createdAt": "2026-08-16"
   },
   {
@@ -11385,6 +11386,7 @@ export const INITIAL_ASSETS: ReusableAsset[] = [
       "UI"
     ],
     "usageCount": 12,
+    "appliedProjects": ["jainsight", "tadpoledbhub_apiserver", "vendra", "bytestash"],
     "createdAt": "2026-08-16"
   },
   {
@@ -11402,6 +11404,7 @@ export const INITIAL_ASSETS: ReusableAsset[] = [
       "SchemaContext"
     ],
     "usageCount": 18,
+    "appliedProjects": ["jask", "sqlbot", "ai_chatbot"],
     "createdAt": "2026-08-16"
   },
   {

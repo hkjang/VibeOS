@@ -25,6 +25,7 @@ export interface ReusableAsset {
   codeSnippet: string;
   tags: string[];
   usageCount: number;
+  appliedProjects?: string[];
   createdAt: string;
 }
 

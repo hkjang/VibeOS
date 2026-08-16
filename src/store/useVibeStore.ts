@@ -65,6 +65,7 @@ interface VibeState {
   // Asset Actions
   addAsset: (asset: Omit<ReusableAsset, 'id' | 'createdAt'>) => void;
   deleteAsset: (id: string) => void;
+  applyAssetToProject: (assetId: string, projectId: string) => void;
 
   // Idea Actions
   addIdea: (title: string, description: string, estimatedEffort: 'weekend' | '1-week' | '2-weeks' | '1-month', tags?: string[]) => void;
@@ -455,6 +456,32 @@ export const useVibeStore = create<VibeState>((set, get) => ({
     const summary = calculateSummary(get().projects, updated);
     set({ assets: updated, summary });
     get().showToast('Asset removed', 'info');
+    get().persistState();
+  },
+
+  applyAssetToProject: (assetId, projectId) => {
+    const asset = get().assets.find((a) => a.id === assetId);
+    const project = get().projects.find((p) => p.id === projectId);
+    if (!asset || !project) return;
+
+    const applied = asset.appliedProjects || [];
+    if (applied.includes(project.name)) {
+      get().showToast(`Asset already applied to "${project.name}"`, 'warning');
+      return;
+    }
+
+    const updatedAssets = get().assets.map((a) =>
+      a.id === assetId
+        ? {
+            ...a,
+            usageCount: a.usageCount + 1,
+            appliedProjects: [...(a.appliedProjects || []), project.name],
+          }
+        : a
+    );
+    const summary = calculateSummary(get().projects, updatedAssets);
+    set({ assets: updatedAssets, summary });
+    get().showToast(`Applied \"${asset.name}\" to \"${project.name}\" (+1 reuse)`, 'success');
     get().persistState();
   },
 
