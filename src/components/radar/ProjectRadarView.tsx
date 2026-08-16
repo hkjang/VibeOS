@@ -32,8 +32,9 @@ export const ProjectRadarView: React.FC = () => {
 
   const [viewMode, setViewMode] = useState<'grid' | 'matrix' | 'cosmos' | 'table'>('grid');
   const [sortBy, setSortBy] = useState<'score' | 'activity' | 'potential' | 'activityDate' | 'name'>('score');
+  const [onlyFavorites, setOnlyFavorites] = useState<boolean>(false);
 
-  // Filter projects by search query and stage
+  // Filter projects by search query, stage, and favorites
   const filteredProjects = projects.filter((p) => {
     const matchesSearch =
       searchQuery === '' ||
@@ -42,8 +43,9 @@ export const ProjectRadarView: React.FC = () => {
       p.stack.some((s) => s.toLowerCase().includes(searchQuery.toLowerCase()));
 
     const matchesStage = stageFilter === 'all' || p.stage === stageFilter;
+    const matchesFav = !onlyFavorites || p.isFavorite;
 
-    return matchesSearch && matchesStage;
+    return matchesSearch && matchesStage && matchesFav;
   });
 
   // Sort projects
@@ -150,6 +152,19 @@ export const ProjectRadarView: React.FC = () => {
       <div className="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-3 sm:gap-4 p-3.5 sm:p-4 rounded-2xl bg-slate-900/60 border border-slate-800">
         {/* Stage Filter Pills */}
         <div className="flex items-center gap-1.5 overflow-x-auto pb-2 lg:pb-0 text-xs font-mono">
+          <button
+            onClick={() => setOnlyFavorites(!onlyFavorites)}
+            className={`px-2.5 sm:px-3 py-1.5 rounded-xl whitespace-nowrap transition-all flex items-center gap-1.5 border text-xs ${
+              onlyFavorites
+                ? 'bg-amber-500/20 text-amber-300 border-amber-500/50 font-bold shadow-sm shadow-amber-500/20'
+                : 'bg-slate-800/60 text-slate-400 border-slate-700/60 hover:text-slate-200'
+            }`}
+          >
+            <span>⭐ Favorites</span>
+            <span className="text-[10px] px-1.5 py-0.2 rounded-full bg-slate-900/80 text-amber-400">
+              {projects.filter((p) => p.isFavorite).length}
+            </span>
+          </button>
           {stagesList.map((st) => {
             const isSelected = stageFilter === st.id;
             const count =
