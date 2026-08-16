@@ -3,6 +3,7 @@ import { useVibeStore } from '../../store/useVibeStore';
 import { useTranslation } from '../../i18n/useTranslation';
 import { ActiveTab } from '../../types/project';
 import { ResumeExportModal } from './ResumeExportModal';
+import { WeeklyDigestModal } from '../dashboard/WeeklyDigestModal';
 import {
   LayoutDashboard,
   Radar,
@@ -16,12 +17,14 @@ import {
   Network,
   Bot,
   FileText,
+  CalendarDays,
 } from 'lucide-react';
 
 export const Sidebar: React.FC = () => {
   const { activeTab, setActiveTab, projects, assets, ideas, summary, githubAuth } = useVibeStore();
   const { t } = useTranslation();
   const [isResumeOpen, setIsResumeOpen] = useState(false);
+  const [isDigestOpen, setIsDigestOpen] = useState(false);
 
   const activeProjectsCount = projects.filter((p) => p.status === 'active' && p.stage !== 'archived').length;
   const graveyardCount = projects.filter((p) => p.status === 'graveyard' || p.stage === 'archived').length;
@@ -164,14 +167,26 @@ export const Sidebar: React.FC = () => {
             </nav>
           </div>
 
-          {/* Quick Resume Export Button */}
-          <button
-            onClick={() => setIsResumeOpen(true)}
-            className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-xs font-mono text-cyan-300 hover:bg-slate-800 transition-colors shadow-sm"
-          >
-            <FileText className="w-3.5 h-3.5 text-cyan-400" />
-            <span>Export Resume & MD</span>
-          </button>
+          {/* Quick Export Actions */}
+          <div className="grid grid-cols-2 gap-1.5">
+            <button
+              onClick={() => setIsResumeOpen(true)}
+              className="flex items-center justify-center gap-1.5 px-2 py-2 rounded-xl bg-slate-900 border border-slate-800 text-[11px] font-mono text-cyan-300 hover:bg-slate-800 transition-colors shadow-sm"
+              title="Export Full Resume"
+            >
+              <FileText className="w-3.5 h-3.5 text-cyan-400" />
+              <span>Resume</span>
+            </button>
+
+            <button
+              onClick={() => setIsDigestOpen(true)}
+              className="flex items-center justify-center gap-1.5 px-2 py-2 rounded-xl bg-slate-900 border border-slate-800 text-[11px] font-mono text-amber-300 hover:bg-slate-800 transition-colors shadow-sm"
+              title="Export Weekly Engineering Digest"
+            >
+              <CalendarDays className="w-3.5 h-3.5 text-amber-400" />
+              <span>Digest</span>
+            </button>
+          </div>
 
           {/* Philosophy Card */}
           <div className="p-3 rounded-2xl bg-gradient-to-b from-slate-900 to-[#0F172A] border border-slate-800 relative overflow-hidden">
@@ -198,7 +213,7 @@ export const Sidebar: React.FC = () => {
           <div className="p-2 rounded-xl bg-slate-900/60 border border-slate-800 text-[10px] text-slate-400 flex items-center justify-between">
             <span className="truncate">{t.nav.githubRuntime}</span>
             <span className="font-mono text-cyan-400 text-[10px]">
-              {githubAuth.isValid ? `@${githubAuth.username}` : '234 Repos Synced'}
+              {githubAuth.isValid ? `@${githubAuth.username}` : `${projects.length} Repos Synced`}
             </span>
           </div>
         </div>
@@ -206,6 +221,9 @@ export const Sidebar: React.FC = () => {
 
       {/* Resume Export Modal */}
       <ResumeExportModal isOpen={isResumeOpen} onClose={() => setIsResumeOpen(false)} />
+
+      {/* Weekly Digest Modal */}
+      <WeeklyDigestModal isOpen={isDigestOpen} onClose={() => setIsDigestOpen(false)} />
     </>
   );
 };

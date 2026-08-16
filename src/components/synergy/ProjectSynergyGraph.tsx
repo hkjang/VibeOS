@@ -401,7 +401,7 @@ export const ProjectSynergyGraph: React.FC = () => {
               onChange={(e) => setMashupPicks([e.target.value, mashupPicks[1]])}
               className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white font-mono"
             >
-              {projects.slice(0, 30).map((p) => (
+              {projects.map((p) => (
                 <option key={p.id} value={p.name}>
                   {p.name} ({p.stack.join(', ')})
                 </option>
@@ -416,7 +416,7 @@ export const ProjectSynergyGraph: React.FC = () => {
               onChange={(e) => setMashupPicks([mashupPicks[0], e.target.value])}
               className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white font-mono"
             >
-              {projects.slice(0, 30).map((p) => (
+              {projects.map((p) => (
                 <option key={p.id} value={p.name}>
                   {p.name} ({p.stack.join(', ')})
                 </option>
