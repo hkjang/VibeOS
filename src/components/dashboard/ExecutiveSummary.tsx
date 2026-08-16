@@ -18,6 +18,9 @@ import { StageBadge } from '../common/StageBadge';
 import { ScoreBadge } from '../common/ScoreBadge';
 import { ContributionHeatmap } from './ContributionHeatmap';
 import { RoiLeverageCalculator } from './RoiLeverageCalculator';
+import { ProjectTimeline } from './ProjectTimeline';
+import { AchievementBadges } from './AchievementBadges';
+import { ParticleField } from '../visual/ParticleField';
 import {
   ResponsiveContainer,
   BarChart,
@@ -102,6 +105,8 @@ export const ExecutiveSummary: React.FC = () => {
       {/* Header Banner - Semantic Article for SEO / AEO */}
       <article className="p-5 sm:p-7 md:p-8 rounded-3xl bg-gradient-to-r from-slate-900 via-indigo-950/40 to-slate-900 border border-slate-800 relative overflow-hidden shadow-2xl">
         <div className="absolute right-0 top-0 w-72 sm:w-96 h-72 sm:h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
+        {/* Ambient Particle Field Background */}
+        <ParticleField />
         <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-5 sm:gap-6">
           <header className="space-y-2">
             <div className="flex items-center gap-2 text-cyan-400">
@@ -206,6 +211,12 @@ export const ExecutiveSummary: React.FC = () => {
 
       {/* Compound ROI & Developer Leverage Calculator */}
       <RoiLeverageCalculator />
+
+      {/* Developer Growth Timeline */}
+      <ProjectTimeline />
+
+      {/* Achievement Badge Collection */}
+      <AchievementBadges />
 
       {/* TODAY High-Leverage Actions & Monthly Synthesis */}
       <section className="grid grid-cols-1 lg:grid-cols-3 gap-5 sm:gap-6" aria-label="Today Actions">
