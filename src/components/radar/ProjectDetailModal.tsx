@@ -20,6 +20,7 @@ import {
 import { GitHubIcon } from '../common/GitHubIcon';
 import { openInEditor } from '../../utils/editorLauncher';
 import { ProjectReadmeModal } from './ProjectReadmeModal';
+import { VisualArchitectureDiagram } from '../dna/VisualArchitectureDiagram';
 
 interface ProjectDetailModalProps {
   project: ProjectItem;
@@ -282,6 +283,9 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({ project,
 
           {activeTab === 'dna' && (
             <div className="space-y-5 sm:space-y-6">
+              {/* Interactive Visual Topology Flowchart */}
+              <VisualArchitectureDiagram project={project} />
+
               {/* Architecture & Patterns */}
               <div className="p-4 sm:p-5 rounded-2xl bg-slate-900 border border-slate-800 space-y-3">
                 <div className="flex items-center gap-2 text-cyan-400 font-mono text-xs font-bold uppercase">

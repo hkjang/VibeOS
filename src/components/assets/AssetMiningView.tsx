@@ -7,9 +7,11 @@ import {
   Copy,
   Check,
   FolderGit2,
-  Plus,
   Trash2,
+  Plus,
 } from 'lucide-react';
+import { ExtractAssetModal } from './ExtractAssetModal';
+import { soundEngine } from '../../utils/soundEngine';
 
 export const AssetMiningView: React.FC = () => {
   const { assets, addAsset, deleteAsset, projects, mineProjectAssets, showToast } = useVibeStore();
@@ -275,94 +277,11 @@ export const AssetMiningView: React.FC = () => {
         </div>
       </div>
 
-      {/* Add Custom Asset Modal */}
-      {isAddModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/80 backdrop-blur-md animate-fadeIn">
-          <div className="bg-[#0F172A] border border-slate-700 w-full max-w-xl rounded-3xl p-5 sm:p-6 space-y-4 shadow-2xl">
-            <h2 className="text-base sm:text-lg font-bold text-white font-mono">{t.assets.newAssetTitle}</h2>
-            <form onSubmit={handleCreateAsset} className="space-y-3.5 sm:space-y-4 text-xs font-mono">
-              <div>
-                <label className="text-slate-400 block mb-1">{t.assets.assetName}</label>
-                <input
-                  type="text"
-                  required
-                  value={formName}
-                  onChange={(e) => setFormName(e.target.value)}
-                  placeholder="e.g. OpenAI Vector Search Hook"
-                  className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-white focus:outline-none focus:border-violet-500"
-                />
-              </div>
-
-              <div className="grid grid-cols-2 gap-3">
-                <div>
-                  <label className="text-slate-400 block mb-1">{t.assets.category}</label>
-                  <select
-                    value={formCategory}
-                    onChange={(e) => setFormCategory(e.target.value as any)}
-                    className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-white focus:outline-none focus:border-violet-500"
-                  >
-                    <option value="auth">Auth & Security</option>
-                    <option value="llm">LLM & AI Wrapper</option>
-                    <option value="ui">UI Component</option>
-                    <option value="api">API & Webhook</option>
-                    <option value="database">Database</option>
-                    <option value="utility">Utility</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="text-slate-400 block mb-1">{t.assets.language}</label>
-                  <input
-                    type="text"
-                    value={formLang}
-                    onChange={(e) => setFormLang(e.target.value)}
-                    placeholder="TypeScript"
-                    className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-white focus:outline-none focus:border-violet-500"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label className="text-slate-400 block mb-1">{t.assets.description}</label>
-                <input
-                  type="text"
-                  value={formDesc}
-                  onChange={(e) => setFormDesc(e.target.value)}
-                  placeholder="What problem does this reusable snippet solve?"
-                  className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-white focus:outline-none focus:border-violet-500"
-                />
-              </div>
-
-              <div>
-                <label className="text-slate-400 block mb-1">{t.assets.snippet}</label>
-                <textarea
-                  required
-                  rows={7}
-                  value={formCode}
-                  onChange={(e) => setFormCode(e.target.value)}
-                  placeholder="Paste snippet code here..."
-                  className="w-full bg-slate-950 border border-slate-700 rounded-xl p-3 text-cyan-300 font-mono text-xs focus:outline-none focus:border-violet-500"
-                />
-              </div>
-
-              <div className="flex items-center justify-end gap-3 pt-2">
-                <button
-                  type="button"
-                  onClick={() => setIsAddModalOpen(false)}
-                  className="px-4 py-2 rounded-xl bg-slate-800 text-slate-300 hover:bg-slate-700"
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  className="px-4 py-2 rounded-xl bg-violet-600 text-white font-bold hover:bg-violet-500"
-                >
-                  {t.assets.save}
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      )}
+      {/* Extract Custom Asset Modal */}
+      <ExtractAssetModal
+        isOpen={isAddModalOpen}
+        onClose={() => setIsAddModalOpen(false)}
+      />
     </div>
   );
 };

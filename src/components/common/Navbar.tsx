@@ -12,10 +12,13 @@ import {
   Globe,
   Timer,
   Command,
+  Volume2,
+  VolumeX,
 } from 'lucide-react';
 import { GitHubIcon } from './GitHubIcon';
 import { CommandPalette } from './CommandPalette';
 import { SprintTimerModal } from './SprintTimerModal';
+import { soundEngine } from '../../utils/soundEngine';
 
 export const Navbar: React.FC = () => {
   const {
@@ -33,8 +36,15 @@ export const Navbar: React.FC = () => {
   const { t, language, setLanguage } = useTranslation();
   const [isCommandOpen, setIsCommandOpen] = useState(false);
   const [isSprintOpen, setIsSprintOpen] = useState(false);
+  const [isMuted, setIsMuted] = useState(soundEngine.getMuted());
+
+  const handleToggleSound = () => {
+    const nextMuted = soundEngine.toggleMute();
+    setIsMuted(nextMuted);
+  };
 
   const toggleLanguage = () => {
+    soundEngine.playClick();
     setLanguage(language === 'ko' ? 'en' : 'ko');
   };
 
@@ -163,9 +173,21 @@ export const Navbar: React.FC = () => {
               </button>
             )}
 
+            {/* Audio Feedback Toggle */}
+            <button
+              onClick={handleToggleSound}
+              title={isMuted ? 'Unmute Sound Effects' : 'Mute Sound Effects'}
+              className="p-1.5 sm:p-2 text-slate-400 hover:text-slate-200 hover:bg-slate-800/80 rounded-xl transition-all"
+            >
+              {isMuted ? <VolumeX className="w-4 h-4 text-slate-500" /> : <Volume2 className="w-4 h-4 text-cyan-400" />}
+            </button>
+
             {/* Settings */}
             <button
-              onClick={() => setIsSettingsOpen(true)}
+              onClick={() => {
+                soundEngine.playClick();
+                setIsSettingsOpen(true);
+              }}
               title={t.nav.settings}
               className="p-1.5 sm:p-2 text-slate-400 hover:text-slate-200 hover:bg-slate-800/80 rounded-xl transition-all"
             >
