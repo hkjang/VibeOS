@@ -79,8 +79,8 @@ interface VibeState {
   persistState: () => void;
 }
 
-const STORAGE_KEY = 'vibeos_state_v6';
-const PREV_KEYS = ['vibeos_state_v5', 'vibeos_state_v4', 'vibeos_state_v3', 'vibeos_state_v2', 'vibeos_state'];
+const STORAGE_KEY = 'vibeos_state_v7';
+const PREV_KEYS = ['vibeos_state_v6', 'vibeos_state_v5', 'vibeos_state_v4', 'vibeos_state_v3', 'vibeos_state_v2', 'vibeos_state'];
 
 function loadPersistedState(): Partial<VibeState> {
   const detectedLang = detectBrowserLanguage();
@@ -97,14 +97,13 @@ function loadPersistedState(): Partial<VibeState> {
       const parsed = JSON.parse(saved);
       let projects = parsed.projects;
 
-      // Filter out any temporary backup/broken directories
+      // Filter out any private/local non-public or temporary backup directories
+      const validPublicIds = new Set(INITIAL_PROJECTS.map((p) => p.id));
       if (Array.isArray(projects)) {
         projects = projects.filter(
           (p: ProjectItem) =>
-            !p.id?.includes('node-modules') &&
-            !p.id?.includes('broken') &&
-            !p.name?.includes('node-modules') &&
-            !p.name?.includes('broken')
+            !p.isPrivate &&
+            (validPublicIds.has(p.id) || p.id?.startsWith('proj-'))
         );
       }
 
@@ -115,7 +114,7 @@ function loadPersistedState(): Partial<VibeState> {
           projects.forEach((p: ProjectItem) => userProjectMap.set(p.id || p.name, p));
         }
 
-        // Merge initial projects with user customization
+        // Merge initial verified public projects with user customization
         const mergedProjects = INITIAL_PROJECTS.map((initP) => {
           const userP = userProjectMap.get(initP.id) || userProjectMap.get(initP.name);
           if (userP) {
@@ -131,11 +130,10 @@ function loadPersistedState(): Partial<VibeState> {
           return initP;
         });
 
-        // Add any purely custom projects created by user
+        // Add any purely custom projects created by user in UI
         if (Array.isArray(projects)) {
-          const initIds = new Set(INITIAL_PROJECTS.map((p) => p.id));
           projects.forEach((p: ProjectItem) => {
-            if (!initIds.has(p.id) && p.id?.startsWith('proj-')) {
+            if (!validPublicIds.has(p.id) && p.id?.startsWith('proj-')) {
               mergedProjects.unshift(p);
             }
           });

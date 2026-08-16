@@ -69,6 +69,7 @@ export interface ProjectItem {
   forks?: number;
   openIssues?: number;
   isFavorite?: boolean;
+  isPrivate?: boolean;
 }
 
 export interface IdeaItem {
