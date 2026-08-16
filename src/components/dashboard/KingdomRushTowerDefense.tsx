@@ -896,6 +896,16 @@ export const KingdomRushTowerDefense: React.FC = () => {
       ctx.fillStyle = currentStage.bgColor;
       ctx.fillRect(0, 0, width, height);
 
+      // Subtle terrain texture
+      ctx.strokeStyle = currentStage.roadBorder + '44';
+      ctx.lineWidth = 1;
+      for (let y = 0; y < height; y += 40) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(width, y);
+        ctx.stroke();
+      }
+
       // 2. Realistic Winding Cobblestone Road
       ctx.save();
       ctx.lineCap = 'round';
@@ -903,7 +913,7 @@ export const KingdomRushTowerDefense: React.FC = () => {
 
       // Road Outer Border
       ctx.strokeStyle = currentStage.roadBorder;
-      ctx.lineWidth = 44;
+      ctx.lineWidth = 46;
       ctx.beginPath();
       ctx.moveTo(currentStage.waypoints[0].x, currentStage.waypoints[0].y);
       for (let i = 1; i < currentStage.waypoints.length; i++) {
@@ -913,30 +923,45 @@ export const KingdomRushTowerDefense: React.FC = () => {
 
       // Road Inner Sand/Path
       ctx.strokeStyle = currentStage.roadColor;
-      ctx.lineWidth = 36;
+      ctx.lineWidth = 38;
       ctx.stroke();
+
+      // Road Cobblestone centerline stones
+      ctx.strokeStyle = currentStage.roadBorder + '88';
+      ctx.lineWidth = 2;
+      ctx.setLineDash([8, 12]);
+      ctx.stroke();
+      ctx.setLineDash([]);
       ctx.restore();
 
       // Kingdom Castle Core Gate (Goal)
       const lastWp = currentStage.waypoints[currentStage.waypoints.length - 1];
-      ctx.fillStyle = '#06B6D4';
+      ctx.save();
       ctx.shadowColor = '#06B6D4';
       ctx.shadowBlur = 18;
+      ctx.fillStyle = '#0F172A';
+      ctx.strokeStyle = '#06B6D4';
+      ctx.lineWidth = 3;
       ctx.beginPath();
-      ctx.arc(lastWp.x, lastWp.y, 26, 0, Math.PI * 2);
+      ctx.arc(lastWp.x, lastWp.y, 24, 0, Math.PI * 2);
       ctx.fill();
+      ctx.stroke();
       ctx.shadowBlur = 0;
-      ctx.fillStyle = '#FFFFFF';
-      ctx.font = 'bold 11px sans-serif';
-      ctx.textAlign = 'center';
-      ctx.fillText('🏰 성문', lastWp.x, lastWp.y + 4);
 
-      // 3. Draw Tower Slots & Towers
+      // Gatehouse battlements
+      ctx.fillStyle = '#38BDF8';
+      ctx.font = 'bold 16px sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('🏰', lastWp.x, lastWp.y + 6);
+      ctx.restore();
+
+      // 3. Draw Tower Slots & Realistic Towers
+      const gameTick = Date.now() * 0.005;
       towersRef.current.forEach((slot) => {
         const isSelected = selectedSlotId === slot.id;
 
         if (!slot.type) {
-          // Empty Plot
+          // Empty Plot with Stone Foundation
           ctx.fillStyle = isSelected ? '#06B6D4' : '#1E293B';
           ctx.strokeStyle = isSelected ? '#FFFFFF' : '#475569';
           ctx.lineWidth = 2;
@@ -945,36 +970,118 @@ export const KingdomRushTowerDefense: React.FC = () => {
           ctx.fill();
           ctx.stroke();
 
-          ctx.fillStyle = '#94A3B8';
-          ctx.font = 'bold 13px sans-serif';
+          // Inner flagstone pattern
+          ctx.fillStyle = isSelected ? '#FFFFFF' : '#94A3B8';
+          ctx.font = 'bold 12px sans-serif';
           ctx.textAlign = 'center';
           ctx.fillText('건설', slot.x, slot.y + 4);
         } else {
-          // Built Tower
+          // Realistic Built Tower Sprite
           const info = TOWER_INFO[slot.type];
-          ctx.fillStyle = info.color;
-          ctx.shadowColor = info.color;
-          ctx.shadowBlur = isSelected ? 18 : 6;
+          ctx.save();
 
+          // Base Stone Foundation
+          ctx.fillStyle = '#1E293B';
+          ctx.strokeStyle = info.color;
+          ctx.lineWidth = isSelected ? 3 : 1.5;
+          ctx.shadowColor = info.color;
+          ctx.shadowBlur = isSelected ? 16 : 4;
           ctx.beginPath();
-          ctx.arc(slot.x, slot.y, 22, 0, Math.PI * 2);
+          ctx.arc(slot.x, slot.y + 2, 22, 0, Math.PI * 2);
           ctx.fill();
+          ctx.stroke();
           ctx.shadowBlur = 0;
 
-          // Tower Icon
-          ctx.fillStyle = '#FFFFFF';
-          ctx.font = '18px sans-serif';
-          ctx.textAlign = 'center';
-          ctx.fillText(info.icon, slot.x, slot.y + 7);
+          if (slot.type === 'archer') {
+            // Archer Timber Watchtower
+            ctx.fillStyle = '#78350F';
+            ctx.fillRect(slot.x - 12, slot.y - 14, 24, 18);
+            // Wooden Thatched Roof
+            ctx.fillStyle = '#10B981';
+            ctx.beginPath();
+            ctx.moveTo(slot.x - 16, slot.y - 12);
+            ctx.lineTo(slot.x, slot.y - 24);
+            ctx.lineTo(slot.x + 16, slot.y - 12);
+            ctx.closePath();
+            ctx.fill();
+            // Archer Icon
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = '14px sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText('🏹', slot.x, slot.y - 2);
+          } else if (slot.type === 'barracks') {
+            // Stone Garrison Castle with Iron Gate
+            ctx.fillStyle = '#475569';
+            ctx.fillRect(slot.x - 14, slot.y - 12, 28, 16);
+            // Battlements
+            ctx.fillStyle = '#334155';
+            ctx.fillRect(slot.x - 15, slot.y - 18, 8, 6);
+            ctx.fillRect(slot.x - 4, slot.y - 18, 8, 6);
+            ctx.fillRect(slot.x + 7, slot.y - 18, 8, 6);
+            // Wooden Gate
+            ctx.fillStyle = '#92400E';
+            ctx.fillRect(slot.x - 5, slot.y - 2, 10, 8);
+            // Shield Crest
+            ctx.fillStyle = '#38BDF8';
+            ctx.font = '13px sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText('🛡️', slot.x, slot.y - 4);
+          } else if (slot.type === 'mage') {
+            // Arcane Spire Tower with Levitating Crystal
+            ctx.fillStyle = '#312E81';
+            ctx.beginPath();
+            ctx.moveTo(slot.x - 12, slot.y + 4);
+            ctx.lineTo(slot.x, slot.y - 16);
+            ctx.lineTo(slot.x + 12, slot.y + 4);
+            ctx.closePath();
+            ctx.fill();
+            // Floating Rotating Glowing Crystal
+            const floatY = Math.sin(gameTick * 2) * 3;
+            ctx.shadowColor = '#A855F7';
+            ctx.shadowBlur = 12;
+            ctx.fillStyle = '#C084FC';
+            ctx.beginPath();
+            ctx.arc(slot.x, slot.y - 20 + floatY, 6, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.shadowBlur = 0;
+            // Wizard Icon
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = '12px sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText('🧙', slot.x, slot.y + 2);
+          } else if (slot.type === 'artillery') {
+            // Dwarven Mortar Cannon on Wooden Carriage
+            ctx.fillStyle = '#52525B';
+            ctx.fillRect(slot.x - 14, slot.y - 8, 28, 12);
+            // Steel Cannon Barrel
+            ctx.fillStyle = '#18181B';
+            ctx.save();
+            ctx.translate(slot.x, slot.y - 6);
+            ctx.rotate(-0.35);
+            ctx.fillRect(-4, -14, 8, 16);
+            ctx.restore();
+            // Cannon Wheels
+            ctx.fillStyle = '#B45309';
+            ctx.beginPath();
+            ctx.arc(slot.x - 10, slot.y + 4, 6, 0, Math.PI * 2);
+            ctx.arc(slot.x + 10, slot.y + 4, 6, 0, Math.PI * 2);
+            ctx.fill();
+            // Bomb Icon
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = '12px sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText('💣', slot.x, slot.y);
+          }
 
           // Level Badge
           ctx.fillStyle = '#0F172A';
           ctx.beginPath();
-          ctx.arc(slot.x + 14, slot.y - 14, 9, 0, Math.PI * 2);
+          ctx.arc(slot.x + 16, slot.y - 16, 9, 0, Math.PI * 2);
           ctx.fill();
-          ctx.fillStyle = '#38BDF8';
-          ctx.font = 'bold 9px sans-serif';
-          ctx.fillText(`L${slot.level}`, slot.x + 14, slot.y - 11);
+          ctx.fillStyle = '#F59E0B';
+          ctx.font = 'bold 10px sans-serif';
+          ctx.textAlign = 'center';
+          ctx.fillText(`L${slot.level}`, slot.x + 16, slot.y - 13);
 
           // Range circle when selected
           if (isSelected) {
@@ -986,58 +1093,347 @@ export const KingdomRushTowerDefense: React.FC = () => {
             ctx.stroke();
             ctx.setLineDash([]);
           }
+          ctx.restore();
         }
       });
 
-      // 4. Draw Barracks Soldiers
+      // 4. Draw Realistic Barracks Soldiers & Militia (기사단 & 의용군)
       soldiersRef.current.forEach((s) => {
         if (s.hp <= 0) return;
-        ctx.fillStyle = '#38BDF8';
+        const isMilitia = s.towerId === -1;
+        const bob = Math.sin(gameTick * 3 + Number(s.id.slice(-1) || 0)) * 1.5;
+
+        ctx.save();
+        // Character Soft Shadow
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.4)';
         ctx.beginPath();
-        ctx.arc(s.x, s.y, 7, 0, Math.PI * 2);
+        ctx.ellipse(s.x, s.y + 7, 7, 3, 0, 0, Math.PI * 2);
         ctx.fill();
 
+        if (isMilitia) {
+          // Militia Peasant Volunteer
+          // Leather Brown Tunic
+          ctx.fillStyle = '#78350F';
+          ctx.fillRect(s.x - 4, s.y - 6 + bob, 8, 8);
+          // Head with Bandana
+          ctx.fillStyle = '#FCD34D';
+          ctx.beginPath();
+          ctx.arc(s.x, s.y - 9 + bob, 4, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.fillStyle = '#EF4444';
+          ctx.fillRect(s.x - 4, s.y - 12 + bob, 8, 3);
+          // Spear / Pitchfork in hand
+          ctx.strokeStyle = '#D97706';
+          ctx.lineWidth = 2;
+          ctx.beginPath();
+          ctx.moveTo(s.x + 5, s.y + 4 + bob);
+          ctx.lineTo(s.x + 8, s.y - 14 + bob);
+          ctx.stroke();
+          // Small Wood Buckler Shield
+          ctx.fillStyle = '#92400E';
+          ctx.beginPath();
+          ctx.arc(s.x - 5, s.y - 3 + bob, 4, 0, Math.PI * 2);
+          ctx.fill();
+        } else {
+          // Royal Paladin Knight Soldier
+          // Steel Armor Chestplate
+          ctx.fillStyle = '#94A3B8';
+          ctx.fillRect(s.x - 5, s.y - 6 + bob, 10, 8);
+          // Knight Helmet with Blue Feather Plume
+          ctx.fillStyle = '#CBD5E1';
+          ctx.beginPath();
+          ctx.arc(s.x, s.y - 9 + bob, 4.5, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.fillStyle = '#0284C7';
+          ctx.fillRect(s.x - 2, s.y - 14 + bob, 4, 5);
+          // Royal Cross Kite Shield
+          ctx.fillStyle = '#0284C7';
+          ctx.strokeStyle = '#F8FAFC';
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.moveTo(s.x - 8, s.y - 8 + bob);
+          ctx.lineTo(s.x - 3, s.y - 8 + bob);
+          ctx.lineTo(s.x - 3, s.y + 2 + bob);
+          ctx.lineTo(s.x - 5.5, s.y + 5 + bob);
+          ctx.lineTo(s.x - 8, s.y + 2 + bob);
+          ctx.closePath();
+          ctx.fill();
+          ctx.stroke();
+          // Gleaming Steel Sword
+          ctx.strokeStyle = '#FFFFFF';
+          ctx.lineWidth = 2;
+          ctx.beginPath();
+          ctx.moveTo(s.x + 4, s.y + 2 + bob);
+          ctx.lineTo(s.x + 9, s.y - 10 + bob);
+          ctx.stroke();
+        }
+
+        // HP Bar
         ctx.fillStyle = '#EF4444';
-        ctx.fillRect(s.x - 8, s.y - 11, 16, 2.5);
+        ctx.fillRect(s.x - 8, s.y - 17 + bob, 16, 2.5);
         ctx.fillStyle = '#10B981';
-        ctx.fillRect(s.x - 8, s.y - 11, (s.hp / s.maxHp) * 16, 2.5);
+        ctx.fillRect(s.x - 8, s.y - 17 + bob, (s.hp / s.maxHp) * 16, 2.5);
+        ctx.restore();
       });
 
-      // 5. Draw Hero Champion
+      // 5. Draw Controllable Hero Champion (영웅 스프라이트)
       ctx.save();
-      ctx.fillStyle = currentHeroInfo.color;
-      ctx.shadowColor = currentHeroInfo.color;
-      ctx.shadowBlur = 12;
+      const heroBob = Math.sin(gameTick * 4) * 2;
+      // Hero Aura Shadow
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
       ctx.beginPath();
-      ctx.arc(heroPos.x, heroPos.y, 13, 0, Math.PI * 2);
+      ctx.ellipse(heroPos.x, heroPos.y + 9, 10, 4, 0, 0, Math.PI * 2);
       ctx.fill();
+
+      // Glowing Hero Aura Ring
+      ctx.strokeStyle = currentHeroInfo.color;
+      ctx.lineWidth = 2;
+      ctx.shadowColor = currentHeroInfo.color;
+      ctx.shadowBlur = 14;
+      ctx.beginPath();
+      ctx.arc(heroPos.x, heroPos.y + heroBob, 15, 0, Math.PI * 2);
+      ctx.stroke();
       ctx.shadowBlur = 0;
-      ctx.fillStyle = '#FFFFFF';
-      ctx.font = '12px sans-serif';
+
+      if (selectedHero === 'paladin') {
+        // Paladin Lord: Golden Armor & Royal Cape
+        // Billowing Blue Cape
+        ctx.fillStyle = '#1E40AF';
+        ctx.fillRect(heroPos.x - 7, heroPos.y - 6 + heroBob, 14, 12);
+        // Golden Breastplate
+        ctx.fillStyle = '#F59E0B';
+        ctx.fillRect(heroPos.x - 6, heroPos.y - 8 + heroBob, 12, 10);
+        // Winged Gold Helmet
+        ctx.fillStyle = '#FBBF24';
+        ctx.beginPath();
+        ctx.arc(heroPos.x, heroPos.y - 12 + heroBob, 6, 0, Math.PI * 2);
+        ctx.fill();
+        // Radiant Holy Greatsword
+        ctx.strokeStyle = '#FFFFFF';
+        ctx.lineWidth = 3;
+        ctx.shadowColor = '#FDE047';
+        ctx.shadowBlur = 8;
+        ctx.beginPath();
+        ctx.moveTo(heroPos.x + 6, heroPos.y + 4 + heroBob);
+        ctx.lineTo(heroPos.x + 14, heroPos.y - 16 + heroBob);
+        ctx.stroke();
+        ctx.shadowBlur = 0;
+      } else if (selectedHero === 'ranger') {
+        // Elven Ranger: Emerald Cloak & Longbow
+        ctx.fillStyle = '#065F46';
+        ctx.fillRect(heroPos.x - 5, heroPos.y - 7 + heroBob, 10, 11);
+        // Green Hood & Pointy Ears
+        ctx.fillStyle = '#047857';
+        ctx.beginPath();
+        ctx.arc(heroPos.x, heroPos.y - 11 + heroBob, 5.5, 0, Math.PI * 2);
+        ctx.fill();
+        // Recurve Longbow
+        ctx.strokeStyle = '#D97706';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.arc(heroPos.x + 8, heroPos.y - 5 + heroBob, 10, -Math.PI / 2, Math.PI / 2);
+        ctx.stroke();
+      } else if (selectedHero === 'archmage') {
+        // Archmage Zephyros: Violet Robes & Floating Arcane Staff
+        ctx.fillStyle = '#581C87';
+        ctx.fillRect(heroPos.x - 6, heroPos.y - 7 + heroBob, 12, 12);
+        // Sorcerer Hat
+        ctx.fillStyle = '#7E22CE';
+        ctx.beginPath();
+        ctx.moveTo(heroPos.x - 8, heroPos.y - 9 + heroBob);
+        ctx.lineTo(heroPos.x, heroPos.y - 20 + heroBob);
+        ctx.lineTo(heroPos.x + 8, heroPos.y - 9 + heroBob);
+        ctx.closePath();
+        ctx.fill();
+        // Crystal Magic Staff
+        ctx.strokeStyle = '#F59E0B';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(heroPos.x + 7, heroPos.y + 6 + heroBob);
+        ctx.lineTo(heroPos.x + 9, heroPos.y - 16 + heroBob);
+        ctx.stroke();
+        // Glowing Orb on Staff Top
+        ctx.fillStyle = '#C084FC';
+        ctx.shadowColor = '#C084FC';
+        ctx.shadowBlur = 10;
+        ctx.beginPath();
+        ctx.arc(heroPos.x + 9, heroPos.y - 17 + heroBob, 4, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.shadowBlur = 0;
+      }
+
+      // Hero Label & Crown
+      ctx.fillStyle = '#FDE047';
+      ctx.font = 'bold 10px sans-serif';
       ctx.textAlign = 'center';
-      ctx.fillText(currentHeroInfo.icon, heroPos.x, heroPos.y + 4);
+      ctx.fillText(`👑 ${currentHeroInfo.name}`, heroPos.x, heroPos.y - 22 + heroBob);
       ctx.restore();
 
-      // 6. Draw Enemies
+      // 6. Draw Realistic Enemies & Monsters (고블린, 오크, 가고일, 주술사, 보스)
       enemiesRef.current.forEach((en) => {
         const isBoss = en.type === 'boss';
-        ctx.fillStyle = isBoss
-          ? '#E11D48'
-          : en.type === 'orc'
-          ? '#D97706'
-          : en.type === 'flying'
-          ? '#06B6D4'
-          : '#10B981';
+        const eBob = Math.sin(gameTick * 4 + Number(en.id.slice(-1) || 0)) * 1.5;
 
+        ctx.save();
+        // Ground Shadow
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.45)';
         ctx.beginPath();
-        ctx.arc(en.x, en.y, isBoss ? 18 : 9, 0, Math.PI * 2);
+        ctx.ellipse(en.x, en.y + (en.isFlying ? 18 : 8), isBoss ? 16 : 8, isBoss ? 6 : 3, 0, 0, Math.PI * 2);
         ctx.fill();
 
-        const barWidth = isBoss ? 36 : 18;
+        if (en.type === 'goblin') {
+          // 🐺 Goblin Runner: Green hunched body, pointed ears, rusty daggers
+          ctx.fillStyle = '#15803D';
+          ctx.fillRect(en.x - 4, en.y - 6 + eBob, 8, 8);
+          // Head with Pointy Goblin Ears
+          ctx.fillStyle = '#22C55E';
+          ctx.beginPath();
+          ctx.arc(en.x, en.y - 8 + eBob, 4, 0, Math.PI * 2);
+          ctx.fill();
+          // Pointy Ears
+          ctx.beginPath();
+          ctx.moveTo(en.x - 7, en.y - 9 + eBob);
+          ctx.lineTo(en.x - 3, en.y - 11 + eBob);
+          ctx.lineTo(en.x - 3, en.y - 7 + eBob);
+          ctx.moveTo(en.x + 7, en.y - 9 + eBob);
+          ctx.lineTo(en.x + 3, en.y - 11 + eBob);
+          ctx.lineTo(en.x + 3, en.y - 7 + eBob);
+          ctx.fill();
+          // Daggers
+          ctx.strokeStyle = '#CA8A04';
+          ctx.lineWidth = 1.5;
+          ctx.beginPath();
+          ctx.moveTo(en.x + 4, en.y - 3 + eBob);
+          ctx.lineTo(en.x + 8, en.y - 8 + eBob);
+          ctx.stroke();
+        } else if (en.type === 'orc') {
+          // 🛡️ Armored Orc Brute: Muscular dark olive, Horned helmet, Spiked Battle Axe
+          ctx.fillStyle = '#3F6212';
+          ctx.fillRect(en.x - 7, en.y - 8 + eBob, 14, 11);
+          // Iron Horned Helmet
+          ctx.fillStyle = '#334155';
+          ctx.beginPath();
+          ctx.arc(en.x, en.y - 11 + eBob, 6, 0, Math.PI * 2);
+          ctx.fill();
+          // White Horns
+          ctx.fillStyle = '#F8FAFC';
+          ctx.beginPath();
+          ctx.moveTo(en.x - 8, en.y - 16 + eBob);
+          ctx.lineTo(en.x - 4, en.y - 12 + eBob);
+          ctx.lineTo(en.x - 6, en.y - 9 + eBob);
+          ctx.moveTo(en.x + 8, en.y - 16 + eBob);
+          ctx.lineTo(en.x + 4, en.y - 12 + eBob);
+          ctx.lineTo(en.x + 6, en.y - 9 + eBob);
+          ctx.fill();
+          // Massive Spiked Axe
+          ctx.strokeStyle = '#1E293B';
+          ctx.lineWidth = 2.5;
+          ctx.beginPath();
+          ctx.moveTo(en.x + 6, en.y + 4 + eBob);
+          ctx.lineTo(en.x + 11, en.y - 14 + eBob);
+          ctx.stroke();
+        } else if (en.type === 'flying') {
+          // 🦇 Flying Gargoyle: Stone demon flapping bat wings
+          const wingAngle = Math.sin(gameTick * 6) * 6;
+          ctx.fillStyle = '#475569';
+          ctx.beginPath();
+          ctx.arc(en.x, en.y - 4, 6, 0, Math.PI * 2);
+          ctx.fill();
+          // Flapping Bat Wings
+          ctx.fillStyle = '#334155';
+          ctx.beginPath();
+          ctx.moveTo(en.x - 14, en.y - 12 + wingAngle);
+          ctx.lineTo(en.x - 4, en.y - 4);
+          ctx.lineTo(en.x - 10, en.y + 2 + wingAngle);
+          ctx.moveTo(en.x + 14, en.y - 12 + wingAngle);
+          ctx.lineTo(en.x + 4, en.y - 4);
+          ctx.lineTo(en.x + 10, en.y + 2 + wingAngle);
+          ctx.fill();
+          // Glowing Red Eyes
+          ctx.fillStyle = '#EF4444';
+          ctx.fillRect(en.x - 3, en.y - 5, 2, 2);
+          ctx.fillRect(en.x + 1, en.y - 5, 2, 2);
+        } else if (en.type === 'shaman') {
+          // 👾 Troll Shaman: Skull Mask, Bone Staff with Poison Smoke
+          ctx.fillStyle = '#581C87';
+          ctx.fillRect(en.x - 5, en.y - 7 + eBob, 10, 10);
+          // Skull Mask
+          ctx.fillStyle = '#F8FAFC';
+          ctx.beginPath();
+          ctx.arc(en.x, en.y - 10 + eBob, 5, 0, Math.PI * 2);
+          ctx.fill();
+          // Bone Skull Staff
+          ctx.strokeStyle = '#D97706';
+          ctx.lineWidth = 2;
+          ctx.beginPath();
+          ctx.moveTo(en.x + 6, en.y + 4 + eBob);
+          ctx.lineTo(en.x + 8, en.y - 14 + eBob);
+          ctx.stroke();
+          // Poison Green Orb
+          ctx.fillStyle = '#22C55E';
+          ctx.shadowColor = '#22C55E';
+          ctx.shadowBlur = 8;
+          ctx.beginPath();
+          ctx.arc(en.x + 8, en.y - 15 + eBob, 3.5, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.shadowBlur = 0;
+        } else if (isBoss) {
+          // 👑 GIGA BOSS TITAN: 3x Colossal Magma Demon Juggernaut
+          ctx.fillStyle = '#18181B';
+          ctx.fillRect(en.x - 16, en.y - 18 + eBob, 32, 24);
+          // Glowing Magma Fissures
+          ctx.strokeStyle = '#EF4444';
+          ctx.lineWidth = 2;
+          ctx.beginPath();
+          ctx.moveTo(en.x - 10, en.y - 14 + eBob);
+          ctx.lineTo(en.x, en.y - 6 + eBob);
+          ctx.lineTo(en.x + 10, en.y - 14 + eBob);
+          ctx.stroke();
+          // Colossal Horned Skull
+          ctx.fillStyle = '#7F1D1D';
+          ctx.beginPath();
+          ctx.arc(en.x, en.y - 24 + eBob, 12, 0, Math.PI * 2);
+          ctx.fill();
+          // Burning Demon Horns
+          ctx.fillStyle = '#DC2626';
+          ctx.shadowColor = '#EF4444';
+          ctx.shadowBlur = 10;
+          ctx.beginPath();
+          ctx.moveTo(en.x - 16, en.y - 38 + eBob);
+          ctx.lineTo(en.x - 8, en.y - 26 + eBob);
+          ctx.lineTo(en.x - 12, en.y - 20 + eBob);
+          ctx.moveTo(en.x + 16, en.y - 38 + eBob);
+          ctx.lineTo(en.x + 8, en.y - 26 + eBob);
+          ctx.lineTo(en.x + 12, en.y - 20 + eBob);
+          ctx.fill();
+          ctx.shadowBlur = 0;
+          // Giant Magma War Mace
+          ctx.strokeStyle = '#450A0A';
+          ctx.lineWidth = 4;
+          ctx.beginPath();
+          ctx.moveTo(en.x + 14, en.y + 10 + eBob);
+          ctx.lineTo(en.x + 22, en.y - 28 + eBob);
+          ctx.stroke();
+          ctx.fillStyle = '#EF4444';
+          ctx.beginPath();
+          ctx.arc(en.x + 22, en.y - 28 + eBob, 8, 0, Math.PI * 2);
+          ctx.fill();
+        }
+
+        // Enemy HP Bar
+        const barWidth = isBoss ? 44 : 18;
         ctx.fillStyle = '#334155';
-        ctx.fillRect(en.x - barWidth / 2, en.y - (isBoss ? 26 : 15), barWidth, 3.5);
+        ctx.fillRect(en.x - barWidth / 2, en.y - (isBoss ? 48 : 18) + eBob, barWidth, 3.5);
         ctx.fillStyle = '#EF4444';
-        ctx.fillRect(en.x - barWidth / 2, en.y - (isBoss ? 26 : 15), (en.hp / en.maxHp) * barWidth, 3.5);
+        ctx.fillRect(en.x - barWidth / 2, en.y - (isBoss ? 48 : 18) + eBob, (en.hp / en.maxHp) * barWidth, 3.5);
+
+        if (isBoss) {
+          ctx.fillStyle = '#F87171';
+          ctx.font = 'bold 9px sans-serif';
+          ctx.textAlign = 'center';
+          ctx.fillText(`👑 ${currentStage.bossName}`, en.x, en.y - 52 + eBob);
+        }
+        ctx.restore();
       });
 
       // 7. Draw Projectiles
