@@ -5,6 +5,8 @@ import { Navbar } from './components/common/Navbar';
 import { Sidebar } from './components/common/Sidebar';
 import { ExecutiveSummary } from './components/dashboard/ExecutiveSummary';
 import { ProjectRadarView } from './components/radar/ProjectRadarView';
+import { ProjectSynergyGraph } from './components/synergy/ProjectSynergyGraph';
+import { VibeCopilot } from './components/copilot/VibeCopilot';
 import { AssetMiningView } from './components/assets/AssetMiningView';
 import { GraveyardView } from './components/graveyard/GraveyardView';
 import { IdeaInboxView } from './components/ideas/IdeaInboxView';
@@ -19,6 +21,8 @@ import {
   Sparkles,
   Archive,
   Lightbulb,
+  Network,
+  Bot,
 } from 'lucide-react';
 
 export const App: React.FC = () => {
@@ -28,9 +32,10 @@ export const App: React.FC = () => {
   const mobileTabs = [
     { id: 'dashboard', label: t.nav.dashboard.split(' ')[0], icon: <LayoutDashboard className="w-4 h-4" /> },
     { id: 'radar', label: t.nav.radar.split(' ')[0], icon: <Radar className="w-4 h-4" /> },
+    { id: 'copilot', label: 'AI Copilot', icon: <Bot className="w-4 h-4 text-cyan-400" /> },
+    { id: 'synergy', label: 'Synergy', icon: <Network className="w-4 h-4 text-indigo-400" /> },
     { id: 'assets', label: t.nav.assets.split(' ')[0], icon: <Sparkles className="w-4 h-4" /> },
     { id: 'graveyard', label: t.nav.graveyard.split(' ')[0], icon: <Archive className="w-4 h-4" /> },
-    { id: 'ideas', label: t.nav.ideas.split(' ')[0], icon: <Lightbulb className="w-4 h-4" /> },
   ];
 
   return (
@@ -47,6 +52,8 @@ export const App: React.FC = () => {
         <main className="flex-1 min-w-0 p-3.5 sm:p-6 lg:p-8 overflow-y-auto max-w-7xl mx-auto w-full">
           {activeTab === 'dashboard' && <ExecutiveSummary />}
           {activeTab === 'radar' && <ProjectRadarView />}
+          {activeTab === 'synergy' && <ProjectSynergyGraph />}
+          {activeTab === 'copilot' && <VibeCopilot />}
           {activeTab === 'assets' && <AssetMiningView />}
           {activeTab === 'graveyard' && <GraveyardView />}
           {activeTab === 'ideas' && <IdeaInboxView />}
@@ -63,14 +70,14 @@ export const App: React.FC = () => {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id as any)}
-              className={`flex flex-col items-center gap-1 py-1 px-2.5 rounded-xl text-xs transition-colors min-w-[56px] ${
+              className={`flex flex-col items-center gap-1 py-1 px-2 rounded-xl text-xs transition-colors min-w-[50px] ${
                 isActive
                   ? 'text-cyan-400 font-bold bg-cyan-500/10'
                   : 'text-slate-500 hover:text-slate-300'
               }`}
             >
               {tab.icon}
-              <span className="text-[10px] font-mono leading-none">{tab.label}</span>
+              <span className="text-[9px] font-mono leading-none">{tab.label}</span>
             </button>
           );
         })}

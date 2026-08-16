@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useVibeStore } from '../../store/useVibeStore';
 import { useTranslation } from '../../i18n/useTranslation';
 import { ActiveTab } from '../../types/project';
+import { ResumeExportModal } from './ResumeExportModal';
 import {
   LayoutDashboard,
   Radar,
@@ -12,11 +13,15 @@ import {
   Flame,
   ShieldCheck,
   FolderGit2,
+  Network,
+  Bot,
+  FileText,
 } from 'lucide-react';
 
 export const Sidebar: React.FC = () => {
   const { activeTab, setActiveTab, projects, assets, ideas, summary, githubAuth } = useVibeStore();
   const { t } = useTranslation();
+  const [isResumeOpen, setIsResumeOpen] = useState(false);
 
   const activeProjectsCount = projects.filter((p) => p.status === 'active').length;
   const graveyardCount = projects.filter((p) => p.status === 'graveyard').length;
@@ -35,7 +40,7 @@ export const Sidebar: React.FC = () => {
       label: t.nav.dashboard,
       description: t.nav.dashboardDesc,
       icon: <LayoutDashboard className="w-4 h-4" />,
-      badge: `${summary.growing} Growing`,
+      badge: `${summary.growing} Grow`,
       badgeColor: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20',
     },
     {
@@ -45,6 +50,20 @@ export const Sidebar: React.FC = () => {
       icon: <Radar className="w-4 h-4 text-cyan-400" />,
       badge: activeProjectsCount,
       badgeColor: 'bg-cyan-500/10 text-cyan-400 border-cyan-500/20',
+    },
+    {
+      id: 'synergy',
+      label: t.nav.synergy || 'Synergy Graph',
+      description: t.nav.synergyDesc || 'Cross-project transfer',
+      icon: <Network className="w-4 h-4 text-indigo-400" />,
+    },
+    {
+      id: 'copilot',
+      label: t.nav.copilot || 'AI Copilot',
+      description: t.nav.copilotDesc || '234 repos intelligence',
+      icon: <Bot className="w-4 h-4 text-cyan-400 animate-pulse" />,
+      badge: 'AI',
+      badgeColor: 'bg-cyan-500/20 text-cyan-300 border-cyan-500/40 font-bold',
     },
     {
       id: 'assets',
@@ -85,86 +104,100 @@ export const Sidebar: React.FC = () => {
   ];
 
   return (
-    <aside className="w-64 shrink-0 hidden md:flex flex-col justify-between border-r border-slate-800/80 bg-[#0B0F19]/90 min-h-[calc(100vh-61px)] p-4">
-      {/* Top Nav Items */}
-      <div className="space-y-6">
-        <div>
-          <p className="px-3 text-[11px] font-semibold text-slate-500 uppercase tracking-wider mb-2 font-mono">
-            {t.nav.operatingSystem}
-          </p>
-          <nav className="space-y-1">
-            {navItems.map((item) => {
-              const isActive = activeTab === item.id;
-              return (
-                <button
-                  key={item.id}
-                  onClick={() => setActiveTab(item.id)}
-                  className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-left transition-all group ${
-                    isActive
-                      ? 'bg-cyan-500/10 text-white font-medium border border-cyan-500/30 shadow-sm shadow-cyan-500/10'
-                      : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/50 border border-transparent'
-                  }`}
-                >
-                  <div className="flex items-center gap-3">
-                    <div
-                      className={`p-1.5 rounded-lg ${
-                        isActive
-                          ? 'bg-cyan-500/20 text-cyan-300'
-                          : 'bg-slate-800/60 text-slate-400 group-hover:text-slate-200'
-                      }`}
-                    >
-                      {item.icon}
+    <>
+      <aside className="w-64 shrink-0 hidden md:flex flex-col justify-between border-r border-slate-800/80 bg-[#0B0F19]/90 min-h-[calc(100vh-61px)] p-4">
+        {/* Top Nav Items */}
+        <div className="space-y-4">
+          <div>
+            <p className="px-3 text-[11px] font-semibold text-slate-500 uppercase tracking-wider mb-2 font-mono">
+              {t.nav.operatingSystem}
+            </p>
+            <nav className="space-y-1">
+              {navItems.map((item) => {
+                const isActive = activeTab === item.id;
+                return (
+                  <button
+                    key={item.id}
+                    onClick={() => setActiveTab(item.id)}
+                    className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-left transition-all group ${
+                      isActive
+                        ? 'bg-cyan-500/10 text-white font-medium border border-cyan-500/30 shadow-sm shadow-cyan-500/10'
+                        : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/50 border border-transparent'
+                    }`}
+                  >
+                    <div className="flex items-center gap-2.5">
+                      <div
+                        className={`p-1.5 rounded-lg ${
+                          isActive
+                            ? 'bg-cyan-500/20 text-cyan-300'
+                            : 'bg-slate-800/60 text-slate-400 group-hover:text-slate-200'
+                        }`}
+                      >
+                        {item.icon}
+                      </div>
+                      <div>
+                        <p className="text-xs font-semibold leading-tight">{item.label}</p>
+                        <p className="text-[10px] text-slate-500 truncate max-w-[105px]">
+                          {item.description}
+                        </p>
+                      </div>
                     </div>
-                    <div>
-                      <p className="text-xs font-semibold leading-tight">{item.label}</p>
-                      <p className="text-[10px] text-slate-500 truncate max-w-[110px]">
-                        {item.description}
-                      </p>
-                    </div>
-                  </div>
 
-                  {item.badge !== undefined && (
-                    <span
-                      className={`text-[10px] font-mono px-2 py-0.5 rounded-full border ${item.badgeColor || 'bg-slate-800 text-slate-300 border-slate-700'}`}
-                    >
-                      {item.badge}
-                    </span>
-                  )}
-                </button>
-              );
-            })}
-          </nav>
-        </div>
-
-        {/* Philosophy Card */}
-        <div className="p-3.5 rounded-2xl bg-gradient-to-b from-slate-900 to-[#0F172A] border border-slate-800 relative overflow-hidden">
-          <div className="flex items-center gap-2 mb-1.5 text-cyan-400">
-            <Flame className="w-4 h-4 text-cyan-400 shrink-0" />
-            <span className="text-xs font-bold font-mono uppercase tracking-wider">{t.nav.vibeOsTenet}</span>
+                    {item.badge !== undefined && (
+                      <span
+                        className={`text-[10px] font-mono px-2 py-0.5 rounded-full border ${item.badgeColor || 'bg-slate-800 text-slate-300 border-slate-700'}`}
+                      >
+                        {item.badge}
+                      </span>
+                    )}
+                  </button>
+                );
+              })}
+            </nav>
           </div>
-          <p className="text-xs text-slate-300 italic leading-relaxed">
-            "{t.nav.vibeOsQuote}"
-          </p>
-        </div>
-      </div>
 
-      {/* Bottom Storage & Security Status */}
-      <div className="pt-4 border-t border-slate-800/80 space-y-2">
-        <div className="flex items-center justify-between text-xs px-2 text-slate-400">
-          <span className="flex items-center gap-1.5 font-mono text-[11px]">
-            <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
-            {t.nav.localIndexedDb}
-          </span>
-          <span className="text-[10px] text-emerald-400 font-mono">{t.nav.clientSideOnly}</span>
+          {/* Quick Resume Export Button */}
+          <button
+            onClick={() => setIsResumeOpen(true)}
+            className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-xs font-mono text-cyan-300 hover:bg-slate-800 transition-colors shadow-sm"
+          >
+            <FileText className="w-3.5 h-3.5 text-cyan-400" />
+            <span>Export Resume & MD</span>
+          </button>
+
+          {/* Philosophy Card */}
+          <div className="p-3 rounded-2xl bg-gradient-to-b from-slate-900 to-[#0F172A] border border-slate-800 relative overflow-hidden">
+            <div className="flex items-center gap-2 mb-1 text-cyan-400">
+              <Flame className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
+              <span className="text-[11px] font-bold font-mono uppercase tracking-wider">{t.nav.vibeOsTenet}</span>
+            </div>
+            <p className="text-[11px] text-slate-300 italic leading-relaxed">
+              "{t.nav.vibeOsQuote}"
+            </p>
+          </div>
         </div>
 
-        <div className="p-2.5 rounded-xl bg-slate-900/60 border border-slate-800 text-[11px] text-slate-400 flex items-center justify-between">
-          <span className="truncate">{t.nav.githubRuntime}</span>
-          <span className="font-mono text-cyan-400 text-[10px]">
-            {githubAuth.isValid ? `@${githubAuth.username}` : t.nav.demoMode}
-          </span>
+        {/* Bottom Storage & Security Status */}
+        <div className="pt-3 border-t border-slate-800/80 space-y-2">
+          <div className="flex items-center justify-between text-xs px-2 text-slate-400">
+            <span className="flex items-center gap-1.5 font-mono text-[10px]">
+              <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+              {t.nav.localIndexedDb}
+            </span>
+            <span className="text-[10px] text-emerald-400 font-mono">{t.nav.clientSideOnly}</span>
+          </div>
+
+          <div className="p-2 rounded-xl bg-slate-900/60 border border-slate-800 text-[10px] text-slate-400 flex items-center justify-between">
+            <span className="truncate">{t.nav.githubRuntime}</span>
+            <span className="font-mono text-cyan-400 text-[10px]">
+              {githubAuth.isValid ? `@${githubAuth.username}` : '234 Repos Synced'}
+            </span>
+          </div>
         </div>
-      </div>
-    </aside>
+      </aside>
+
+      {/* Resume Export Modal */}
+      <ResumeExportModal isOpen={isResumeOpen} onClose={() => setIsResumeOpen(false)} />
+    </>
   );
 };
