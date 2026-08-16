@@ -6,28 +6,40 @@ import { StageBadge } from '../common/StageBadge';
 import { ScoreBadge } from '../common/ScoreBadge';
 import { soundEngine } from '../../utils/soundEngine';
 import {
+  ResponsiveContainer,
+  BarChart,
+  Bar,
+  AreaChart,
+  Area,
+  XAxis,
+  YAxis,
+  Tooltip,
+  Cell,
+  CartesianGrid,
+} from 'recharts';
+import {
   Calendar,
-  TrendingUp,
-  GitCommit,
-  Layers,
   Sparkles,
   Award,
-  ChevronRight,
-  Milestone,
   ArrowRight,
-  ExternalLink,
   Flame,
   Bot,
   Cpu,
   Compass,
+  TrendingUp,
+  BarChart3,
 } from 'lucide-react';
 
 interface MonthBucket {
   label: string;
   yearMonth: string;
   year: number;
+  shortLabel: string;
   projects: ProjectItem[];
+  velocity: number;
   cumulativeCount: number;
+  eraId: string;
+  eraColor: string;
 }
 
 interface GrowthEra {
@@ -102,12 +114,11 @@ export const ProjectTimeline: React.FC = () => {
 
   const [selectedEra, setSelectedEra] = useState<string>('all');
   const [selectedMonth, setSelectedMonth] = useState<string | null>(null);
-  const [hoveredMonth, setHoveredMonth] = useState<MonthBucket | null>(null);
   const [viewMetric, setViewMetric] = useState<'velocity' | 'cumulative'>('velocity');
 
   // Build comprehensive month buckets from project createdAt dates
   const { months, peakMonth, totalMonths, earliestDate, latestDate, milestones } = useMemo(() => {
-    const bucketMap: Record<string, { label: string; yearMonth: string; year: number; projects: ProjectItem[] }> = {};
+    const bucketMap: Record<string, { label: string; yearMonth: string; year: number; shortLabel: string; projects: ProjectItem[] }> = {};
 
     // Sort projects chronologically
     const sortedProjects = [...projects].sort(
@@ -115,7 +126,7 @@ export const ProjectTimeline: React.FC = () => {
     );
 
     let earliest = '2026-08';
-    let latest = '2020-01';
+    let latest = '2019-01';
 
     sortedProjects.forEach((p) => {
       const d = new Date(p.createdAt);
@@ -130,9 +141,10 @@ export const ProjectTimeline: React.FC = () => {
             ? ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월']
             : ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
         bucketMap[ym] = {
-          label: `${monthNames[d.getMonth()]} ${d.getFullYear()}`,
+          label: `${d.getFullYear()} ${monthNames[d.getMonth()]}`,
           yearMonth: ym,
           year: d.getFullYear(),
+          shortLabel: ym.endsWith('-01') ? `${d.getFullYear().toString().slice(2)}'` : monthNames[d.getMonth()],
           projects: [],
         };
       }
@@ -144,15 +156,23 @@ export const ProjectTimeline: React.FC = () => {
     let runningTotal = 0;
     const enrichedBuckets: MonthBucket[] = sortedBuckets.map((b) => {
       runningTotal += b.projects.length;
+
+      const era = GROWTH_ERAS.find(
+        (e) => b.yearMonth >= e.startYearMonth && b.yearMonth <= e.endYearMonth
+      );
+
       return {
         ...b,
+        velocity: b.projects.length,
         cumulativeCount: runningTotal,
+        eraId: era?.id || 'era-foundations',
+        eraColor: era?.accentColor || '#38BDF8',
       };
     });
 
     let peak: MonthBucket | null = null;
     enrichedBuckets.forEach((m) => {
-      if (!peak || m.projects.length > peak.projects.length) peak = m;
+      if (!peak || m.velocity > peak.velocity) peak = m;
     });
 
     // Compute Milestones
@@ -181,26 +201,13 @@ export const ProjectTimeline: React.FC = () => {
     return months.filter((m) => m.yearMonth >= era.startYearMonth && m.yearMonth <= era.endYearMonth);
   }, [months, selectedEra]);
 
-  const maxMonthlyVelocity = useMemo(() => {
-    return Math.max(1, ...displayedMonths.map((m) => m.projects.length));
-  }, [displayedMonths]);
-
-  const maxCumulative = useMemo(() => {
-    return Math.max(1, ...months.map((m) => m.cumulativeCount));
-  }, [months]);
-
   // Active month's projects
   const activeMonthBucket = useMemo(() => {
     if (selectedMonth) {
       return months.find((m) => m.yearMonth === selectedMonth) || null;
     }
-    return hoveredMonth || months[months.length - 1] || null;
-  }, [selectedMonth, hoveredMonth, months]);
-
-  const handleMonthClick = (ym: string) => {
-    soundEngine.playClick();
-    setSelectedMonth((prev) => (prev === ym ? null : ym));
-  };
+    return months[months.length - 1] || null;
+  }, [selectedMonth, months]);
 
   const handleEraClick = (eraId: string) => {
     soundEngine.playClick();
@@ -212,6 +219,44 @@ export const ProjectTimeline: React.FC = () => {
     soundEngine.playClick();
     setSelectedProjectId(projectId);
     setActiveTab('radar');
+  };
+
+  // Custom Recharts Tooltip
+  const CustomChartTooltip = ({ active, payload }: any) => {
+    if (active && payload && payload.length) {
+      const data: MonthBucket = payload[0].payload;
+      return (
+        <div className="p-3.5 rounded-2xl bg-slate-900 border border-slate-700 shadow-2xl space-y-1.5 min-w-[200px] font-mono text-xs text-white">
+          <div className="flex items-center justify-between border-b border-slate-800 pb-1.5">
+            <span className="font-bold text-cyan-300">{data.label}</span>
+            <span
+              className="text-[9px] px-2 py-0.5 rounded-md font-bold"
+              style={{ backgroundColor: `${data.eraColor}20`, color: data.eraColor }}
+            >
+              {data.eraId.replace('era-', '').toUpperCase()}
+            </span>
+          </div>
+
+          <div className="flex items-center justify-between pt-0.5">
+            <span className="text-slate-400">{language === 'ko' ? '월 생성 속도' : 'Monthly Created'}:</span>
+            <strong className="text-emerald-400 font-bold">+{data.velocity} repos</strong>
+          </div>
+
+          <div className="flex items-center justify-between">
+            <span className="text-slate-400">{language === 'ko' ? '누적 총계' : 'Cumulative Total'}:</span>
+            <span className="text-white font-bold">{data.cumulativeCount} repos</span>
+          </div>
+
+          <div className="pt-1.5 border-t border-slate-800/80 text-[10px] text-slate-300">
+            <span className="text-slate-500 block text-[9px] uppercase mb-0.5">Projects:</span>
+            <span className="line-clamp-2">
+              {data.projects.map((p) => p.name).join(', ')}
+            </span>
+          </div>
+        </div>
+      );
+    }
+    return null;
   };
 
   return (
@@ -247,13 +292,13 @@ export const ProjectTimeline: React.FC = () => {
           </div>
         </div>
 
-        {/* Quick Stats Pills */}
+        {/* Quick Stats Pills & View Mode Switcher */}
         <div className="flex items-center gap-2 flex-wrap">
           {peakMonth && (
             <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-300 text-xs font-mono">
               <Flame className="w-3.5 h-3.5 text-amber-400" />
               <span>
-                <strong>Peak</strong>: {peakMonth.label} ({peakMonth.projects.length} repos)
+                <strong>Peak</strong>: {peakMonth.label} (+{peakMonth.velocity} repos)
               </span>
             </div>
           )}
@@ -265,26 +310,28 @@ export const ProjectTimeline: React.FC = () => {
                 soundEngine.playClick();
                 setViewMetric('velocity');
               }}
-              className={`px-2.5 py-1 rounded-lg transition-all ${
+              className={`flex items-center gap-1 px-2.5 py-1 rounded-lg transition-all ${
                 viewMetric === 'velocity'
                   ? 'bg-cyan-500/20 text-cyan-300 font-bold border border-cyan-500/30'
                   : 'text-slate-400 hover:text-slate-200'
               }`}
             >
-              {language === 'ko' ? '월별 속도' : 'Velocity'}
+              <BarChart3 className="w-3 h-3" />
+              <span>{language === 'ko' ? '월별 속도' : 'Velocity'}</span>
             </button>
             <button
               onClick={() => {
                 soundEngine.playClick();
                 setViewMetric('cumulative');
               }}
-              className={`px-2.5 py-1 rounded-lg transition-all ${
+              className={`flex items-center gap-1 px-2.5 py-1 rounded-lg transition-all ${
                 viewMetric === 'cumulative'
                   ? 'bg-cyan-500/20 text-cyan-300 font-bold border border-cyan-500/30'
                   : 'text-slate-400 hover:text-slate-200'
               }`}
             >
-              {language === 'ko' ? '누적 성장' : 'Cumulative'}
+              <TrendingUp className="w-3 h-3" />
+              <span>{language === 'ko' ? '누적 성장' : 'Cumulative'}</span>
             </button>
           </div>
         </div>
@@ -359,90 +406,116 @@ export const ProjectTimeline: React.FC = () => {
         })}
       </div>
 
-      {/* 3. Interactive Timeline Visual Chart */}
-      <div className="space-y-2">
+      {/* 3. Recharts Visual Chart Container (Guaranteed 100% Reliable Render) */}
+      <div className="p-4 sm:p-5 rounded-2xl bg-slate-950/80 border border-slate-800/80 space-y-3">
         <div className="flex items-center justify-between text-xs font-mono text-slate-400">
-          <span>
+          <span className="flex items-center gap-1.5">
+            <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
             {selectedEra !== 'all' ? (
-              <span className="text-cyan-400">
-                Filtered: {GROWTH_ERAS.find((e) => e.id === selectedEra)?.titleEn} (Click card to reset)
+              <span className="text-cyan-300 font-bold">
+                Filtered: {GROWTH_ERAS.find((e) => e.id === selectedEra)?.titleEn} (Click chapter card to reset)
               </span>
+            ) : viewMetric === 'velocity' ? (
+              <span>Monthly Project Ingestion Velocity (Click any bar to inspect projects)</span>
             ) : (
-              'Interactive Monthly Creation Velocity (Click any bar to filter projects)'
+              <span>Cumulative Portfolio Growth Trajectory (1 ➔ {projects.length} repositories)</span>
             )}
           </span>
-          <span className="text-slate-500">
-            {viewMetric === 'velocity' ? `Max Peak: ${maxMonthlyVelocity} repos/mo` : `Total: ${projects.length} repos`}
-          </span>
+
+          <div className="flex items-center gap-3 text-[11px]">
+            <span className="flex items-center gap-1">
+              <span className="w-2 h-2 rounded-full bg-[#38BDF8]" /> Foundations
+            </span>
+            <span className="flex items-center gap-1">
+              <span className="w-2 h-2 rounded-full bg-[#818CF8]" /> Platforms
+            </span>
+            <span className="flex items-center gap-1">
+              <span className="w-2 h-2 rounded-full bg-[#10B981]" /> AI Agents
+            </span>
+          </div>
         </div>
 
-        {/* Scrollable Bar Chart */}
-        <div className="p-4 rounded-2xl bg-slate-950/80 border border-slate-800/80 overflow-x-auto">
-          <div className="inline-flex items-end gap-1.5 min-w-[760px] h-[160px] pt-4 pb-1">
-            {displayedMonths.map((month) => {
-              const count = viewMetric === 'velocity' ? month.projects.length : month.cumulativeCount;
-              const max = viewMetric === 'velocity' ? maxMonthlyVelocity : maxCumulative;
-              const heightPct = Math.max(8, (count / max) * 100);
-
-              const isHovered = hoveredMonth?.yearMonth === month.yearMonth;
-              const isSelected = selectedMonth === month.yearMonth;
-
-              // Determine era accent color
-              const era = GROWTH_ERAS.find(
-                (e) => month.yearMonth >= e.startYearMonth && month.yearMonth <= e.endYearMonth
-              );
-              const barColor = era?.accentColor || '#38BDF8';
-
-              return (
-                <div
-                  key={month.yearMonth}
-                  onMouseEnter={() => setHoveredMonth(month)}
-                  onMouseLeave={() => setHoveredMonth(null)}
-                  onClick={() => handleMonthClick(month.yearMonth)}
-                  className="flex flex-col items-center gap-1.5 cursor-pointer group"
-                  style={{ minWidth: '22px' }}
-                >
-                  {/* Tooltip on Hover */}
-                  <div
-                    className={`text-[9px] font-mono font-bold transition-all duration-150 ${
-                      isHovered || isSelected ? 'opacity-100 -translate-y-0.5 text-white' : 'opacity-0 text-transparent'
-                    }`}
-                  >
-                    {count}
-                  </div>
-
-                  {/* Visual Bar */}
-                  <div
-                    className={`w-4 rounded-t-lg transition-all duration-300 relative overflow-hidden ${
-                      isSelected
-                        ? 'ring-2 ring-white shadow-lg'
-                        : isHovered
-                        ? 'opacity-100 scale-y-105'
-                        : 'opacity-70 group-hover:opacity-100'
-                    }`}
-                    style={{
-                      height: `${heightPct}%`,
-                      backgroundColor: isSelected || isHovered ? barColor : `${barColor}90`,
-                      boxShadow: isSelected || isHovered ? `0 0 12px ${barColor}60` : undefined,
-                    }}
-                  />
-
-                  {/* Year / Month Marker */}
-                  <span
-                    className={`text-[8px] font-mono transition-colors ${
-                      isSelected
-                        ? 'text-white font-bold'
-                        : month.yearMonth.endsWith('-01')
-                        ? 'text-cyan-400 font-bold'
-                        : 'text-slate-600'
-                    }`}
-                  >
-                    {month.yearMonth.endsWith('-01') ? month.yearMonth.slice(2, 4) + 'Y' : month.yearMonth.slice(5)}
-                  </span>
-                </div>
-              );
-            })}
-          </div>
+        {/* Recharts Chart Area */}
+        <div className="h-60 sm:h-64 w-full pt-2">
+          <ResponsiveContainer width="100%" height="100%">
+            {viewMetric === 'velocity' ? (
+              <BarChart
+                data={displayedMonths}
+                margin={{ top: 10, right: 10, left: -20, bottom: 0 }}
+                onClick={(e: any) => {
+                  if (e && e.activePayload && e.activePayload.length) {
+                    const ym = e.activePayload[0].payload.yearMonth;
+                    soundEngine.playClick();
+                    setSelectedMonth(ym);
+                  }
+                }}
+              >
+                <CartesianGrid strokeDasharray="3 3" stroke="#1E293B" vertical={false} />
+                <XAxis
+                  dataKey="yearMonth"
+                  stroke="#64748B"
+                  fontSize={10}
+                  tickFormatter={(val) => {
+                    const parts = val.split('-');
+                    return parts[1] === '01' ? `${parts[0].slice(2)}Y` : `${parseInt(parts[1])}M`;
+                  }}
+                />
+                <YAxis stroke="#64748B" fontSize={10} allowDecimals={false} />
+                <Tooltip content={<CustomChartTooltip />} />
+                <Bar dataKey="velocity" radius={[4, 4, 0, 0]}>
+                  {displayedMonths.map((entry) => (
+                    <Cell
+                      key={entry.yearMonth}
+                      fill={selectedMonth === entry.yearMonth ? '#FFFFFF' : entry.eraColor}
+                      opacity={selectedMonth && selectedMonth !== entry.yearMonth ? 0.35 : 0.9}
+                      className="cursor-pointer transition-all duration-200 hover:opacity-100"
+                    />
+                  ))}
+                </Bar>
+              </BarChart>
+            ) : (
+              <AreaChart
+                data={displayedMonths}
+                margin={{ top: 10, right: 10, left: -20, bottom: 0 }}
+                onClick={(e: any) => {
+                  if (e && e.activePayload && e.activePayload.length) {
+                    const ym = e.activePayload[0].payload.yearMonth;
+                    soundEngine.playClick();
+                    setSelectedMonth(ym);
+                  }
+                }}
+              >
+                <defs>
+                  <linearGradient id="cumulativeGradient" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#38BDF8" stopOpacity={0.6} />
+                    <stop offset="50%" stopColor="#818CF8" stopOpacity={0.3} />
+                    <stop offset="95%" stopColor="#10B981" stopOpacity={0.0} />
+                  </linearGradient>
+                </defs>
+                <CartesianGrid strokeDasharray="3 3" stroke="#1E293B" vertical={false} />
+                <XAxis
+                  dataKey="yearMonth"
+                  stroke="#64748B"
+                  fontSize={10}
+                  tickFormatter={(val) => {
+                    const parts = val.split('-');
+                    return parts[1] === '01' ? `${parts[0].slice(2)}Y` : `${parseInt(parts[1])}M`;
+                  }}
+                />
+                <YAxis stroke="#64748B" fontSize={10} />
+                <Tooltip content={<CustomChartTooltip />} />
+                <Area
+                  type="monotone"
+                  dataKey="cumulativeCount"
+                  stroke="#38BDF8"
+                  strokeWidth={2.5}
+                  fillOpacity={1}
+                  fill="url(#cumulativeGradient)"
+                  className="cursor-pointer"
+                />
+              </AreaChart>
+            )}
+          </ResponsiveContainer>
         </div>
       </div>
 
