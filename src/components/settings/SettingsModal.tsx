@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useVibeStore } from '../../store/useVibeStore';
+import { useTranslation } from '../../i18n/useTranslation';
 import {
   X,
   Key,
@@ -7,10 +8,7 @@ import {
   Download,
   Upload,
   RotateCcw,
-  CheckCircle2,
-  AlertTriangle,
   ExternalLink,
-  Lock,
 } from 'lucide-react';
 import { GitHubIcon } from '../common/GitHubIcon';
 import { generateVibeDataExport, downloadJsonFile } from '../../services/exportService';
@@ -31,6 +29,8 @@ export const SettingsModal: React.FC = () => {
     showToast,
     isLoading,
   } = useVibeStore();
+
+  const { t } = useTranslation();
 
   const [inputToken, setInputToken] = useState(githubAuth.token || '');
   const [activeTab, setActiveTab] = useState<'github' | 'data' | 'about'>('github');
@@ -70,80 +70,82 @@ export const SettingsModal: React.FC = () => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-fadeIn">
-      <div className="bg-[#0F172A] border border-slate-700 w-full max-w-2xl rounded-3xl overflow-hidden shadow-2xl flex flex-col">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/80 backdrop-blur-md animate-fadeIn">
+      <div className="bg-[#0F172A] border border-slate-700 w-full max-w-2xl rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl flex flex-col">
         {/* Header */}
-        <div className="p-6 border-b border-slate-800 flex items-center justify-between">
+        <div className="p-4 sm:p-6 border-b border-slate-800 flex items-center justify-between">
           <div className="flex items-center gap-2.5">
             <div className="p-2 rounded-xl bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
               <Key className="w-5 h-5" />
             </div>
             <div>
-              <h2 className="text-lg font-bold text-white font-mono">
-                VibeOS Settings & Integrations
+              <h2 className="text-base sm:text-lg font-bold text-white font-mono">
+                {t.settings.title}
               </h2>
-              <p className="text-xs text-slate-400">Zero-server GitHub API & Data Management</p>
+              <p className="text-xs text-slate-400">{t.settings.subtitle}</p>
             </div>
           </div>
 
           <button
             onClick={() => setIsSettingsOpen(false)}
-            className="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+            className="p-1.5 sm:p-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Tab Switcher */}
-        <div className="px-6 border-b border-slate-800 flex items-center gap-2 bg-slate-950/40 text-xs font-mono">
+        <div className="px-4 sm:px-6 border-b border-slate-800 flex items-center gap-1 sm:gap-2 bg-slate-950/40 text-xs font-mono overflow-x-auto">
           <button
             onClick={() => setActiveTab('github')}
-            className={`py-3 px-3 border-b-2 font-semibold transition-colors ${
+            className={`py-2.5 sm:py-3 px-2.5 sm:px-3 border-b-2 font-semibold whitespace-nowrap transition-colors ${
               activeTab === 'github'
                 ? 'border-cyan-400 text-cyan-400'
                 : 'border-transparent text-slate-400 hover:text-slate-200'
             }`}
           >
-            GitHub Integration (PAT)
+            {t.settings.tabGithub}
           </button>
           <button
             onClick={() => setActiveTab('data')}
-            className={`py-3 px-3 border-b-2 font-semibold transition-colors ${
+            className={`py-2.5 sm:py-3 px-2.5 sm:px-3 border-b-2 font-semibold whitespace-nowrap transition-colors ${
               activeTab === 'data'
                 ? 'border-cyan-400 text-cyan-400'
                 : 'border-transparent text-slate-400 hover:text-slate-200'
             }`}
           >
-            Data Backup & Snapshot
+            {t.settings.tabData}
           </button>
           <button
             onClick={() => setActiveTab('about')}
-            className={`py-3 px-3 border-b-2 font-semibold transition-colors ${
+            className={`py-2.5 sm:py-3 px-2.5 sm:px-3 border-b-2 font-semibold whitespace-nowrap transition-colors ${
               activeTab === 'about'
                 ? 'border-cyan-400 text-cyan-400'
                 : 'border-transparent text-slate-400 hover:text-slate-200'
             }`}
           >
-            Architecture & Philosophy
+            {t.settings.tabAbout}
           </button>
         </div>
 
         {/* Modal Body */}
-        <div className="p-6 space-y-6 overflow-y-auto max-h-[70vh]">
+        <div className="p-4 sm:p-6 space-y-5 sm:space-y-6 overflow-y-auto max-h-[70vh]">
           {activeTab === 'github' && (
-            <div className="space-y-5 text-xs">
+            <div className="space-y-4 sm:space-y-5 text-xs">
               {/* GitHub Connection Status */}
-              <div className="p-4 rounded-2xl bg-slate-900 border border-slate-800 flex items-center justify-between">
+              <div className="p-3.5 sm:p-4 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                 <div className="flex items-center gap-3">
-                  <GitHubIcon className="w-6 h-6 text-white" />
+                  <GitHubIcon className="w-5 h-5 sm:w-6 sm:h-6 text-white shrink-0" />
                   <div>
-                    <p className="font-bold text-sm text-white font-mono">
+                    <p className="font-bold text-xs sm:text-sm text-white font-mono">
                       {githubAuth.isValid ? `@${githubAuth.username}` : 'No GitHub Token Connected'}
                     </p>
-                    <p className="text-slate-400">
+                    <p className="text-slate-400 text-[11px] sm:text-xs">
                       {githubAuth.isValid
-                        ? `Authenticated (Rate Limit: ${githubAuth.rateLimitRemaining || 5000}/${githubAuth.rateLimitTotal || 5000} req/hr)`
-                        : 'Running in standalone local / demo mode'}
+                        ? t.settings.authenticated
+                            .replace('{remaining}', String(githubAuth.rateLimitRemaining || 5000))
+                            .replace('{total}', String(githubAuth.rateLimitTotal || 5000))
+                        : t.settings.standalone}
                     </p>
                   </div>
                 </div>
@@ -151,18 +153,18 @@ export const SettingsModal: React.FC = () => {
                 {githubAuth.isValid && (
                   <button
                     onClick={disconnectGitHub}
-                    className="px-3 py-1.5 rounded-xl bg-rose-500/10 text-rose-400 border border-rose-500/20 hover:bg-rose-500/20 font-mono transition-colors"
+                    className="px-3 py-1.5 rounded-xl bg-rose-500/10 text-rose-400 border border-rose-500/20 hover:bg-rose-500/20 font-mono transition-colors self-start sm:self-auto"
                   >
-                    Disconnect
+                    {t.settings.disconnect}
                   </button>
                 )}
               </div>
 
               {/* Token Input Form */}
-              <form onSubmit={handleSaveToken} className="space-y-4">
+              <form onSubmit={handleSaveToken} className="space-y-3.5 sm:space-y-4">
                 <div>
                   <label className="text-slate-300 font-mono font-semibold block mb-1">
-                    GitHub Personal Access Token (Fine-Grained or Classic)
+                    {t.settings.tokenLabel}
                   </label>
                   <input
                     type="password"
@@ -173,26 +175,26 @@ export const SettingsModal: React.FC = () => {
                   />
                 </div>
 
-                <div className="p-4 rounded-2xl bg-cyan-950/20 border border-cyan-800/30 space-y-2 text-slate-300">
+                <div className="p-3.5 sm:p-4 rounded-2xl bg-cyan-950/20 border border-cyan-800/30 space-y-1.5 sm:space-y-2 text-slate-300">
                   <div className="flex items-center gap-1.5 text-cyan-400 font-bold font-mono">
                     <ShieldCheck className="w-4 h-4" />
-                    Security & Token Safety Guarantee
+                    {t.settings.tokenSecurity}
                   </div>
-                  <ul className="list-disc list-inside space-y-1 text-slate-400 leading-relaxed">
-                    <li>Your token is stored <strong>only in client-side memory / local storage</strong>.</li>
-                    <li>No backend server receives or records your credentials.</li>
-                    <li>Required scopes: <code className="text-cyan-300">repo</code> (read/write repositories), <code className="text-cyan-300">workflow</code> (run GitHub Actions).</li>
+                  <ul className="list-disc list-inside space-y-1 text-slate-400 leading-relaxed text-[11px] sm:text-xs">
+                    <li>{t.settings.security1}</li>
+                    <li>{t.settings.security2}</li>
+                    <li>{t.settings.security3}</li>
                   </ul>
                 </div>
 
-                <div className="flex items-center justify-between pt-2">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-2">
                   <a
                     href="https://github.com/settings/tokens?type=beta"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-1 text-cyan-400 hover:text-cyan-300 font-mono"
+                    className="flex items-center gap-1 text-cyan-400 hover:text-cyan-300 font-mono text-xs"
                   >
-                    Generate Fine-Grained PAT on GitHub
+                    {t.settings.generateToken}
                     <ExternalLink className="w-3 h-3" />
                   </a>
 
@@ -201,7 +203,7 @@ export const SettingsModal: React.FC = () => {
                     disabled={isLoading}
                     className="px-5 py-2.5 rounded-xl bg-cyan-500 text-slate-950 font-bold hover:bg-cyan-400 shadow-md shadow-cyan-500/20 transition-all font-mono"
                   >
-                    {isLoading ? 'Verifying...' : 'Save & Authenticate'}
+                    {isLoading ? 'Verifying...' : t.settings.saveAuth}
                   </button>
                 </div>
               </form>
@@ -209,31 +211,31 @@ export const SettingsModal: React.FC = () => {
           )}
 
           {activeTab === 'data' && (
-            <div className="space-y-5 text-xs">
-              <div className="p-5 rounded-2xl bg-slate-900 border border-slate-800 space-y-3">
+            <div className="space-y-4 sm:space-y-5 text-xs">
+              <div className="p-4 sm:p-5 rounded-2xl bg-slate-900 border border-slate-800 space-y-3">
                 <div className="flex items-center gap-2 text-cyan-400 font-mono font-bold uppercase">
                   <Download className="w-4 h-4" />
-                  Export Complete Portfolio State
+                  {t.settings.exportTitle}
                 </div>
                 <p className="text-slate-400 leading-relaxed">
-                  Export all projects, 4D scoring metadata, harvested assets, idea inbox items, and post-mortems as a standard JSON snapshot compatible with GitHub repository synchronization.
+                  {t.settings.exportDesc}
                 </p>
                 <button
                   onClick={handleExportData}
                   className="flex items-center gap-2 px-4 py-2 rounded-xl bg-cyan-500 text-slate-950 font-bold font-mono hover:bg-cyan-400 transition-colors"
                 >
                   <Download className="w-4 h-4" />
-                  Download JSON Backup
+                  {t.settings.downloadBackup}
                 </button>
               </div>
 
-              <div className="p-5 rounded-2xl bg-slate-900 border border-slate-800 space-y-3">
+              <div className="p-4 sm:p-5 rounded-2xl bg-slate-900 border border-slate-800 space-y-3">
                 <div className="flex items-center gap-2 text-violet-400 font-mono font-bold uppercase">
                   <Upload className="w-4 h-4" />
-                  Import Portfolio Snapshot
+                  {t.settings.importTitle}
                 </div>
                 <p className="text-slate-400 leading-relaxed">
-                  Restore previously exported JSON backup or load custom team portfolio datasets.
+                  {t.settings.importDesc}
                 </p>
                 <input
                   type="file"
@@ -243,13 +245,13 @@ export const SettingsModal: React.FC = () => {
                 />
               </div>
 
-              <div className="p-5 rounded-2xl bg-rose-950/20 border border-rose-800/30 space-y-3">
+              <div className="p-4 sm:p-5 rounded-2xl bg-rose-950/20 border border-rose-800/30 space-y-3">
                 <div className="flex items-center gap-2 text-rose-400 font-mono font-bold uppercase">
                   <RotateCcw className="w-4 h-4" />
-                  Reset to Default Demo State
+                  {t.settings.resetTitle}
                 </div>
                 <p className="text-slate-400 leading-relaxed">
-                  Reset the workspace to the rich sample dataset containing Clustara, VibeCoders, NovaAgent, FastLanding, and other demonstration projects.
+                  {t.settings.resetDesc}
                 </p>
                 <button
                   onClick={() => {
@@ -260,7 +262,7 @@ export const SettingsModal: React.FC = () => {
                   }}
                   className="px-4 py-2 rounded-xl bg-rose-600 text-white font-bold font-mono hover:bg-rose-500 transition-colors"
                 >
-                  Reset Workspace
+                  {t.settings.resetButton}
                 </button>
               </div>
             </div>
@@ -268,14 +270,12 @@ export const SettingsModal: React.FC = () => {
 
           {activeTab === 'about' && (
             <div className="space-y-4 text-xs text-slate-300 leading-relaxed">
-              <div className="p-5 rounded-2xl bg-slate-900 border border-slate-800 space-y-2">
+              <div className="p-4 sm:p-5 rounded-2xl bg-slate-900 border border-slate-800 space-y-2">
                 <h3 className="font-bold text-white font-mono text-sm">
-                  “VibeOS does not own your projects.”
+                  {t.settings.philosophyTitle}
                 </h3>
                 <p className="text-slate-400">
-                  Your code lives on GitHub. Your project metadata lives in your Git repository.
-                  Your intelligence runs via GitHub Actions. If VibeOS ceases to exist, your entire
-                  development history, reusable code snippets, and post-mortems remain 100% yours.
+                  {t.settings.philosophyDesc}
                 </p>
               </div>
 

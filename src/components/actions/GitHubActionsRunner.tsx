@@ -1,18 +1,14 @@
 import React, { useState } from 'react';
 import { useVibeStore } from '../../store/useVibeStore';
+import { useTranslation } from '../../i18n/useTranslation';
 import {
   FolderGit2,
   Play,
   Download,
   Copy,
   Check,
-  CheckCircle2,
   FileCode,
-  ShieldCheck,
-  Layers,
   Terminal,
-  Clock,
-  Sparkles,
 } from 'lucide-react';
 import {
   GITHUB_ACTIONS_WORKFLOW_YML,
@@ -21,7 +17,9 @@ import {
 } from '../../services/exportService';
 
 export const GitHubActionsRunner: React.FC = () => {
-  const { projects, assets, ideas, summary, githubAuth, showToast } = useVibeStore();
+  const { projects, assets, ideas, summary, showToast } = useVibeStore();
+  const { t } = useTranslation();
+
   const [copiedWorkflow, setCopiedWorkflow] = useState(false);
   const [isRunning, setIsRunning] = useState(false);
   const [runLogs, setRunLogs] = useState<string[]>([]);
@@ -45,7 +43,7 @@ export const GitHubActionsRunner: React.FC = () => {
   const handleCopyWorkflow = () => {
     navigator.clipboard.writeText(GITHUB_ACTIONS_WORKFLOW_YML);
     setCopiedWorkflow(true);
-    showToast('Workflow YAML copied to clipboard!', 'success');
+    showToast(t.actions.copiedYaml, 'success');
     setTimeout(() => setCopiedWorkflow(false), 2000);
   };
 
@@ -82,78 +80,78 @@ export const GitHubActionsRunner: React.FC = () => {
   };
 
   return (
-    <div className="space-y-6 animate-fadeIn pb-12">
+    <div className="space-y-5 sm:space-y-6 animate-fadeIn pb-12">
       {/* Header */}
-      <div className="p-6 md:p-8 rounded-3xl bg-gradient-to-r from-slate-900 via-emerald-950/30 to-slate-900 border border-slate-800 flex flex-col md:flex-row md:items-center justify-between gap-6 shadow-xl">
-        <div className="space-y-2">
+      <div className="p-5 sm:p-7 md:p-8 rounded-3xl bg-gradient-to-r from-slate-900 via-emerald-950/30 to-slate-900 border border-slate-800 flex flex-col md:flex-row md:items-center justify-between gap-5 sm:gap-6 shadow-xl">
+        <div className="space-y-1.5 sm:space-y-2">
           <div className="flex items-center gap-2 text-emerald-400">
-            <FolderGit2 className="w-5 h-5" />
-            <span className="text-xs uppercase font-mono tracking-widest font-bold">
+            <FolderGit2 className="w-4 h-4 sm:w-5 sm:h-5" />
+            <span className="text-[10px] sm:text-xs uppercase font-mono tracking-widest font-bold">
               Zero-Server Cloud Architecture
             </span>
           </div>
-          <h1 className="text-2xl md:text-4xl font-extrabold text-white tracking-tight">
-            GitHub Actions & Data Repository
+          <h1 className="text-xl sm:text-3xl md:text-4xl font-extrabold text-white tracking-tight">
+            {t.actions.title}
           </h1>
-          <p className="text-slate-300 text-xs md:text-sm max-w-2xl leading-relaxed">
-            VibeOS operates entirely serverless: Git repository as your database, GitHub Actions as your AI batch worker, and GitHub Pages as your runtime frontend.
+          <p className="text-slate-300 text-xs sm:text-sm max-w-2xl leading-relaxed">
+            {t.actions.subtitle}
           </p>
         </div>
 
-        <div className="flex items-center gap-3 flex-wrap">
+        <div className="flex items-center gap-2.5 sm:gap-3 flex-wrap">
           <button
             onClick={handleDownloadSnapshot}
-            className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-800 text-slate-200 border border-slate-700 hover:bg-slate-700 text-xs font-bold transition-all"
+            className="flex items-center gap-2 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl bg-slate-800 text-slate-200 border border-slate-700 hover:bg-slate-700 text-xs font-bold transition-all"
           >
             <Download className="w-4 h-4" />
-            Download JSON Snapshot
+            <span className="whitespace-nowrap">{t.actions.downloadSnapshot}</span>
           </button>
 
           <button
             disabled={isRunning}
             onClick={handleRunWorkflowSimulation}
-            className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-500 text-slate-950 font-bold text-xs shadow-lg shadow-emerald-500/20 hover:bg-emerald-400 transition-all"
+            className="flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl bg-emerald-500 text-slate-950 font-bold text-xs shadow-lg shadow-emerald-500/20 hover:bg-emerald-400 transition-all"
           >
             <Play className={`w-4 h-4 ${isRunning ? 'animate-spin' : ''}`} />
-            {isRunning ? 'Running Job...' : 'Trigger Workflow'}
+            <span className="whitespace-nowrap">{isRunning ? 'Running Job...' : t.actions.triggerWorkflow}</span>
           </button>
         </div>
       </div>
 
       {/* Architecture Highlights */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="p-4 rounded-2xl bg-slate-900 border border-slate-800 space-y-1">
-          <span className="text-[11px] font-mono text-slate-400 uppercase">Database</span>
-          <p className="font-bold text-sm text-white font-mono">Git Repository</p>
-          <p className="text-xs text-slate-500">JSON files with full version history</p>
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+        <div className="p-3.5 sm:p-4 rounded-2xl bg-slate-900 border border-slate-800 space-y-1">
+          <span className="text-[10px] sm:text-[11px] font-mono text-slate-400 uppercase">{t.actions.databaseTitle}</span>
+          <p className="font-bold text-xs sm:text-sm text-white font-mono">Git Repository</p>
+          <p className="text-[10px] sm:text-xs text-slate-500">{t.actions.databaseDesc}</p>
         </div>
 
-        <div className="p-4 rounded-2xl bg-slate-900 border border-slate-800 space-y-1">
-          <span className="text-[11px] font-mono text-slate-400 uppercase">Worker Engine</span>
-          <p className="font-bold text-sm text-emerald-400 font-mono">GitHub Actions</p>
-          <p className="text-xs text-slate-500">Scheduled nightly or manual dispatch</p>
+        <div className="p-3.5 sm:p-4 rounded-2xl bg-slate-900 border border-slate-800 space-y-1">
+          <span className="text-[10px] sm:text-[11px] font-mono text-slate-400 uppercase">{t.actions.workerTitle}</span>
+          <p className="font-bold text-xs sm:text-sm text-emerald-400 font-mono">GitHub Actions</p>
+          <p className="text-[10px] sm:text-xs text-slate-500">{t.actions.workerDesc}</p>
         </div>
 
-        <div className="p-4 rounded-2xl bg-slate-900 border border-slate-800 space-y-1">
-          <span className="text-[11px] font-mono text-slate-400 uppercase">Hosting</span>
-          <p className="font-bold text-sm text-cyan-400 font-mono">GitHub Pages</p>
-          <p className="text-xs text-slate-500">Static SPA with client-side cache</p>
+        <div className="p-3.5 sm:p-4 rounded-2xl bg-slate-900 border border-slate-800 space-y-1">
+          <span className="text-[10px] sm:text-[11px] font-mono text-slate-400 uppercase">{t.actions.hostingTitle}</span>
+          <p className="font-bold text-xs sm:text-sm text-cyan-400 font-mono">GitHub Pages</p>
+          <p className="text-[10px] sm:text-xs text-slate-500">{t.actions.hostingDesc}</p>
         </div>
 
-        <div className="p-4 rounded-2xl bg-slate-900 border border-slate-800 space-y-1">
-          <span className="text-[11px] font-mono text-slate-400 uppercase">Data Ownership</span>
-          <p className="font-bold text-sm text-violet-400 font-mono">100% User Owned</p>
-          <p className="text-xs text-slate-500">No vendor lock-in or external DB</p>
+        <div className="p-3.5 sm:p-4 rounded-2xl bg-slate-900 border border-slate-800 space-y-1">
+          <span className="text-[10px] sm:text-[11px] font-mono text-slate-400 uppercase">{t.actions.dataOwnershipTitle}</span>
+          <p className="font-bold text-xs sm:text-sm text-violet-400 font-mono">100% User Owned</p>
+          <p className="text-[10px] sm:text-xs text-slate-500">{t.actions.dataOwnershipDesc}</p>
         </div>
       </div>
 
       {/* Workflow Terminal & Output */}
       {runLogs.length > 0 && (
-        <div className="p-5 rounded-2xl bg-[#090D16] border border-emerald-500/30 space-y-2 animate-fadeIn font-mono text-xs">
+        <div className="p-4 sm:p-5 rounded-2xl bg-[#090D16] border border-emerald-500/30 space-y-2 animate-fadeIn font-mono text-xs">
           <div className="flex items-center justify-between border-b border-slate-800 pb-2 text-emerald-400">
             <span className="flex items-center gap-2 font-bold">
               <Terminal className="w-4 h-4" />
-              GitHub Actions Execution Log
+              {t.actions.logTitle}
             </span>
             <span className="text-[10px] text-slate-500">Workflow Dispatch #1042</span>
           </div>
@@ -166,46 +164,46 @@ export const GitHubActionsRunner: React.FC = () => {
       )}
 
       {/* Split: Left Workflow YAML, Right Live Repository JSON Tree */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6">
         {/* Left 6 Cols: Workflow YAML Definition */}
-        <div className="lg:col-span-6 p-6 rounded-3xl bg-slate-900/90 border border-slate-800 space-y-4">
+        <div className="lg:col-span-6 p-5 sm:p-6 rounded-3xl bg-slate-900/90 border border-slate-800 space-y-3.5 sm:space-y-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <FileCode className="w-4 h-4 text-cyan-400" />
-              <h3 className="font-bold text-sm text-white font-mono">
-                .github/workflows/vibeos-analyzer.yml
+              <h3 className="font-bold text-xs sm:text-sm text-white font-mono">
+                {t.actions.workflowFile}
               </h3>
             </div>
             <button
               onClick={handleCopyWorkflow}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-800 text-slate-300 hover:text-white text-xs font-mono border border-slate-700 transition-colors"
+              className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-xl bg-slate-800 text-slate-300 hover:text-white text-xs font-mono border border-slate-700 transition-colors"
             >
               {copiedWorkflow ? (
                 <>
                   <Check className="w-3.5 h-3.5 text-emerald-400" />
-                  Copied
+                  {t.actions.copiedYaml}
                 </>
               ) : (
                 <>
                   <Copy className="w-3.5 h-3.5" />
-                  Copy YAML
+                  {t.actions.copyYaml}
                 </>
               )}
             </button>
           </div>
 
-          <pre className="p-4 bg-slate-950 rounded-2xl border border-slate-800 text-xs font-mono text-cyan-200 overflow-x-auto max-h-[460px] leading-relaxed">
+          <pre className="p-3.5 sm:p-4 bg-slate-950 rounded-2xl border border-slate-800 text-xs font-mono text-cyan-200 overflow-x-auto max-h-[380px] sm:max-h-[460px] leading-relaxed">
             {GITHUB_ACTIONS_WORKFLOW_YML}
           </pre>
         </div>
 
         {/* Right 6 Cols: Repository Data Tree Explorer */}
-        <div className="lg:col-span-6 p-6 rounded-3xl bg-slate-900/90 border border-slate-800 space-y-4">
+        <div className="lg:col-span-6 p-5 sm:p-6 rounded-3xl bg-slate-900/90 border border-slate-800 space-y-3.5 sm:space-y-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <FolderGit2 className="w-4 h-4 text-emerald-400" />
-              <h3 className="font-bold text-sm text-white font-mono">
-                vibe-portfolio-data / Repository Files
+              <h3 className="font-bold text-xs sm:text-sm text-white font-mono">
+                {t.actions.repoFiles}
               </h3>
             </div>
           </div>
@@ -227,7 +225,7 @@ export const GitHubActionsRunner: React.FC = () => {
             ))}
           </div>
 
-          <pre className="p-4 bg-slate-950 rounded-2xl border border-slate-800 text-xs font-mono text-slate-300 overflow-x-auto max-h-[380px] leading-relaxed select-all">
+          <pre className="p-3.5 sm:p-4 bg-slate-950 rounded-2xl border border-slate-800 text-xs font-mono text-slate-300 overflow-x-auto max-h-[320px] sm:max-h-[380px] leading-relaxed select-all">
             {currentContent}
           </pre>
         </div>

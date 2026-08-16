@@ -31,8 +31,10 @@ interface VibeState {
   toastMessage: { text: string; type?: 'info' | 'success' | 'warning' | 'error' } | null;
   isSettingsOpen: boolean;
   isNewProjectOpen: boolean;
+  language: 'ko' | 'en';
 
   // Actions
+  setLanguage: (lang: 'ko' | 'en') => void;
   setActiveTab: (tab: ActiveTab) => void;
   setSearchQuery: (query: string) => void;
   setStageFilter: (filter: ProjectStage | 'all') => void;
@@ -87,6 +89,7 @@ function loadPersistedState(): Partial<VibeState> {
         assets: parsed.assets || INITIAL_ASSETS,
         ideas: parsed.ideas || INITIAL_IDEAS,
         githubAuth: parsed.githubAuth || { token: '', username: '', isValid: false },
+        language: parsed.language || 'ko',
       };
     }
   } catch (e) {
@@ -97,6 +100,7 @@ function loadPersistedState(): Partial<VibeState> {
     assets: INITIAL_ASSETS,
     ideas: INITIAL_IDEAS,
     githubAuth: { token: '', username: '', isValid: false },
+    language: 'ko',
   };
 }
 
@@ -146,7 +150,12 @@ export const useVibeStore = create<VibeState>((set, get) => ({
   toastMessage: null,
   isSettingsOpen: false,
   isNewProjectOpen: false,
+  language: initialState.language || 'ko',
 
+  setLanguage: (lang) => {
+    set({ language: lang });
+    get().persistState();
+  },
   setActiveTab: (tab) => set({ activeTab: tab }),
   setSearchQuery: (query) => set({ searchQuery: query }),
   setStageFilter: (filter) => set({ stageFilter: filter }),
@@ -577,6 +586,7 @@ export const useVibeStore = create<VibeState>((set, get) => ({
           assets: state.assets,
           ideas: state.ideas,
           githubAuth: state.githubAuth,
+          language: state.language,
         })
       );
     } catch (e) {

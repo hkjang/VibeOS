@@ -1,5 +1,6 @@
 import React from 'react';
 import { useVibeStore } from '../../store/useVibeStore';
+import { useTranslation } from '../../i18n/useTranslation';
 import {
   TrendingUp,
   Sparkles,
@@ -7,12 +8,11 @@ import {
   Archive,
   ArrowRight,
   Flame,
-  CheckCircle2,
   Calendar,
-  Layers,
   ChevronRight,
   Target,
   Cpu,
+  Bot,
 } from 'lucide-react';
 import { StageBadge } from '../common/StageBadge';
 import { ScoreBadge } from '../common/ScoreBadge';
@@ -41,6 +41,8 @@ export const ExecutiveSummary: React.FC = () => {
     reAnalyzeAll,
   } = useVibeStore();
 
+  const { t } = useTranslation();
+
   const activeProjects = projects.filter((p) => p.status === 'active');
   const graveyardProjects = projects.filter((p) => p.status === 'graveyard');
 
@@ -49,12 +51,12 @@ export const ExecutiveSummary: React.FC = () => {
 
   // Stage counts for distribution
   const stageData = [
-    { name: 'Growing', count: summary.growing, fill: '#10B981' },
-    { name: 'Experiment', count: summary.experiment, fill: '#F59E0B' },
-    { name: 'Maintain', count: summary.maintaining, fill: '#3B82F6' },
-    { name: 'Prototype', count: projects.filter((p) => p.stage === 'prototype').length, fill: '#8B5CF6' },
-    { name: 'Dormant', count: summary.dormant, fill: '#64748B' },
-    { name: 'Archived', count: summary.archived, fill: '#F43F5E' },
+    { name: t.stages.grow, count: summary.growing, fill: '#10B981' },
+    { name: t.stages.experiment, count: summary.experiment, fill: '#F59E0B' },
+    { name: t.stages.maintain, count: summary.maintaining, fill: '#3B82F6' },
+    { name: t.stages.prototype, count: projects.filter((p) => p.stage === 'prototype').length, fill: '#8B5CF6' },
+    { name: t.stages.dormant, count: summary.dormant, fill: '#64748B' },
+    { name: t.stages.archived, count: summary.archived, fill: '#F43F5E' },
   ];
 
   // Radar chart aggregate score dimensions
@@ -94,132 +96,132 @@ export const ExecutiveSummary: React.FC = () => {
   ];
 
   return (
-    <div className="space-y-6 animate-fadeIn pb-12">
-      {/* Header Banner */}
-      <div className="p-6 md:p-8 rounded-3xl bg-gradient-to-r from-slate-900 via-indigo-950/40 to-slate-900 border border-slate-800 relative overflow-hidden shadow-2xl">
-        <div className="absolute right-0 top-0 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
-        <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
-          <div className="space-y-2">
+    <div className="space-y-5 sm:space-y-6 animate-fadeIn pb-12">
+      {/* Header Banner - Semantic Article for SEO / AEO */}
+      <article className="p-5 sm:p-7 md:p-8 rounded-3xl bg-gradient-to-r from-slate-900 via-indigo-950/40 to-slate-900 border border-slate-800 relative overflow-hidden shadow-2xl">
+        <div className="absolute right-0 top-0 w-72 sm:w-96 h-72 sm:h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-5 sm:gap-6">
+          <header className="space-y-2">
             <div className="flex items-center gap-2 text-cyan-400">
-              <Sparkles className="w-5 h-5" />
-              <span className="text-xs uppercase font-mono tracking-widest font-bold">
-                Portfolio Intelligence
+              <Sparkles className="w-4 h-4 sm:w-5 sm:h-5" />
+              <span className="text-[10px] sm:text-xs uppercase font-mono tracking-widest font-bold">
+                {t.dashboard.portfolioIntelligence}
               </span>
             </div>
-            <h1 className="text-2xl md:text-4xl font-extrabold text-white tracking-tight">
-              Vibe Coding Portfolio
+            <h1 className="text-xl sm:text-3xl md:text-4xl font-extrabold text-white tracking-tight">
+              {t.dashboard.heroTitle}
             </h1>
-            <p className="text-slate-300 text-sm md:text-base max-w-2xl leading-relaxed">
-              <span className="font-semibold text-white font-mono">{projects.length} Total Projects</span> —{' '}
-              <span className="text-emerald-400 font-semibold">{summary.growing} Growing</span>,{' '}
-              <span className="text-amber-400 font-semibold">{summary.experiment} Experimenting</span>,{' '}
-              <span className="text-blue-400 font-semibold">{summary.maintaining} Maintaining</span>,{' '}
-              <span className="text-slate-400 font-semibold">{summary.dormant} Dormant</span>,{' '}
-              <span className="text-rose-400 font-semibold">{summary.archived} Archived in Graveyard</span>.
+            <p className="text-slate-300 text-xs sm:text-sm md:text-base max-w-2xl leading-relaxed">
+              <span className="font-semibold text-white font-mono">{t.dashboard.heroTotal.replace('{total}', String(projects.length))}</span> —{' '}
+              <span className="text-emerald-400 font-semibold">{t.dashboard.heroGrowing.replace('{count}', String(summary.growing))}</span>,{' '}
+              <span className="text-amber-400 font-semibold">{t.dashboard.heroExperiment.replace('{count}', String(summary.experiment))}</span>,{' '}
+              <span className="text-blue-400 font-semibold">{t.dashboard.heroMaintain.replace('{count}', String(summary.maintaining))}</span>,{' '}
+              <span className="text-slate-400 font-semibold">{t.dashboard.heroDormant.replace('{count}', String(summary.dormant))}</span>,{' '}
+              <span className="text-rose-400 font-semibold">{t.dashboard.heroArchived.replace('{count}', String(summary.archived))}</span>.
             </p>
-          </div>
+          </header>
 
-          <div className="flex flex-wrap items-center gap-3">
+          <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
             <button
               onClick={() => setActiveTab('radar')}
-              className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-cyan-500 text-slate-950 font-bold text-sm shadow-lg shadow-cyan-500/25 hover:bg-cyan-400 hover:scale-[1.02] transition-all"
+              className="flex items-center gap-1.5 sm:gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl bg-cyan-500 text-slate-950 font-bold text-xs sm:text-sm shadow-lg shadow-cyan-500/25 hover:bg-cyan-400 hover:scale-[1.02] transition-all"
             >
-              Open Radar
-              <ArrowRight className="w-4 h-4" />
+              {t.dashboard.openRadar}
+              <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
             </button>
             <button
               onClick={() => reAnalyzeAll()}
-              className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-800 text-slate-200 border border-slate-700 hover:bg-slate-700 text-sm font-semibold transition-all"
+              className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl bg-slate-800 text-slate-200 border border-slate-700 hover:bg-slate-700 text-xs sm:text-sm font-semibold transition-all"
             >
-              Re-Score All
+              {t.dashboard.reScoreAll}
             </button>
           </div>
         </div>
-      </div>
+      </article>
 
       {/* Hero Numbers KPI Grid */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <section className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4" aria-label="Portfolio Key Metrics">
         {/* KPI 1 */}
-        <div className="p-5 rounded-2xl bg-slate-900/80 border border-slate-800/80 flex flex-col justify-between space-y-3">
+        <div className="p-4 sm:p-5 rounded-2xl bg-slate-900/80 border border-slate-800/80 flex flex-col justify-between space-y-2 sm:space-y-3">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-slate-400 font-mono uppercase">Growing Momentum</span>
-            <div className="p-2 rounded-xl bg-emerald-500/10 text-emerald-400">
-              <TrendingUp className="w-4 h-4" />
+            <span className="text-[10px] sm:text-xs font-semibold text-slate-400 font-mono uppercase">{t.dashboard.kpiGrowingTitle}</span>
+            <div className="p-1.5 sm:p-2 rounded-xl bg-emerald-500/10 text-emerald-400">
+              <TrendingUp className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
             </div>
           </div>
           <div>
-            <div className="text-3xl font-extrabold text-white font-mono">{summary.growing}</div>
-            <p className="text-xs text-emerald-400 mt-1 font-medium">Ready for production & scale</p>
+            <div className="text-2xl sm:text-3xl font-extrabold text-white font-mono">{summary.growing}</div>
+            <p className="text-[10px] sm:text-xs text-emerald-400 mt-0.5 sm:mt-1 font-medium">{t.dashboard.kpiGrowingSub}</p>
           </div>
         </div>
 
         {/* KPI 2 */}
-        <div className="p-5 rounded-2xl bg-slate-900/80 border border-slate-800/80 flex flex-col justify-between space-y-3">
+        <div className="p-4 sm:p-5 rounded-2xl bg-slate-900/80 border border-slate-800/80 flex flex-col justify-between space-y-2 sm:space-y-3">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-slate-400 font-mono uppercase">Active Experiments</span>
-            <div className="p-2 rounded-xl bg-amber-500/10 text-amber-400">
-              <Zap className="w-4 h-4" />
+            <span className="text-[10px] sm:text-xs font-semibold text-slate-400 font-mono uppercase">{t.dashboard.kpiExperimentTitle}</span>
+            <div className="p-1.5 sm:p-2 rounded-xl bg-amber-500/10 text-amber-400">
+              <Zap className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
             </div>
           </div>
           <div>
-            <div className="text-3xl font-extrabold text-white font-mono">{summary.experiment}</div>
-            <p className="text-xs text-amber-400 mt-1 font-medium">Problem-solution validation</p>
+            <div className="text-2xl sm:text-3xl font-extrabold text-white font-mono">{summary.experiment}</div>
+            <p className="text-[10px] sm:text-xs text-amber-400 mt-0.5 sm:mt-1 font-medium">{t.dashboard.kpiExperimentSub}</p>
           </div>
         </div>
 
         {/* KPI 3 */}
-        <div className="p-5 rounded-2xl bg-slate-900/80 border border-slate-800/80 flex flex-col justify-between space-y-3">
+        <div className="p-4 sm:p-5 rounded-2xl bg-slate-900/80 border border-slate-800/80 flex flex-col justify-between space-y-2 sm:space-y-3">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-slate-400 font-mono uppercase">Harvested Assets</span>
-            <div className="p-2 rounded-xl bg-violet-500/10 text-violet-400">
-              <Sparkles className="w-4 h-4" />
+            <span className="text-[10px] sm:text-xs font-semibold text-slate-400 font-mono uppercase">{t.dashboard.kpiAssetsTitle}</span>
+            <div className="p-1.5 sm:p-2 rounded-xl bg-violet-500/10 text-violet-400">
+              <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
             </div>
           </div>
           <div>
-            <div className="text-3xl font-extrabold text-white font-mono">{assets.length}</div>
-            <p className="text-xs text-violet-400 mt-1 font-medium">Reusable code & wrappers</p>
+            <div className="text-2xl sm:text-3xl font-extrabold text-white font-mono">{assets.length}</div>
+            <p className="text-[10px] sm:text-xs text-violet-400 mt-0.5 sm:mt-1 font-medium">{t.dashboard.kpiAssetsSub}</p>
           </div>
         </div>
 
         {/* KPI 4 */}
-        <div className="p-5 rounded-2xl bg-slate-900/80 border border-slate-800/80 flex flex-col justify-between space-y-3">
+        <div className="p-4 sm:p-5 rounded-2xl bg-slate-900/80 border border-slate-800/80 flex flex-col justify-between space-y-2 sm:space-y-3">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-slate-400 font-mono uppercase">Graveyard Assetization</span>
-            <div className="p-2 rounded-xl bg-rose-500/10 text-rose-400">
-              <Archive className="w-4 h-4" />
+            <span className="text-[10px] sm:text-xs font-semibold text-slate-400 font-mono uppercase">{t.dashboard.kpiGraveyardTitle}</span>
+            <div className="p-1.5 sm:p-2 rounded-xl bg-rose-500/10 text-rose-400">
+              <Archive className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
             </div>
           </div>
           <div>
-            <div className="text-3xl font-extrabold text-white font-mono">{graveyardProjects.length}</div>
-            <p className="text-xs text-rose-400 mt-1 font-medium">100% post-mortem cataloged</p>
+            <div className="text-2xl sm:text-3xl font-extrabold text-white font-mono">{graveyardProjects.length}</div>
+            <p className="text-[10px] sm:text-xs text-rose-400 mt-0.5 sm:mt-1 font-medium">{t.dashboard.kpiGraveyardSub}</p>
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* Core Question 1: TODAY — What should I build next? */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      {/* TODAY High-Leverage Actions & Monthly Synthesis */}
+      <section className="grid grid-cols-1 lg:grid-cols-3 gap-5 sm:gap-6" aria-label="Today Actions">
         {/* Left 2 Cols: Ranked Next Actions for Today */}
-        <div className="lg:col-span-2 p-6 rounded-3xl bg-slate-900/90 border border-slate-800 space-y-5">
+        <div className="lg:col-span-2 p-5 sm:p-6 rounded-3xl bg-slate-900/90 border border-slate-800 space-y-4 sm:space-y-5">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2.5">
-              <div className="p-2 rounded-xl bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
-                <Target className="w-5 h-5" />
+            <div className="flex items-center gap-2 sm:gap-2.5">
+              <div className="p-1.5 sm:p-2 rounded-xl bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
+                <Target className="w-4 h-4 sm:w-5 sm:h-5" />
               </div>
               <div>
-                <h2 className="text-lg font-bold text-white tracking-tight">
-                  TODAY: High-Leverage Next Actions
+                <h2 className="text-base sm:text-lg font-bold text-white tracking-tight">
+                  {t.dashboard.todayTitle}
                 </h2>
-                <p className="text-xs text-slate-400">
-                  AI-ranked next steps to move your projects forward
+                <p className="text-[11px] sm:text-xs text-slate-400">
+                  {t.dashboard.todaySub}
                 </p>
               </div>
             </div>
-            <span className="text-xs font-mono px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 border border-slate-700">
-              Top 4 Priority
+            <span className="text-[10px] sm:text-xs font-mono px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-lg bg-slate-800 text-slate-300 border border-slate-700">
+              {t.dashboard.topPriority}
             </span>
           </div>
 
-          <div className="space-y-3">
+          <div className="space-y-2.5 sm:space-y-3">
             {topProjects.slice(0, 4).map((proj, idx) => (
               <div
                 key={proj.id}
@@ -227,24 +229,24 @@ export const ExecutiveSummary: React.FC = () => {
                   setSelectedProjectId(proj.id);
                   setActiveTab('radar');
                 }}
-                className="p-4 rounded-2xl bg-slate-800/50 border border-slate-700/60 hover:border-cyan-500/40 hover:bg-slate-800/80 transition-all cursor-pointer flex items-start justify-between gap-4 group"
+                className="p-3.5 sm:p-4 rounded-2xl bg-slate-800/50 border border-slate-700/60 hover:border-cyan-500/40 hover:bg-slate-800/80 transition-all cursor-pointer flex items-start justify-between gap-3 sm:gap-4 group"
               >
-                <div className="flex items-start gap-3.5">
-                  <span className="w-6 h-6 rounded-full bg-slate-700/60 text-slate-300 text-xs font-mono font-bold flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-cyan-500 group-hover:text-slate-950 transition-colors">
+                <div className="flex items-start gap-3">
+                  <span className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-slate-700/60 text-slate-300 text-[11px] sm:text-xs font-mono font-bold flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-cyan-500 group-hover:text-slate-950 transition-colors">
                     {idx + 1}
                   </span>
                   <div className="space-y-1">
                     <div className="flex items-center gap-2 flex-wrap">
-                      <span className="font-bold text-sm text-white font-mono group-hover:text-cyan-300 transition-colors">
+                      <span className="font-bold text-xs sm:text-sm text-white font-mono group-hover:text-cyan-300 transition-colors">
                         {proj.name}
                       </span>
                       <StageBadge stage={proj.stage} size="sm" />
                     </div>
-                    <p className="text-sm text-slate-200 font-medium leading-relaxed">
+                    <p className="text-xs sm:text-sm text-slate-200 font-medium leading-relaxed">
                       {proj.nextAction}
                     </p>
-                    <div className="flex items-center gap-2 text-xs text-slate-400 pt-1">
-                      <span className="capitalize font-mono text-[11px] text-cyan-400 bg-cyan-950/40 px-2 py-0.5 rounded border border-cyan-800/30">
+                    <div className="flex items-center gap-2 text-[11px] text-slate-400 pt-0.5">
+                      <span className="capitalize font-mono text-[10px] text-cyan-400 bg-cyan-950/40 px-1.5 py-0.2 rounded border border-cyan-800/30">
                         {proj.nextActionCategory}
                       </span>
                       <span>•</span>
@@ -254,7 +256,7 @@ export const ExecutiveSummary: React.FC = () => {
                 </div>
 
                 <div className="shrink-0 flex items-center self-center text-slate-500 group-hover:text-cyan-400 group-hover:translate-x-1 transition-all">
-                  <ChevronRight className="w-5 h-5" />
+                  <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
                 </div>
               </div>
             ))}
@@ -262,69 +264,67 @@ export const ExecutiveSummary: React.FC = () => {
         </div>
 
         {/* Right 1 Col: "What You Built This Month" Intelligence Card */}
-        <div className="p-6 rounded-3xl bg-slate-900/90 border border-slate-800 flex flex-col justify-between space-y-6">
-          <div className="space-y-4">
+        <div className="p-5 sm:p-6 rounded-3xl bg-slate-900/90 border border-slate-800 flex flex-col justify-between space-y-4 sm:space-y-6">
+          <div className="space-y-3 sm:space-y-4">
             <div className="flex items-center gap-2 text-cyan-400">
               <Calendar className="w-4 h-4" />
-              <span className="text-xs uppercase font-mono font-bold tracking-wider">
-                Monthly Synthesis
+              <span className="text-[10px] sm:text-xs uppercase font-mono font-bold tracking-wider">
+                {t.dashboard.monthlySubtitle}
               </span>
             </div>
-            <h3 className="text-lg font-bold text-white tracking-tight">
-              You Built This Month
+            <h3 className="text-base sm:text-lg font-bold text-white tracking-tight">
+              {t.dashboard.monthlyTitle}
             </h3>
 
-            <div className="space-y-3 text-sm">
-              <div className="flex items-center justify-between p-3 rounded-xl bg-slate-800/40 border border-slate-800">
-                <span className="text-slate-400">Projects Created</span>
-                <span className="font-mono font-bold text-white text-base">
-                  {summary.monthlyProjectsCreated} projects
+            <div className="space-y-2.5 sm:space-y-3 text-xs sm:text-sm">
+              <div className="flex items-center justify-between p-2.5 sm:p-3 rounded-xl bg-slate-800/40 border border-slate-800">
+                <span className="text-slate-400">{t.dashboard.projectsCreated}</span>
+                <span className="font-mono font-bold text-white text-sm sm:text-base">
+                  {summary.monthlyProjectsCreated}
                 </span>
               </div>
-              <div className="flex items-center justify-between p-3 rounded-xl bg-slate-800/40 border border-slate-800">
-                <span className="text-slate-400">Total Commits</span>
-                <span className="font-mono font-bold text-emerald-400 text-base">
-                  {summary.monthlyCommitsCount} commits
+              <div className="flex items-center justify-between p-2.5 sm:p-3 rounded-xl bg-slate-800/40 border border-slate-800">
+                <span className="text-slate-400">{t.dashboard.totalCommits}</span>
+                <span className="font-mono font-bold text-emerald-400 text-sm sm:text-base">
+                  {summary.monthlyCommitsCount}
                 </span>
               </div>
-              <div className="flex items-center justify-between p-3 rounded-xl bg-slate-800/40 border border-slate-800">
-                <span className="text-slate-400">Reusable Assets Mined</span>
-                <span className="font-mono font-bold text-violet-400 text-base">
-                  {assets.length} assets
+              <div className="flex items-center justify-between p-2.5 sm:p-3 rounded-xl bg-slate-800/40 border border-slate-800">
+                <span className="text-slate-400">{t.dashboard.assetsMined}</span>
+                <span className="font-mono font-bold text-violet-400 text-sm sm:text-base">
+                  {assets.length}
                 </span>
               </div>
-              <div className="flex items-center justify-between p-3 rounded-xl bg-slate-800/40 border border-slate-800">
-                <span className="text-slate-400">Worth Continuing</span>
-                <span className="font-mono font-bold text-cyan-400 text-base">
-                  {summary.topWorthContinuingProjects.length} projects
+              <div className="flex items-center justify-between p-2.5 sm:p-3 rounded-xl bg-slate-800/40 border border-slate-800">
+                <span className="text-slate-400">{t.dashboard.worthContinuing}</span>
+                <span className="font-mono font-bold text-cyan-400 text-sm sm:text-base">
+                  {summary.topWorthContinuingProjects.length}
                 </span>
               </div>
             </div>
           </div>
 
-          <div className="p-4 rounded-2xl bg-cyan-950/20 border border-cyan-800/30 text-xs text-cyan-200/90 leading-relaxed">
-            💡 <strong className="text-white">AI Takeaway:</strong> High velocity observed in{' '}
-            <span className="font-mono text-cyan-300 font-semibold">{topProjects[0]?.name || 'current'}</span>.
-            Focus coding hours here and avoid context-switching across more than 3 active projects.
+          <div className="p-3.5 sm:p-4 rounded-2xl bg-cyan-950/20 border border-cyan-800/30 text-xs text-cyan-200/90 leading-relaxed">
+            💡 <strong className="text-white">{t.dashboard.aiTakeawayTitle}:</strong> {t.dashboard.aiTakeawayText}
           </div>
         </div>
-      </div>
+      </section>
 
       {/* Visual Analytics Charts Section */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6" aria-label="Visual Analytics Charts">
         {/* Chart 1: Stage Distribution */}
-        <div className="p-6 rounded-3xl bg-slate-900/90 border border-slate-800 space-y-4">
+        <div className="p-5 sm:p-6 rounded-3xl bg-slate-900/90 border border-slate-800 space-y-4">
           <div className="flex items-center justify-between">
-            <h3 className="text-sm font-bold text-slate-200 uppercase tracking-wider font-mono">
-              Stage Breakdown
+            <h3 className="text-xs sm:text-sm font-bold text-slate-200 uppercase tracking-wider font-mono">
+              {t.dashboard.stageBreakdown}
             </h3>
             <span className="text-xs text-slate-400">{projects.length} Total</span>
           </div>
-          <div className="h-56 w-full">
+          <div className="h-52 sm:h-56 w-full">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={stageData} layout="vertical" margin={{ left: 10, right: 20 }}>
-                <XAxis type="number" stroke="#64748B" fontSize={11} />
-                <YAxis dataKey="name" type="category" stroke="#94A3B8" fontSize={11} width={80} />
+                <XAxis type="number" stroke="#64748B" fontSize={10} />
+                <YAxis dataKey="name" type="category" stroke="#94A3B8" fontSize={10} width={80} />
                 <Tooltip
                   contentStyle={{
                     backgroundColor: '#0F172A',
@@ -340,18 +340,18 @@ export const ExecutiveSummary: React.FC = () => {
         </div>
 
         {/* Chart 2: 4-Dimensional Portfolio Health Radar */}
-        <div className="p-6 rounded-3xl bg-slate-900/90 border border-slate-800 space-y-4">
+        <div className="p-5 sm:p-6 rounded-3xl bg-slate-900/90 border border-slate-800 space-y-4">
           <div className="flex items-center justify-between">
-            <h3 className="text-sm font-bold text-slate-200 uppercase tracking-wider font-mono">
-              Portfolio 4D Score
+            <h3 className="text-xs sm:text-sm font-bold text-slate-200 uppercase tracking-wider font-mono">
+              {t.dashboard.radarHealth}
             </h3>
-            <span className="text-xs text-cyan-400 font-mono">Avg Health</span>
+            <span className="text-xs text-cyan-400 font-mono">{t.dashboard.avgHealth}</span>
           </div>
-          <div className="h-56 w-full flex items-center justify-center">
+          <div className="h-52 sm:h-56 w-full flex items-center justify-center">
             <ResponsiveContainer width="100%" height="100%">
               <RadarChart data={avgScores}>
                 <PolarGrid stroke="#334155" />
-                <PolarAngleAxis dataKey="subject" stroke="#94A3B8" fontSize={11} />
+                <PolarAngleAxis dataKey="subject" stroke="#94A3B8" fontSize={10} />
                 <Radar
                   name="Portfolio"
                   dataKey="value"
@@ -373,14 +373,14 @@ export const ExecutiveSummary: React.FC = () => {
         </div>
 
         {/* Chart 3: Weekly Commit & Mining Velocity */}
-        <div className="p-6 rounded-3xl bg-slate-900/90 border border-slate-800 space-y-4">
+        <div className="p-5 sm:p-6 rounded-3xl bg-slate-900/90 border border-slate-800 space-y-4 md:col-span-2 lg:col-span-1">
           <div className="flex items-center justify-between">
-            <h3 className="text-sm font-bold text-slate-200 uppercase tracking-wider font-mono">
-              Velocity Trend
+            <h3 className="text-xs sm:text-sm font-bold text-slate-200 uppercase tracking-wider font-mono">
+              {t.dashboard.velocityTrend}
             </h3>
             <span className="text-xs text-emerald-400 font-mono">+32% MoM</span>
           </div>
-          <div className="h-56 w-full">
+          <div className="h-52 sm:h-56 w-full">
             <ResponsiveContainer width="100%" height="100%">
               <AreaChart data={velocityData} margin={{ left: -15, right: 10 }}>
                 <defs>
@@ -389,8 +389,8 @@ export const ExecutiveSummary: React.FC = () => {
                     <stop offset="95%" stopColor="#10B981" stopOpacity={0.0} />
                   </linearGradient>
                 </defs>
-                <XAxis dataKey="week" stroke="#64748B" fontSize={11} />
-                <YAxis stroke="#64748B" fontSize={11} />
+                <XAxis dataKey="week" stroke="#64748B" fontSize={10} />
+                <YAxis stroke="#64748B" fontSize={10} />
                 <Tooltip
                   contentStyle={{
                     backgroundColor: '#0F172A',
@@ -411,7 +411,18 @@ export const ExecutiveSummary: React.FC = () => {
             </ResponsiveContainer>
           </div>
         </div>
-      </div>
+      </section>
+
+      {/* AEO / Answer Engine Direct Summary Box */}
+      <section className="p-5 sm:p-6 rounded-3xl bg-slate-900/60 border border-slate-800/80 space-y-2 text-xs text-slate-400 font-sans" aria-label="AEO Structured Summary">
+        <div className="flex items-center gap-2 text-slate-300 font-semibold font-mono">
+          <Bot className="w-4 h-4 text-cyan-400" />
+          <span>VibeOS Quick Facts (AEO & AI Search Summary)</span>
+        </div>
+        <p className="leading-relaxed">
+          <strong>VibeOS</strong> is a serverless AI side-project portfolio operating system. It calculates 4-dimensional health scores (Activity, Maintainability, Reusability, Potential) for GitHub repositories, extracts reusable modules (Auth, LLM wrappers, UI tables), records Graveyard post-mortems to salvage developer knowledge, and prioritizes high-leverage next actions.
+        </p>
+      </section>
     </div>
   );
 };

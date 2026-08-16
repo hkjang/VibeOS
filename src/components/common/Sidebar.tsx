@@ -1,5 +1,6 @@
 import React from 'react';
 import { useVibeStore } from '../../store/useVibeStore';
+import { useTranslation } from '../../i18n/useTranslation';
 import { ActiveTab } from '../../types/project';
 import {
   LayoutDashboard,
@@ -8,16 +9,14 @@ import {
   Archive,
   Lightbulb,
   Cpu,
-  Layers,
   Flame,
-  GitFork,
-  CheckSquare,
   ShieldCheck,
   FolderGit2,
 } from 'lucide-react';
 
 export const Sidebar: React.FC = () => {
   const { activeTab, setActiveTab, projects, assets, ideas, summary, githubAuth } = useVibeStore();
+  const { t } = useTranslation();
 
   const activeProjectsCount = projects.filter((p) => p.status === 'active').length;
   const graveyardCount = projects.filter((p) => p.status === 'graveyard').length;
@@ -33,54 +32,54 @@ export const Sidebar: React.FC = () => {
   }[] = [
     {
       id: 'dashboard',
-      label: 'Executive Overview',
-      description: 'Portfolio health & today actions',
+      label: t.nav.dashboard,
+      description: t.nav.dashboardDesc,
       icon: <LayoutDashboard className="w-4 h-4" />,
       badge: `${summary.growing} Growing`,
       badgeColor: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20',
     },
     {
       id: 'radar',
-      label: 'Project Radar',
-      description: '4D Matrix & project states',
+      label: t.nav.radar,
+      description: t.nav.radarDesc,
       icon: <Radar className="w-4 h-4 text-cyan-400" />,
       badge: activeProjectsCount,
       badgeColor: 'bg-cyan-500/10 text-cyan-400 border-cyan-500/20',
     },
     {
       id: 'assets',
-      label: 'Asset Mining Hub',
-      description: 'Harvested reusable code',
+      label: t.nav.assets,
+      description: t.nav.assetsDesc,
       icon: <Sparkles className="w-4 h-4 text-violet-400" />,
       badge: assets.length,
       badgeColor: 'bg-violet-500/10 text-violet-400 border-violet-500/20',
     },
     {
       id: 'graveyard',
-      label: 'The Graveyard',
-      description: 'Post-mortems & salvaged assets',
+      label: t.nav.graveyard,
+      description: t.nav.graveyardDesc,
       icon: <Archive className="w-4 h-4 text-rose-400" />,
       badge: graveyardCount,
       badgeColor: 'bg-rose-500/10 text-rose-400 border-rose-500/20',
     },
     {
       id: 'ideas',
-      label: 'Idea Inbox',
-      description: 'AI viability evaluation',
+      label: t.nav.ideas,
+      description: t.nav.ideasDesc,
       icon: <Lightbulb className="w-4 h-4 text-amber-400" />,
       badge: ideasCount,
       badgeColor: 'bg-amber-500/10 text-amber-400 border-amber-500/20',
     },
     {
       id: 'dna',
-      label: 'Project DNA & Stacks',
-      description: 'Architectures & prompt library',
+      label: t.nav.dna,
+      description: t.nav.dnaDesc,
       icon: <Cpu className="w-4 h-4 text-sky-400" />,
     },
     {
       id: 'actions',
-      label: 'GitHub Runtime & DB',
-      description: 'Serverless Actions & JSON storage',
+      label: t.nav.actions,
+      description: t.nav.actionsDesc,
       icon: <FolderGit2 className="w-4 h-4 text-emerald-400" />,
     },
   ];
@@ -91,7 +90,7 @@ export const Sidebar: React.FC = () => {
       <div className="space-y-6">
         <div>
           <p className="px-3 text-[11px] font-semibold text-slate-500 uppercase tracking-wider mb-2 font-mono">
-            OPERATING SYSTEM
+            {t.nav.operatingSystem}
           </p>
           <nav className="space-y-1">
             {navItems.map((item) => {
@@ -141,10 +140,10 @@ export const Sidebar: React.FC = () => {
         <div className="p-3.5 rounded-2xl bg-gradient-to-b from-slate-900 to-[#0F172A] border border-slate-800 relative overflow-hidden">
           <div className="flex items-center gap-2 mb-1.5 text-cyan-400">
             <Flame className="w-4 h-4 text-cyan-400 shrink-0" />
-            <span className="text-xs font-bold font-mono uppercase tracking-wider">VibeOS Tenet</span>
+            <span className="text-xs font-bold font-mono uppercase tracking-wider">{t.nav.vibeOsTenet}</span>
           </div>
           <p className="text-xs text-slate-300 italic leading-relaxed">
-            "20 archived experiments isn't 20 failures — it's your personal development platform."
+            "{t.nav.vibeOsQuote}"
           </p>
         </div>
       </div>
@@ -154,15 +153,15 @@ export const Sidebar: React.FC = () => {
         <div className="flex items-center justify-between text-xs px-2 text-slate-400">
           <span className="flex items-center gap-1.5 font-mono text-[11px]">
             <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
-            Local IndexedDB
+            {t.nav.localIndexedDb}
           </span>
-          <span className="text-[10px] text-emerald-400 font-mono">100% Client-Side</span>
+          <span className="text-[10px] text-emerald-400 font-mono">{t.nav.clientSideOnly}</span>
         </div>
 
         <div className="p-2.5 rounded-xl bg-slate-900/60 border border-slate-800 text-[11px] text-slate-400 flex items-center justify-between">
-          <span className="truncate">GitHub Runtime</span>
+          <span className="truncate">{t.nav.githubRuntime}</span>
           <span className="font-mono text-cyan-400 text-[10px]">
-            {githubAuth.isValid ? `@${githubAuth.username}` : 'Demo Mode'}
+            {githubAuth.isValid ? `@${githubAuth.username}` : t.nav.demoMode}
           </span>
         </div>
       </div>

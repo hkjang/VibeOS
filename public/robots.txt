@@ -1,0 +1,24 @@
+# Allow all search engines and AI crawlers
+User-agent: *
+Allow: /
+
+# Explicit rules for AI Answer Engines
+User-agent: GPTBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+Sitemap: https://hkjang.github.io/VibeOS/sitemap.xml
