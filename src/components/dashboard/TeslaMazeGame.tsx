@@ -11,16 +11,16 @@ import {
   Trophy,
   RotateCcw,
   Play,
-  Pause,
   ChevronUp,
   ChevronDown,
   ChevronLeft,
   ChevronRight,
-  Shield,
   Radio,
-  Flame,
-  X,
+  Gamepad2,
+  Minimize2,
   Maximize2,
+  ChevronRight as ArrowRight,
+  X,
 } from 'lucide-react';
 
 // 13x13 Maze Layout (0 = Road, 1 = Neon Wall, 2 = Supercharger, 3 = Lego Core, 4 = Goal)
@@ -49,8 +49,9 @@ export const TeslaMazeGame: React.FC = () => {
   const { projects, showToast } = useVibeStore();
   const { language } = useTranslation();
 
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const [carPos, setCarPos] = useState<Position>({ r: 1, c: 1 });
-  const [carAngle, setCarAngle] = useState<number>(0); // 0 = right, 90 = down, 180 = left, 270 = up
+  const [carAngle, setCarAngle] = useState<number>(0);
   const [battery, setBattery] = useState<number>(100);
   const [speed, setSpeed] = useState<number>(0);
   const [score, setScore] = useState<number>(0);
@@ -61,7 +62,7 @@ export const TeslaMazeGame: React.FC = () => {
 
   const autopilotTimerRef = useRef<NodeJS.Timeout | null>(null);
 
-  // BFS Pathfinding for Tesla FSD (Full Self-Driving) Autopilot
+  // BFS Pathfinding for Tesla FSD Autopilot
   const findPathToGoal = useCallback((start: Position, goal: Position): Position[] => {
     const queue: { pos: Position; path: Position[] }[] = [{ pos: start, path: [start] }];
     const visited = new Set<string>();
@@ -101,7 +102,7 @@ export const TeslaMazeGame: React.FC = () => {
     return [];
   }, []);
 
-  // Handle Movement Logic
+  // Movement handler
   const moveCar = useCallback(
     (dr: number, dc: number, targetAngle: number) => {
       if (hasWon) return;
@@ -110,7 +111,6 @@ export const TeslaMazeGame: React.FC = () => {
         const nr = prev.r + dr;
         const nc = prev.c + dc;
 
-        // Check boundary & wall collision
         if (nr < 0 || nr >= MAZE_GRID.length || nc < 0 || nc >= MAZE_GRID[0].length || MAZE_GRID[nr][nc] === 1) {
           soundEngine.playClick();
           return prev;
@@ -123,17 +123,15 @@ export const TeslaMazeGame: React.FC = () => {
         const itemKey = `${nr},${nc}`;
         const cellType = MAZE_GRID[nr][nc];
 
-        // Item Collection
+        // Supercharger
         if (!collectedItems.has(itemKey)) {
           if (cellType === 2) {
-            // Supercharger
             soundEngine.playTeslaSupercharge();
             setBattery((b) => Math.min(100, b + 30));
             setScore((sc) => sc + 150);
             setCollectedItems((prevSet) => new Set(prevSet).add(itemKey));
             showToast('⚡ Tesla Supercharger Connected! +30% Battery & +150 EXP!', 'success');
           } else if (cellType === 3) {
-            // Lego Asset Core
             soundEngine.playQuestComplete();
             setScore((sc) => sc + 250);
             setCollectedItems((prevSet) => new Set(prevSet).add(itemKey));
@@ -141,7 +139,7 @@ export const TeslaMazeGame: React.FC = () => {
           }
         }
 
-        // Goal Check
+        // Production Hub Goal
         if (cellType === 4 && !hasWon) {
           setHasWon(true);
           setIsFsdActive(false);
@@ -171,7 +169,6 @@ export const TeslaMazeGame: React.FC = () => {
       setIsFsdActive(true);
       showToast('⚡ Tesla FSD V13 Autopilot Engaged! Navigating cyber maze...', 'info');
 
-      // Compute trajectory
       const path = findPathToGoal(carPos, { r: 11, c: 11 });
       setLaserPath(path);
     } else {
@@ -182,9 +179,9 @@ export const TeslaMazeGame: React.FC = () => {
     }
   };
 
-  // FSD Auto-driving loop
+  // FSD loop
   useEffect(() => {
-    if (!isFsdActive || hasWon) {
+    if (!isOpen || !isFsdActive || hasWon) {
       if (autopilotTimerRef.current) clearInterval(autopilotTimerRef.current);
       return;
     }
@@ -208,12 +205,13 @@ export const TeslaMazeGame: React.FC = () => {
     return () => {
       if (autopilotTimerRef.current) clearInterval(autopilotTimerRef.current);
     };
-  }, [isFsdActive, carPos, hasWon, findPathToGoal, moveCar]);
+  }, [isOpen, isFsdActive, carPos, hasWon, findPathToGoal, moveCar]);
 
   // Keyboard navigation
   useEffect(() => {
+    if (!isOpen) return;
+
     const handleKeyDown = (e: KeyboardEvent) => {
-      // Avoid triggering when user types in an input
       if (['input', 'textarea', 'select'].includes((e.target as HTMLElement).tagName?.toLowerCase())) return;
 
       if (e.key === 'ArrowRight' || e.key === 'd' || e.key === 'D') {
@@ -231,14 +229,15 @@ export const TeslaMazeGame: React.FC = () => {
       } else if (e.key === ' ') {
         e.preventDefault();
         toggleFsd();
+      } else if (e.key === 'Escape') {
+        setIsOpen(false);
       }
     };
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [moveCar]);
+  }, [isOpen, moveCar]);
 
-  // Restart Game
   const handleReset = () => {
     soundEngine.playClick();
     setCarPos({ r: 1, c: 1 });
@@ -253,245 +252,224 @@ export const TeslaMazeGame: React.FC = () => {
   };
 
   return (
-    <div className="p-5 sm:p-6 md:p-7 rounded-3xl bg-gradient-to-br from-[#080B12] via-slate-900 to-[#080B12] border border-cyan-500/40 shadow-2xl relative overflow-hidden space-y-5">
-      {/* Background Neon Grid Glow */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-red-500/10 rounded-full blur-3xl pointer-events-none" />
-
-      {/* Header: Title, FSD Status & HUD */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-800 pb-4 relative z-10">
-        <div className="flex items-center gap-3">
-          {/* Tesla Badge Icon */}
-          <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-red-600 to-rose-400 p-[2px] shadow-lg shadow-red-500/30">
-            <div className="w-full h-full bg-slate-950 rounded-[14px] flex items-center justify-center font-bold text-red-400 font-mono text-xl">
+    <>
+      {/* Sleek Arcade Banner Card on Dashboard */}
+      <div className="p-4 sm:p-5 rounded-3xl bg-gradient-to-r from-[#0B0F19] via-slate-900 to-[#0B0F19] border border-cyan-500/30 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-xl relative overflow-hidden group">
+        <div className="flex items-center gap-3.5 relative z-10">
+          <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-red-600 via-rose-500 to-amber-500 p-[2px] shadow-lg shadow-red-500/20 shrink-0">
+            <div className="w-full h-full bg-slate-950 rounded-[14px] flex items-center justify-center font-extrabold text-red-400 font-mono text-xl">
               T
             </div>
           </div>
 
           <div>
             <div className="flex items-center gap-2">
-              <h2 className="text-base sm:text-lg font-bold text-white font-mono tracking-tight flex items-center gap-2">
+              <h3 className="text-sm sm:text-base font-bold text-white font-mono">
                 Tesla Model Y : Cyber Maze FSD Autopilot
-              </h2>
-              <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 font-bold">
-                FSD V13.2
+              </h3>
+              <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-red-500/20 text-red-300 border border-red-500/30 font-bold uppercase">
+                Mini Game
               </span>
             </div>
             <p className="text-xs text-slate-400 font-mono mt-0.5">
               {language === 'ko'
-                ? '방향키 또는 스페이스바로 FSD 자율주행을 켜고 사이버 회로 미로의 프로덕션 코어를 찾아가세요.'
-                : 'Drive with Arrow keys or hit Spacebar to engage FSD Autopilot through the Cyber Circuit.'}
+                ? '테슬라 모델 Y로 사이버 회로 미로를 주행하거나 FSD 자율주행으로 프로덕션 코어를 공략하세요.'
+                : 'Navigate through the cyber circuit maze with Tesla Model Y or engage FSD Autopilot.'}
             </p>
           </div>
         </div>
 
-        {/* Telemetry Pills */}
-        <div className="flex items-center gap-2.5 flex-wrap">
-          {/* Battery */}
-          <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-950 border border-slate-800 text-xs font-mono">
-            <BatteryCharging className="w-4 h-4 text-emerald-400" />
-            <span className="text-emerald-400 font-bold">{battery}%</span>
-          </div>
-
-          {/* Score */}
-          <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-950 border border-slate-800 text-xs font-mono">
-            <Sparkles className="w-4 h-4 text-amber-400" />
-            <span className="text-amber-300 font-bold">{score} PTS</span>
-          </div>
-
-          {/* FSD Toggle Button */}
-          <button
-            onClick={toggleFsd}
-            className={`flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-bold font-mono transition-all shadow-md ${
-              isFsdActive
-                ? 'bg-cyan-500 text-slate-950 border border-cyan-400 animate-pulse shadow-cyan-500/40'
-                : 'bg-slate-900 text-cyan-400 border border-cyan-500/30 hover:bg-slate-800'
-            }`}
-          >
-            <Radio className={`w-3.5 h-3.5 ${isFsdActive ? 'animate-spin' : ''}`} />
-            <span>{isFsdActive ? '⚡ FSD ENGAGED' : 'ENGAGE FSD'}</span>
-          </button>
-
-          {/* Reset */}
-          <button
-            onClick={handleReset}
-            className="p-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
-            title="Restart Circuit"
-          >
-            <RotateCcw className="w-4 h-4" />
-          </button>
-        </div>
+        <button
+          onClick={() => {
+            soundEngine.playTeslaFsdEngage();
+            setIsOpen(true);
+          }}
+          className="flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 text-white text-xs font-bold font-mono transition-all shadow-lg shadow-red-600/30 hover:scale-[1.02] shrink-0 active:scale-95"
+        >
+          <Gamepad2 className="w-4 h-4" />
+          <span>{language === 'ko' ? '테슬라 미로 게임 시작' : 'Launch Tesla Maze'}</span>
+          <ArrowRight className="w-3.5 h-3.5" />
+        </button>
       </div>
 
-      {/* Main Game Stage: Maze Grid & Touch Controller */}
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 items-center relative z-10">
-        {/* Left 3 Cols: 13x13 Cyber Circuit Canvas Grid */}
-        <div className="lg:col-span-3 bg-slate-950/90 border border-cyan-500/30 rounded-3xl p-3 sm:p-5 shadow-2xl flex items-center justify-center relative overflow-hidden">
-          {/* Laser Navigation Trace */}
-          <div className="grid grid-cols-13 gap-1 sm:gap-1.5 w-full max-w-[540px] aspect-square">
-            {MAZE_GRID.map((row, r) =>
-              row.map((cell, c) => {
-                const isCarHere = carPos.r === r && carPos.c === c;
-                const isCollected = collectedItems.has(`${r},${c}`);
-                const isLaserStep = isFsdActive && laserPath.some((p) => p.r === r && p.c === c);
+      {/* Fullscreen / Modal Cyber Arcade Cabinet */}
+      {isOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-slate-950/85 backdrop-blur-md animate-fadeIn">
+          <div className="relative w-full max-w-4xl rounded-3xl bg-[#080B12] border border-cyan-500/40 shadow-2xl overflow-hidden flex flex-col max-h-[92vh]">
+            {/* Header */}
+            <div className="p-4 bg-slate-950 border-b border-slate-800 flex items-center justify-between">
+              <div className="flex items-center gap-2.5">
+                <div className="w-8 h-8 rounded-xl bg-red-600/20 text-red-400 border border-red-500/30 flex items-center justify-center font-bold font-mono text-sm">
+                  T
+                </div>
+                <div>
+                  <h2 className="text-sm sm:text-base font-bold text-white font-mono">
+                    Tesla Model Y Cyber Maze FSD Autopilot
+                  </h2>
+                  <span className="text-[10px] text-slate-400 font-mono">
+                    Arrow keys to drive | Spacebar for FSD Autopilot | Esc to close
+                  </span>
+                </div>
+              </div>
 
-                if (cell === 1) {
-                  // Neon Circuit Wall
-                  return (
-                    <div
-                      key={`${r}-${c}`}
-                      className="w-full h-full rounded-md sm:rounded-lg bg-slate-900 border border-slate-800/90 shadow-inner flex items-center justify-center relative group"
-                    >
-                      <div className="w-1.5 h-1.5 rounded-full bg-cyan-900/50" />
-                    </div>
-                  );
-                }
+              {/* Telemetry & Controls */}
+              <div className="flex items-center gap-2">
+                <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-slate-900 border border-slate-800 text-xs font-mono">
+                  <BatteryCharging className="w-3.5 h-3.5 text-emerald-400" />
+                  <span className="text-emerald-400 font-bold">{battery}%</span>
+                </div>
 
-                // Road / Items / Goal Cell
-                return (
-                  <div
-                    key={`${r}-${c}`}
-                    className={`w-full h-full rounded-md sm:rounded-lg transition-all relative flex items-center justify-center ${
-                      isLaserStep ? 'bg-cyan-950/40 shadow-sm shadow-cyan-500/20' : 'bg-slate-950/60'
+                <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-slate-900 border border-slate-800 text-xs font-mono">
+                  <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+                  <span className="text-amber-300 font-bold">{score} PTS</span>
+                </div>
+
+                <button
+                  onClick={toggleFsd}
+                  className={`px-3 py-1 rounded-xl text-xs font-bold font-mono transition-all ${
+                    isFsdActive
+                      ? 'bg-cyan-500 text-slate-950 border border-cyan-400 animate-pulse'
+                      : 'bg-slate-900 text-cyan-400 border border-cyan-500/30 hover:bg-slate-800'
+                  }`}
+                >
+                  {isFsdActive ? '⚡ FSD ON' : 'ENGAGE FSD'}
+                </button>
+
+                <button
+                  onClick={handleReset}
+                  className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800"
+                  title="Reset Circuit"
+                >
+                  <RotateCcw className="w-4 h-4" />
+                </button>
+
+                <button
+                  onClick={() => setIsOpen(false)}
+                  className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              </div>
+            </div>
+
+            {/* Stage Body */}
+            <div className="flex-1 p-4 sm:p-6 overflow-y-auto flex flex-col lg:flex-row items-center justify-center gap-6">
+              {/* 13x13 Pure CSS Grid Stage */}
+              <div className="bg-slate-950 border border-cyan-500/40 rounded-2xl p-2 sm:p-3 shadow-2xl w-full max-w-[420px] sm:max-w-[460px] aspect-square flex items-center justify-center">
+                <div
+                  className="w-full h-full gap-1 sm:gap-1.5"
+                  style={{
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(13, minmax(0, 1fr))',
+                    gridTemplateRows: 'repeat(13, minmax(0, 1fr))',
+                  }}
+                >
+                  {MAZE_GRID.map((row, r) =>
+                    row.map((cell, c) => {
+                      const isCarHere = carPos.r === r && carPos.c === c;
+                      const isCollected = collectedItems.has(`${r},${c}`);
+                      const isLaserStep = isFsdActive && laserPath.some((p) => p.r === r && p.c === c);
+
+                      if (cell === 1) {
+                        return (
+                          <div
+                            key={`${r}-${c}`}
+                            className="w-full h-full rounded bg-slate-900 border border-slate-800 flex items-center justify-center"
+                          >
+                            <div className="w-1 h-1 rounded-full bg-cyan-950" />
+                          </div>
+                        );
+                      }
+
+                      return (
+                        <div
+                          key={`${r}-${c}`}
+                          className={`w-full h-full rounded transition-all relative flex items-center justify-center ${
+                            isLaserStep ? 'bg-cyan-950/60 shadow-sm shadow-cyan-500/30' : 'bg-slate-950/80'
+                          }`}
+                        >
+                          {cell === 0 && !isCarHere && (
+                            <div className={`w-1 h-1 rounded-full ${isLaserStep ? 'bg-cyan-400' : 'bg-slate-800'}`} />
+                          )}
+
+                          {cell === 2 && !isCollected && !isCarHere && (
+                            <span className="text-[10px] sm:text-xs animate-bounce">⚡</span>
+                          )}
+
+                          {cell === 3 && !isCollected && !isCarHere && (
+                            <span className="text-[10px] sm:text-xs animate-pulse">💎</span>
+                          )}
+
+                          {cell === 4 && (
+                            <div className="relative flex items-center justify-center">
+                              <span className="w-2 h-2 rounded-full bg-rose-500 animate-ping absolute" />
+                              <span className="text-[10px] sm:text-xs">🚀</span>
+                            </div>
+                          )}
+
+                          {/* Model Y Car Top-Down Sprite */}
+                          {isCarHere && (
+                            <div
+                              className="relative z-20 w-full h-full flex items-center justify-center transition-transform duration-150"
+                              style={{ transform: `rotate(${carAngle}deg)` }}
+                            >
+                              <div className="w-4 sm:w-5 h-2.5 sm:h-3.5 bg-gradient-to-r from-slate-200 via-white to-slate-300 rounded-[3px] border border-slate-400 relative flex items-center justify-between px-0.5 shadow-md shadow-cyan-500/50">
+                                <div className="w-1.5 sm:w-2 h-1.5 sm:h-2 bg-slate-950 rounded-[2px] border border-cyan-400/60 flex items-center justify-center">
+                                  <span className="text-[5px] text-red-500 font-mono font-bold scale-75">T</span>
+                                </div>
+                                <div className="w-0.5 h-1.5 bg-cyan-300 rounded-full" />
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })
+                  )}
+                </div>
+              </div>
+
+              {/* D-Pad Controller */}
+              <div className="p-4 rounded-2xl bg-slate-950 border border-slate-800 flex flex-col items-center justify-center space-y-2 font-mono">
+                <span className="text-[10px] text-slate-400 font-bold uppercase">Touch Navigation</span>
+                <button
+                  onClick={() => moveCar(-1, 0, 270)}
+                  className="p-2.5 rounded-xl bg-slate-900 border border-slate-800 hover:bg-slate-800 text-slate-300 active:scale-95"
+                >
+                  <ChevronUp className="w-5 h-5" />
+                </button>
+                <div className="flex items-center gap-3">
+                  <button
+                    onClick={() => moveCar(0, -1, 180)}
+                    className="p-2.5 rounded-xl bg-slate-900 border border-slate-800 hover:bg-slate-800 text-slate-300 active:scale-95"
+                  >
+                    <ChevronLeft className="w-5 h-5" />
+                  </button>
+                  <button
+                    onClick={toggleFsd}
+                    className={`px-3 py-2 rounded-xl text-xs font-bold font-mono border ${
+                      isFsdActive ? 'bg-cyan-500 text-slate-950 border-cyan-400' : 'bg-slate-900 text-cyan-400 border-slate-700'
                     }`}
                   >
-                    {/* Road dot */}
-                    {cell === 0 && !isCarHere && (
-                      <div
-                        className={`w-1 h-1 rounded-full ${
-                          isLaserStep ? 'bg-cyan-400 shadow-sm shadow-cyan-400' : 'bg-slate-800'
-                        }`}
-                      />
-                    )}
-
-                    {/* Supercharger Node */}
-                    {cell === 2 && !isCollected && !isCarHere && (
-                      <div className="animate-bounce text-emerald-400 text-xs sm:text-sm font-bold">⚡</div>
-                    )}
-
-                    {/* Lego Asset Data Core */}
-                    {cell === 3 && !isCollected && !isCarHere && (
-                      <div className="animate-pulse text-amber-400 text-xs sm:text-sm font-bold">💎</div>
-                    )}
-
-                    {/* Production Hub Goal */}
-                    {cell === 4 && (
-                      <div className="relative flex items-center justify-center">
-                        <span className="w-3 h-3 rounded-full bg-rose-500 animate-ping absolute" />
-                        <span className="text-xs sm:text-sm">🚀</span>
-                      </div>
-                    )}
-
-                    {/* Tesla Model Y Top-Down Vector Sprite */}
-                    {isCarHere && (
-                      <div
-                        className="relative z-20 w-full h-full flex items-center justify-center transition-transform duration-200"
-                        style={{ transform: `rotate(${carAngle}deg)` }}
-                      >
-                        {/* Headlights beam projection */}
-                        <div className="absolute right-[-14px] top-1/2 -translate-y-1/2 w-7 h-5 bg-gradient-to-r from-cyan-300/60 via-cyan-400/20 to-transparent pointer-events-none rounded-r-full blur-[1px]" />
-
-                        {/* Model Y Body (Top-down) */}
-                        <div className="w-6 sm:w-8 h-3.5 sm:h-4.5 bg-gradient-to-r from-slate-200 via-white to-slate-300 rounded-[6px] shadow-lg border border-slate-400/80 relative flex items-center justify-between px-0.5">
-                          {/* Front Windshield & Glass Roof */}
-                          <div className="w-2.5 sm:w-3.5 h-2.5 sm:h-3.5 bg-slate-900 rounded-[3px] border border-cyan-400/50 flex items-center justify-center">
-                            <span className="text-[6px] font-bold text-red-500 font-mono scale-75">T</span>
-                          </div>
-                          {/* Headlights LEDs */}
-                          <div className="w-0.5 h-2 bg-cyan-300 rounded-full shadow-sm shadow-cyan-300" />
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                );
-              })
-            )}
+                    FSD
+                  </button>
+                  <button
+                    onClick={() => moveCar(0, 1, 0)}
+                    className="p-2.5 rounded-xl bg-slate-900 border border-slate-800 hover:bg-slate-800 text-slate-300 active:scale-95"
+                  >
+                    <ChevronRight className="w-5 h-5" />
+                  </button>
+                </div>
+                <button
+                  onClick={() => moveCar(1, 0, 90)}
+                  className="p-2.5 rounded-xl bg-slate-900 border border-slate-800 hover:bg-slate-800 text-slate-300 active:scale-95"
+                >
+                  <ChevronDown className="w-5 h-5" />
+                </button>
+              </div>
+            </div>
           </div>
         </div>
-
-        {/* Right 1 Col: Driving Telemetry & Touch Controller */}
-        <div className="space-y-4 font-mono">
-          {/* Real-time FSD Vision Display */}
-          <div className="p-4 rounded-2xl bg-slate-950 border border-slate-800 space-y-2.5">
-            <div className="flex items-center justify-between text-xs text-slate-400">
-              <span className="flex items-center gap-1.5 text-cyan-400 font-bold">
-                <Compass className="w-3.5 h-3.5" />
-                FSD Vision Radar
-              </span>
-              <span className="text-[10px] text-emerald-400">Online</span>
-            </div>
-
-            <div className="space-y-1 text-xs text-slate-300">
-              <div className="flex justify-between">
-                <span className="text-slate-500">Vehicle:</span>
-                <span className="text-white font-bold">Tesla Model Y</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-slate-500">Autopilot:</span>
-                <span className={isFsdActive ? 'text-cyan-400 font-bold animate-pulse' : 'text-slate-400'}>
-                  {isFsdActive ? 'Full Self-Driving V13' : 'Manual Drive'}
-                </span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-slate-500">Position:</span>
-                <span className="text-slate-300">
-                  [{carPos.r}, {carPos.c}]
-                </span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-slate-500">Goal:</span>
-                <span className="text-rose-400 font-bold">Production Hub [11, 11]</span>
-              </div>
-            </div>
-          </div>
-
-          {/* On-Screen D-Pad Controller */}
-          <div className="p-3.5 rounded-2xl bg-slate-950 border border-slate-800 flex flex-col items-center justify-center space-y-1.5">
-            <span className="text-[10px] text-slate-500 font-bold uppercase tracking-wider">Manual D-Pad</span>
-
-            <button
-              onClick={() => moveCar(-1, 0, 270)}
-              className="p-2 rounded-xl bg-slate-900 border border-slate-800 hover:bg-cyan-500/20 hover:border-cyan-500/40 text-slate-300 transition-all active:scale-90"
-            >
-              <ChevronUp className="w-5 h-5" />
-            </button>
-
-            <div className="flex items-center gap-3">
-              <button
-                onClick={() => moveCar(0, -1, 180)}
-                className="p-2 rounded-xl bg-slate-900 border border-slate-800 hover:bg-cyan-500/20 hover:border-cyan-500/40 text-slate-300 transition-all active:scale-90"
-              >
-                <ChevronLeft className="w-5 h-5" />
-              </button>
-
-              <button
-                onClick={toggleFsd}
-                className={`px-3 py-1.5 rounded-xl font-bold text-[10px] border transition-all ${
-                  isFsdActive
-                    ? 'bg-cyan-500 text-slate-950 border-cyan-400 shadow-md shadow-cyan-500/40'
-                    : 'bg-slate-900 text-cyan-400 border-slate-700 hover:bg-slate-800'
-                }`}
-              >
-                FSD
-              </button>
-
-              <button
-                onClick={() => moveCar(0, 1, 0)}
-                className="p-2 rounded-xl bg-slate-900 border border-slate-800 hover:bg-cyan-500/20 hover:border-cyan-500/40 text-slate-300 transition-all active:scale-90"
-              >
-                <ChevronRight className="w-5 h-5" />
-              </button>
-            </div>
-
-            <button
-              onClick={() => moveCar(1, 0, 90)}
-              className="p-2 rounded-xl bg-slate-900 border border-slate-800 hover:bg-cyan-500/20 hover:border-cyan-500/40 text-slate-300 transition-all active:scale-90"
-            >
-              <ChevronDown className="w-5 h-5" />
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
+      )}
+    </>
   );
 };
