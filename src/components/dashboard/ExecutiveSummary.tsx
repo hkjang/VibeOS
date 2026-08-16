@@ -124,9 +124,10 @@ export const ExecutiveSummary: React.FC = () => {
           <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
             <button
               onClick={() => setActiveTab('radar')}
-              className="flex items-center gap-1.5 sm:gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl bg-cyan-500 text-slate-950 font-bold text-xs sm:text-sm shadow-lg shadow-cyan-500/25 hover:bg-cyan-400 hover:scale-[1.02] transition-all"
+              className="flex items-center gap-1.5 sm:gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-violet-600 text-slate-950 font-bold text-xs sm:text-sm shadow-lg shadow-cyan-500/25 hover:scale-[1.02] transition-all"
             >
-              {t.dashboard.openRadar}
+              <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-slate-950" />
+              <span>{t.radar.viewCosmos || 'Cosmos Galaxy'}</span>
               <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
             </button>
             <button

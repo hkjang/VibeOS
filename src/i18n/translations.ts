@@ -78,6 +78,7 @@ export const translations = {
       subtitle: '실시간 다차원 포트폴리오 스캐너 & 생애주기 관리기',
       viewGrid: '카드 그리드',
       viewMatrix: '2D 매트릭스',
+      viewCosmos: '코스모스 성도 (Cosmos)',
       viewTable: '테이블',
       addProject: '프로젝트 추가',
       allProjects: '전체 프로젝트',
@@ -280,6 +281,16 @@ export const translations = {
       dormant: '휴면',
       archived: '묘지 아카이브',
     },
+    // Cosmos Galaxy Visual Metaphor
+    cosmos: {
+      title: 'VibeOS 코스모스 성운 & 궤도 은하계 (Project Galaxy)',
+      subtitle: '살아 움직이는 프로젝트 행성과 지식 연금술 광선 (Graveyard 매몰 지식 → 활성 엔진으로 주입)',
+      showTethers: '지식 재활용 광선',
+      showDust: '발굴 자산 크리스탈',
+      innerOrbit: '내부 궤도: 성장 엔진 (🚀 High Momentum)',
+      midOrbit: '중간 궤도: 가설 검증 & 유지보수 (🛠️ Stable)',
+      outerHalo: '외곽 헤일로: 묘지 기념비 (⚰️ Salvaged)',
+    },
   },
   en: {
     // Navigation
@@ -358,6 +369,7 @@ export const translations = {
       subtitle: 'Real-time multi-dimensional portfolio scanner & lifecycle manager',
       viewGrid: 'Grid',
       viewMatrix: '2D Matrix',
+      viewCosmos: 'Cosmos Galaxy',
       viewTable: 'Table',
       addProject: 'Add Project',
       allProjects: 'All Projects',
@@ -559,6 +571,16 @@ export const translations = {
       idea: 'Idea',
       dormant: 'Dormant',
       archived: 'Archived',
+    },
+    // Cosmos Galaxy Visual Metaphor
+    cosmos: {
+      title: 'VibeOS Cosmic Project Galaxy',
+      subtitle: 'Living orbital ecosystem: Graveyard code tethers fuel active planetary engines',
+      showTethers: 'Knowledge Beams',
+      showDust: 'Mined Crystals',
+      innerOrbit: 'Inner Orbit: Growing (🚀 High Momentum)',
+      midOrbit: 'Mid Orbit: Experiment / Maintain (🛠️ Stable)',
+      outerHalo: 'Outer Halo: Graveyard (⚰️ Salvaged)',
     },
   },
 };

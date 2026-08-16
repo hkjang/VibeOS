@@ -6,12 +6,15 @@ import { ProjectCard } from './ProjectCard';
 import { ProjectDetailModal } from './ProjectDetailModal';
 import { StageBadge } from '../common/StageBadge';
 import { ScoreBadge } from '../common/ScoreBadge';
+import { CosmicProjectGalaxy } from '../visual/CosmicProjectGalaxy';
 import {
   LayoutGrid,
   List,
   Radar,
+  Sparkles,
   Plus,
   ArrowUpDown,
+  Orbit,
 } from 'lucide-react';
 
 export const ProjectRadarView: React.FC = () => {
@@ -27,7 +30,7 @@ export const ProjectRadarView: React.FC = () => {
 
   const { t } = useTranslation();
 
-  const [viewMode, setViewMode] = useState<'grid' | 'matrix' | 'table'>('grid');
+  const [viewMode, setViewMode] = useState<'grid' | 'matrix' | 'cosmos' | 'table'>('grid');
   const [sortBy, setSortBy] = useState<'score' | 'activity' | 'potential' | 'activityDate' | 'name'>('score');
 
   // Filter projects by search query and stage
@@ -97,6 +100,18 @@ export const ProjectRadarView: React.FC = () => {
             </button>
 
             <button
+              onClick={() => setViewMode('cosmos')}
+              className={`flex items-center gap-1.5 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg transition-all ${
+                viewMode === 'cosmos'
+                  ? 'bg-gradient-to-r from-cyan-500/30 to-violet-500/30 text-cyan-300 font-bold border border-cyan-500/40 shadow-sm shadow-cyan-500/20'
+                  : 'text-slate-400 hover:text-slate-200'
+              }`}
+            >
+              <Orbit className="w-3.5 h-3.5 text-cyan-400 animate-spin" />
+              <span className="text-[11px] sm:text-xs">{t.radar.viewCosmos || 'Cosmos'}</span>
+            </button>
+
+            <button
               onClick={() => setViewMode('matrix')}
               className={`flex items-center gap-1.5 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg transition-all ${
                 viewMode === 'matrix'
@@ -131,7 +146,7 @@ export const ProjectRadarView: React.FC = () => {
         </div>
       </div>
 
-      {/* Filter & Sort Bar */}
+      {/* Filter & Sort Bar (Hidden in Cosmos mode for clean immersion, or available) */}
       <div className="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-3 sm:gap-4 p-3.5 sm:p-4 rounded-2xl bg-slate-900/60 border border-slate-800">
         {/* Stage Filter Pills */}
         <div className="flex items-center gap-1.5 overflow-x-auto pb-2 lg:pb-0 text-xs font-mono">
@@ -179,7 +194,15 @@ export const ProjectRadarView: React.FC = () => {
         </div>
       </div>
 
-      {/* Main View Display */}
+      {/* View Mode 1: Cosmic Galaxy Visual Metaphor */}
+      {viewMode === 'cosmos' && (
+        <CosmicProjectGalaxy
+          projects={filteredProjects}
+          onSelectProject={(id) => setSelectedProjectId(id)}
+        />
+      )}
+
+      {/* View Mode 2: Card Grid */}
       {viewMode === 'grid' && (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
           {sortedProjects.map((project) => (
@@ -204,7 +227,7 @@ export const ProjectRadarView: React.FC = () => {
         </div>
       )}
 
-      {/* 2D Matrix View */}
+      {/* View Mode 3: 2D Matrix View */}
       {viewMode === 'matrix' && (
         <div className="p-4 sm:p-6 rounded-3xl bg-slate-900/80 border border-slate-800 space-y-5 sm:space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
@@ -347,7 +370,7 @@ export const ProjectRadarView: React.FC = () => {
         </div>
       )}
 
-      {/* Table View */}
+      {/* View Mode 4: Table View */}
       {viewMode === 'table' && (
         <div className="overflow-x-auto rounded-3xl border border-slate-800 bg-slate-900/80">
           <table className="w-full text-left text-xs text-slate-300 min-w-[640px]">
