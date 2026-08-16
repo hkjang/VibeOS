@@ -14,7 +14,9 @@ import {
   RefreshCw,
   Plus,
   Compass,
+  Scale,
 } from 'lucide-react';
+import { ProjectCompareModal } from './ProjectCompareModal';
 
 interface DomainCluster {
   id: string;
@@ -72,6 +74,7 @@ export const ProjectSynergyGraph: React.FC = () => {
   const [selectedCluster, setSelectedCluster] = useState<string>('all');
   const [hoveredNode, setHoveredNode] = useState<ProjectItem | null>(null);
   const [hoverPos, setHoverPos] = useState<{ x: number; y: number } | null>(null);
+  const [isCompareOpen, setIsCompareOpen] = useState<boolean>(false);
 
   // Mashup Modal state
   const [mashupPicks, setMashupPicks] = useState<string[]>(['opengajae', 'jask']);
@@ -305,8 +308,16 @@ export const ProjectSynergyGraph: React.FC = () => {
           </p>
         </div>
 
-        {/* Cluster Filter Pills */}
-        <div className="flex items-center gap-1.5 flex-wrap text-xs font-mono">
+        {/* Cluster Filter Pills & Compare Button */}
+        <div className="flex items-center gap-2 flex-wrap text-xs font-mono">
+          <button
+            onClick={() => setIsCompareOpen(true)}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-gradient-to-r from-cyan-500/20 to-violet-500/20 text-cyan-300 border border-cyan-500/40 font-bold hover:scale-[1.02] transition-all"
+          >
+            <Scale className="w-3.5 h-3.5" />
+            <span>1:1 Compare Arena</span>
+          </button>
+
           <button
             onClick={() => setSelectedCluster('all')}
             className={`px-3 py-1.5 rounded-xl border transition-all ${
@@ -446,6 +457,12 @@ export const ProjectSynergyGraph: React.FC = () => {
           </div>
         )}
       </div>
+
+      {/* 1:1 Project Comparison Modal */}
+      <ProjectCompareModal
+        isOpen={isCompareOpen}
+        onClose={() => setIsCompareOpen(false)}
+      />
     </div>
   );
 };

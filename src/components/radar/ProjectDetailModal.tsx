@@ -14,8 +14,12 @@ import {
   Trash2,
   ExternalLink,
   Code2,
+  FileCode,
+  Terminal,
 } from 'lucide-react';
 import { GitHubIcon } from '../common/GitHubIcon';
+import { openInEditor } from '../../utils/editorLauncher';
+import { ProjectReadmeModal } from './ProjectReadmeModal';
 
 interface ProjectDetailModalProps {
   project: ProjectItem;
@@ -38,6 +42,7 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({ project,
   const [activeTab, setActiveTab] = useState<'overview' | 'dna' | 'assets' | 'lifecycle'>('overview');
   const [archiveReason, setArchiveReason] = useState('');
   const [showArchiveInput, setShowArchiveInput] = useState(false);
+  const [isReadmeOpen, setIsReadmeOpen] = useState(false);
 
   // Mined assets for this project
   const projectAssets = assets.filter((a) => a.sourceProject === project.name);
@@ -78,6 +83,25 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({ project,
                   <ExternalLink className="w-3 h-3" />
                 </a>
               )}
+
+              {/* Open in VS Code Button */}
+              <button
+                onClick={() => openInEditor(project.name, 'vscode')}
+                className="flex items-center gap-1 text-xs text-sky-400 hover:text-sky-300 font-mono bg-sky-500/10 px-2 py-0.5 rounded-lg border border-sky-500/20"
+                title={`Open /mnt/d/project/${project.name} in VS Code`}
+              >
+                <Terminal className="w-3 h-3" />
+                <span>VS Code</span>
+              </button>
+
+              {/* Generate README Button */}
+              <button
+                onClick={() => setIsReadmeOpen(true)}
+                className="flex items-center gap-1 text-xs text-violet-400 hover:text-violet-300 font-mono bg-violet-500/10 px-2 py-0.5 rounded-lg border border-violet-500/20"
+              >
+                <FileCode className="w-3 h-3" />
+                <span>AI README</span>
+              </button>
             </div>
             <p className="text-xs sm:text-sm text-slate-300 max-w-2xl">{project.description}</p>
           </div>
@@ -502,6 +526,13 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({ project,
           )}
         </div>
       </div>
+
+      {/* AI README Generator Modal */}
+      <ProjectReadmeModal
+        project={project}
+        isOpen={isReadmeOpen}
+        onClose={() => setIsReadmeOpen(false)}
+      />
     </div>
   );
 };

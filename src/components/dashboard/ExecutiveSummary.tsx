@@ -16,6 +16,7 @@ import {
 } from 'lucide-react';
 import { StageBadge } from '../common/StageBadge';
 import { ScoreBadge } from '../common/ScoreBadge';
+import { ContributionHeatmap } from './ContributionHeatmap';
 import {
   ResponsiveContainer,
   BarChart,
@@ -198,6 +199,9 @@ export const ExecutiveSummary: React.FC = () => {
           </div>
         </div>
       </section>
+
+      {/* 365-Day Contribution & Activity Heatmap */}
+      <ContributionHeatmap />
 
       {/* TODAY High-Leverage Actions & Monthly Synthesis */}
       <section className="grid grid-cols-1 lg:grid-cols-3 gap-5 sm:gap-6" aria-label="Today Actions">
