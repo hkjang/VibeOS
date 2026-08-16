@@ -78,7 +78,7 @@ interface VibeState {
   persistState: () => void;
 }
 
-const STORAGE_KEY = 'vibeos_state_v1';
+const STORAGE_KEY = 'vibeos_state_v2';
 
 function loadPersistedState(): Partial<VibeState> {
   const detectedLang = detectBrowserLanguage();

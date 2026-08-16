@@ -61,7 +61,7 @@ export interface ProjectItem {
   score: ProjectScore;
   assets: string[];
   nextAction: string;
-  nextActionCategory: 'code' | 'validation' | 'refactor' | 'deploy' | 'marketing';
+  nextActionCategory: 'code' | 'validation' | 'refactor' | 'deploy' | 'marketing' | 'feature' | 'assetize';
   dna: ProjectDNA;
   postMortem?: PostMortem;
   stars?: number;
