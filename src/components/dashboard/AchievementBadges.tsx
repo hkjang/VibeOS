@@ -15,6 +15,8 @@ import {
   HeartPulse,
 } from 'lucide-react';
 
+import { soundEngine } from '../../utils/soundEngine';
+
 interface Badge {
   id: string;
   icon: React.ReactNode;
@@ -171,10 +173,17 @@ export const AchievementBadges: React.FC = () => {
         {badges.map((badge) => (
           <div
             key={badge.id}
-            className={`p-3.5 rounded-2xl border transition-all space-y-2 ${
+            onClick={() => {
+              if (badge.unlocked) {
+                soundEngine.playQuestComplete();
+              } else {
+                soundEngine.playClick();
+              }
+            }}
+            className={`p-3.5 rounded-2xl border transition-all space-y-2 cursor-pointer ${
               badge.unlocked
-                ? `${tierBg[badge.tier]} hover:scale-[1.02] cursor-default`
-                : 'bg-slate-950/60 border-slate-800/60 opacity-40 grayscale'
+                ? `${tierBg[badge.tier]} hover:scale-[1.03] hover:shadow-lg active:scale-95`
+                : 'bg-slate-950/60 border-slate-800/60 opacity-40 grayscale hover:opacity-60'
             }`}
           >
             {/* Icon */}

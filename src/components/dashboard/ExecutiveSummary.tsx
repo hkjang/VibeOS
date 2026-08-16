@@ -21,6 +21,8 @@ import { RoiLeverageCalculator } from './RoiLeverageCalculator';
 import { ProjectTimeline } from './ProjectTimeline';
 import { AchievementBadges } from './AchievementBadges';
 import { TechStackRadar } from './TechStackRadar';
+import { DeveloperRpgHud } from './DeveloperRpgHud';
+import { DeveloperQuestBoard } from './DeveloperQuestBoard';
 import { LiveActivityFeed } from './LiveActivityFeed';
 import { ParticleField } from '../visual/ParticleField';
 import {
@@ -208,6 +210,9 @@ export const ExecutiveSummary: React.FC = () => {
         </div>
       </section>
 
+      {/* Cyberpunk Developer RPG HUD & Character Progression */}
+      <DeveloperRpgHud />
+
       {/* 365-Day Contribution & Activity Heatmap */}
       <ContributionHeatmap />
 
@@ -216,6 +221,9 @@ export const ExecutiveSummary: React.FC = () => {
 
       {/* Developer Growth Timeline */}
       <ProjectTimeline />
+
+      {/* Daily Quests & Weekly Boss Bounty Board */}
+      <DeveloperQuestBoard />
 
       {/* Achievement Badge Collection */}
       <AchievementBadges />
