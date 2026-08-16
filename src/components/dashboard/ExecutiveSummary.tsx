@@ -23,6 +23,7 @@ import { AchievementBadges } from './AchievementBadges';
 import { TechStackRadar } from './TechStackRadar';
 import { DeveloperRpgHud } from './DeveloperRpgHud';
 import { DeveloperQuestBoard } from './DeveloperQuestBoard';
+import { TeslaMazeGame } from './TeslaMazeGame';
 import { LiveActivityFeed } from './LiveActivityFeed';
 import { ParticleField } from '../visual/ParticleField';
 import {
@@ -221,6 +222,9 @@ export const ExecutiveSummary: React.FC = () => {
 
       {/* Developer Growth Timeline */}
       <ProjectTimeline />
+
+      {/* Tesla Model Y Cyber Maze FSD Autopilot Mini-Game */}
+      <TeslaMazeGame />
 
       {/* Daily Quests & Weekly Boss Bounty Board */}
       <DeveloperQuestBoard />

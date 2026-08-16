@@ -206,6 +206,77 @@ class SoundEngine {
     osc.start();
     osc.stop(ctx.currentTime + 0.12);
   }
+
+  // Tesla FSD Autopilot Double-Chime (Bing-BING)
+  public playTeslaFsdEngage() {
+    if (this.isMuted) return;
+    const ctx = this.getContext();
+    if (!ctx) return;
+
+    const chime1 = ctx.createOscillator();
+    const gain1 = ctx.createGain();
+    chime1.type = 'sine';
+    chime1.frequency.setValueAtTime(587.33, ctx.currentTime); // D5
+    gain1.gain.setValueAtTime(0.1, ctx.currentTime);
+    gain1.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.18);
+    chime1.connect(gain1);
+    gain1.connect(ctx.destination);
+    chime1.start(ctx.currentTime);
+    chime1.stop(ctx.currentTime + 0.18);
+
+    const chime2 = ctx.createOscillator();
+    const gain2 = ctx.createGain();
+    chime2.type = 'sine';
+    chime2.frequency.setValueAtTime(880.0, ctx.currentTime + 0.15); // A5
+    gain2.gain.setValueAtTime(0.12, ctx.currentTime + 0.15);
+    gain2.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.45);
+    chime2.connect(gain2);
+    gain2.connect(ctx.destination);
+    chime2.start(ctx.currentTime + 0.15);
+    chime2.stop(ctx.currentTime + 0.45);
+  }
+
+  // Tesla Supercharger battery pickup
+  public playTeslaSupercharge() {
+    if (this.isMuted) return;
+    const ctx = this.getContext();
+    if (!ctx) return;
+
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(300, ctx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(1200, ctx.currentTime + 0.35);
+
+    gain.gain.setValueAtTime(0.08, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.35);
+
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.start();
+    osc.stop(ctx.currentTime + 0.35);
+  }
+
+  // Tesla Electric Motor acceleration blip
+  public playTeslaDrive() {
+    if (this.isMuted) return;
+    const ctx = this.getContext();
+    if (!ctx) return;
+
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = 'triangle';
+    osc.frequency.setValueAtTime(180, ctx.currentTime);
+    osc.frequency.linearRampToValueAtTime(320, ctx.currentTime + 0.08);
+
+    gain.gain.setValueAtTime(0.04, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.08);
+
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.start();
+    osc.stop(ctx.currentTime + 0.08);
+  }
 }
 
 export const soundEngine = new SoundEngine();
