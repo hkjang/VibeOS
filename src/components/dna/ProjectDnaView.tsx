@@ -12,6 +12,7 @@ import {
   ShieldAlert,
 } from 'lucide-react';
 import { StageBadge } from '../common/StageBadge';
+import { DependencyAuditor } from './DependencyAuditor';
 
 export const ProjectDnaView: React.FC = () => {
   const { projects, setSelectedProjectId, setActiveTab } = useVibeStore();
@@ -189,6 +190,9 @@ export const ProjectDnaView: React.FC = () => {
           ))}
         </div>
       </div>
+
+      {/* Cross-Project Dependency & Library Convergence Auditor */}
+      <DependencyAuditor />
 
       {/* Project Architectural Profiles */}
       <div className="space-y-3.5 sm:space-y-4">
