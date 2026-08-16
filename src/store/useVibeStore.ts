@@ -16,6 +16,7 @@ import {
 } from '../data/mockData';
 import { generatePostMortem, mineAssetsFromProject, analyzeProjectMeta } from '../services/aiAnalyzer';
 import { githubService } from '../services/githubService';
+import { detectBrowserLanguage, syncDocumentLanguage } from '../i18n/detectLanguage';
 
 interface VibeState {
   projects: ProjectItem[];
@@ -80,6 +81,7 @@ interface VibeState {
 const STORAGE_KEY = 'vibeos_state_v1';
 
 function loadPersistedState(): Partial<VibeState> {
+  const detectedLang = detectBrowserLanguage();
   try {
     const saved = localStorage.getItem(STORAGE_KEY);
     if (saved) {
@@ -89,7 +91,7 @@ function loadPersistedState(): Partial<VibeState> {
         assets: parsed.assets || INITIAL_ASSETS,
         ideas: parsed.ideas || INITIAL_IDEAS,
         githubAuth: parsed.githubAuth || { token: '', username: '', isValid: false },
-        language: parsed.language || 'ko',
+        language: parsed.language || detectedLang,
       };
     }
   } catch (e) {
@@ -100,7 +102,7 @@ function loadPersistedState(): Partial<VibeState> {
     assets: INITIAL_ASSETS,
     ideas: INITIAL_IDEAS,
     githubAuth: { token: '', username: '', isValid: false },
-    language: 'ko',
+    language: detectedLang,
   };
 }
 
@@ -135,6 +137,10 @@ const initialState = loadPersistedState();
 const initialProjects = initialState.projects || INITIAL_PROJECTS;
 const initialAssets = initialState.assets || INITIAL_ASSETS;
 const initialIdeas = initialState.ideas || INITIAL_IDEAS;
+const initialLang = initialState.language || 'ko';
+
+// Synchronize initial document language and meta tags
+syncDocumentLanguage(initialLang);
 
 export const useVibeStore = create<VibeState>((set, get) => ({
   projects: initialProjects,
@@ -150,10 +156,11 @@ export const useVibeStore = create<VibeState>((set, get) => ({
   toastMessage: null,
   isSettingsOpen: false,
   isNewProjectOpen: false,
-  language: initialState.language || 'ko',
+  language: initialLang,
 
   setLanguage: (lang) => {
     set({ language: lang });
+    syncDocumentLanguage(lang);
     get().persistState();
   },
   setActiveTab: (tab) => set({ activeTab: tab }),
