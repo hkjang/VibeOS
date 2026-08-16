@@ -27,8 +27,167 @@ import {
 } from 'lucide-react';
 
 export type TowerType = 'archer' | 'barracks' | 'mage' | 'artillery';
-export type EnemyType = 'goblin' | 'orc' | 'flying' | 'shaman' | 'boss';
+export type EnemyType =
+  | 'goblin'
+  | 'plague_rat'
+  | 'orc'
+  | 'skeleton_knight'
+  | 'worg_rider'
+  | 'flying'
+  | 'wyvern'
+  | 'shaman'
+  | 'warlock'
+  | 'golem'
+  | 'magma_giant'
+  | 'boss';
 export type HeroType = 'paladin' | 'ranger' | 'archmage';
+
+export interface EnemyBestiaryEntry {
+  type: EnemyType;
+  name: string;
+  category: string;
+  icon: string;
+  desc: string;
+  hp: string;
+  speed: string;
+  armor: string;
+  weakness: string;
+}
+
+export const MONSTER_BESTIARY: Record<EnemyType, EnemyBestiaryEntry> = {
+  goblin: {
+    type: 'goblin',
+    name: '고블린 척후병',
+    category: '경보병 / 빠른 돌격',
+    icon: '🐺',
+    desc: '빠른 기동력으로 떼지어 진격하는 기본 고블린입니다. 체력이 낮습니다.',
+    hp: '45~120',
+    speed: '빠름 (1.7)',
+    armor: '없음 (0%)',
+    weakness: '궁수 타워 & 박격포 광역',
+  },
+  plague_rat: {
+    type: 'plague_rat',
+    name: '역병 쥐 떼',
+    category: '초고속 스웜',
+    icon: '🐀',
+    desc: '엄청난 속도로 질주하여 방어선을 돌파하려는 사나운 역병 쥐 무리입니다.',
+    hp: '30~80',
+    speed: '초고속 (2.1)',
+    armor: '없음 (0%)',
+    weakness: '박격포 대포 광역 스플래시',
+  },
+  orc: {
+    type: 'orc',
+    name: '철갑 오크 전사',
+    category: '중장갑 근접 전사',
+    icon: '🛡️',
+    desc: '단단한 강철 갑주와 방패를 장착하여 물리 화살 피해를 55% 경감합니다.',
+    hp: '120~320',
+    speed: '보통 (0.85)',
+    armor: '중갑 (55%)',
+    weakness: '아케인 마법탑 (방어력 무시)',
+  },
+  skeleton_knight: {
+    type: 'skeleton_knight',
+    name: '언데드 해골 기사',
+    category: '불사의 방패병',
+    icon: '💀',
+    desc: '뼈로 이루어진 사령 기사로 높은 물리 저항력과 방패 방어막을 보유합니다.',
+    hp: '140~350',
+    speed: '보통 (0.8)',
+    armor: '고급 중갑 (60%)',
+    weakness: '마법탑 & 성기사 성검',
+  },
+  worg_rider: {
+    type: 'worg_rider',
+    name: '돌진 늑대 기병',
+    category: '돌격 기병',
+    icon: '🐗',
+    desc: '거대한 늑대를 타고 도로 위 병사를 뛰어넘어 돌진하는 기습 기병입니다.',
+    hp: '90~240',
+    speed: '매우 빠름 (1.9)',
+    armor: '경갑 (25%)',
+    weakness: '병영 기사단 저지 & 궁수 집중사격',
+  },
+  flying: {
+    type: 'flying',
+    name: '심연의 비행 가고일',
+    category: '공중 비행',
+    icon: '🦇',
+    desc: '하늘을 날아 도로 위 병영 기사들을 완전히 무시하고 지나칩니다.',
+    hp: '55~150',
+    speed: '빠름 (1.85)',
+    armor: '없음 (공중 전용)',
+    weakness: '궁수 타워 & 마법사 타워 (필수)',
+  },
+  wyvern: {
+    type: 'wyvern',
+    name: '빙하 서리 와이번',
+    category: '정예 공중 비행',
+    icon: '🦅',
+    desc: '얼어붙은 날개로 날아오르는 소형 드래곤으로 높은 비행 체력을 가집니다.',
+    hp: '110~280',
+    speed: '매우 빠름 (1.95)',
+    armor: '공중 마법저항 (30%)',
+    weakness: '궁수 타워 집중 사격',
+  },
+  shaman: {
+    type: 'shaman',
+    name: '어둠의 트롤 주술사',
+    category: '지원 주술사 / 치유',
+    icon: '👾',
+    desc: '주변 아군 몬스터들의 체력을 회복시키며 마법 저항력(45%)을 가집니다.',
+    hp: '95~260',
+    speed: '보통 (1.1)',
+    armor: '마법 저항 (45%)',
+    weakness: '물리 궁수 & 대포 집중',
+  },
+  warlock: {
+    type: 'warlock',
+    name: '화염 흑마법사',
+    category: '원거리 마법 공격',
+    icon: '🧙',
+    desc: '아군 병사들을 원거리에서 불태우는 저주받은 화염구를 난사합니다.',
+    hp: '80~220',
+    speed: '느림 (0.9)',
+    armor: '마법 보호막 (40%)',
+    weakness: '영웅 돌격 & 궁수 사격',
+  },
+  golem: {
+    type: 'golem',
+    name: '바위 암석 골렘',
+    category: '초중장갑 파괴자',
+    icon: '🪨',
+    desc: '거대한 화강암 바위로 만들어져 물리 방어력이 75%에 달하는 거인입니다.',
+    hp: '300~750',
+    speed: '매우 느림 (0.55)',
+    armor: '극중갑 (75%)',
+    weakness: '아케인 마법탑 (치명타)',
+  },
+  magma_giant: {
+    type: 'magma_giant',
+    name: '마그마 흑요석 거인',
+    category: '화염 면역 거신',
+    icon: '🌋',
+    desc: '불타는 마그마 대지에서 솟아난 거신으로 폭발 화염 피해에 면역입니다.',
+    hp: '350~850',
+    speed: '느림 (0.6)',
+    armor: '화염/폭발 면역 (65%)',
+    weakness: '아케인 마법사 & 성기사',
+  },
+  boss: {
+    type: 'boss',
+    name: '스테이지 최종 보스',
+    category: '재앙급 지휘관 보스',
+    icon: '👑',
+    desc: '스테이지의 최종 관문을 수호하는 재앙급 거대 보스로 막강한 체력을 자랑합니다.',
+    hp: '650~2500+',
+    speed: '보스 (0.6)',
+    armor: '보스 복합장갑 (45%)',
+    weakness: '전 타워 총력전 & 메테오 폭격',
+  },
+};
 
 interface Waypoint {
   x: number;
@@ -513,7 +672,9 @@ export const KingdomRushTowerDefense: React.FC = () => {
     [showToast]
   );
 
-  // Start Next Wave
+  const [isOpenBestiary, setIsOpenBestiary] = useState<boolean>(false);
+
+  // Start Next Wave with Diverse 12-Enemy Types based on Stage Theme
   const startNextWave = useCallback(() => {
     if (isWaveActive) return;
     setIsWaveActive(true);
@@ -523,39 +684,82 @@ export const KingdomRushTowerDefense: React.FC = () => {
     const count = 6 + wave * 3;
     const isBossWave = wave === currentStage.maxWaves;
 
+    // Stage-specific monster pools
+    const poolByTheme: Record<string, EnemyType[]> = {
+      forest: ['goblin', 'plague_rat', 'orc', 'worg_rider', 'flying'],
+      volcano: ['orc', 'warlock', 'magma_giant', 'golem', 'shaman'],
+      snow: ['wyvern', 'skeleton_knight', 'flying', 'shaman', 'golem'],
+      abyss: ['skeleton_knight', 'worg_rider', 'wyvern', 'warlock', 'magma_giant', 'golem'],
+    };
+
+    const currentPool = poolByTheme[currentStage.theme] || poolByTheme.forest;
+
     for (let i = 0; i < count; i++) {
-      const typeRand = Math.random();
-      let type: EnemyType = 'goblin';
-      let hp = 45 + wave * 14;
+      // Pick enemy type from pool weighted by wave
+      const chosenType = currentPool[Math.floor(Math.random() * Math.min(currentPool.length, 2 + Math.floor(wave / 2)))];
+
+      let hp = 50 + wave * 15;
       let speed = 1.6;
       let armor = 0;
       let magicResist = 0;
       let isFlying = false;
       let rewardGold = 14;
 
-      if (typeRand > 0.7) {
-        type = 'orc';
-        hp = 120 + wave * 28;
+      if (chosenType === 'plague_rat') {
+        hp = 35 + wave * 10;
+        speed = 2.1;
+        rewardGold = 10;
+      } else if (chosenType === 'orc') {
+        hp = 130 + wave * 30;
         speed = 0.85;
         armor = 0.55;
         rewardGold = 28;
-      } else if (typeRand > 0.5 && wave >= 2) {
-        type = 'flying';
-        hp = 55 + wave * 12;
+      } else if (chosenType === 'skeleton_knight') {
+        hp = 140 + wave * 32;
+        speed = 0.8;
+        armor = 0.6;
+        rewardGold = 32;
+      } else if (chosenType === 'worg_rider') {
+        hp = 95 + wave * 22;
+        speed = 1.9;
+        armor = 0.25;
+        rewardGold = 26;
+      } else if (chosenType === 'flying') {
+        hp = 55 + wave * 14;
         speed = 1.85;
         isFlying = true;
-        rewardGold = 20;
-      } else if (typeRand > 0.35 && wave >= 3) {
-        type = 'shaman';
-        hp = 95 + wave * 18;
+        rewardGold = 22;
+      } else if (chosenType === 'wyvern') {
+        hp = 110 + wave * 25;
+        speed = 1.95;
+        isFlying = true;
+        magicResist = 0.3;
+        rewardGold = 35;
+      } else if (chosenType === 'shaman') {
+        hp = 100 + wave * 20;
         speed = 1.1;
         magicResist = 0.45;
-        rewardGold = 24;
+        rewardGold = 25;
+      } else if (chosenType === 'warlock') {
+        hp = 85 + wave * 18;
+        speed = 0.95;
+        magicResist = 0.4;
+        rewardGold = 28;
+      } else if (chosenType === 'golem') {
+        hp = 300 + wave * 60;
+        speed = 0.55;
+        armor = 0.75;
+        rewardGold = 50;
+      } else if (chosenType === 'magma_giant') {
+        hp = 350 + wave * 70;
+        speed = 0.6;
+        armor = 0.65;
+        rewardGold = 55;
       }
 
       waveEnemies.push({
-        id: `wave-${wave}-enemy-${i}`,
-        type,
+        id: `wave-${wave}-enemy-${i}-${chosenType}`,
+        type: chosenType,
         x: currentStage.waypoints[0].x - i * 38,
         y: currentStage.waypoints[0].y + (Math.random() * 12 - 6),
         waypointIndex: 1,
@@ -575,16 +779,16 @@ export const KingdomRushTowerDefense: React.FC = () => {
       waveEnemies.push({
         id: `wave-${wave}-BOSS`,
         type: 'boss',
-        x: currentStage.waypoints[0].x - (count + 1) * 40,
+        x: currentStage.waypoints[0].x - (count + 1) * 42,
         y: currentStage.waypoints[0].y,
         waypointIndex: 1,
-        hp: 650 + wave * 180,
-        maxHp: 650 + wave * 180,
-        speed: 0.6,
-        armor: 0.45,
-        magicResist: 0.35,
+        hp: 750 + wave * 200,
+        maxHp: 750 + wave * 200,
+        speed: 0.55,
+        armor: 0.5,
+        magicResist: 0.4,
         isFlying: false,
-        rewardGold: 150,
+        rewardGold: 180,
         blockedBySoldierId: null,
         attackCooldown: 0,
       });
@@ -1269,7 +1473,7 @@ export const KingdomRushTowerDefense: React.FC = () => {
       ctx.fillText(`👑 ${currentHeroInfo.name}`, heroPos.x, heroPos.y - 22 + heroBob);
       ctx.restore();
 
-      // 6. Draw Realistic Enemies & Monsters (고블린, 오크, 가고일, 주술사, 보스)
+      // 6. Draw Realistic Enemies & Monsters (12종 다채로운 몬스터 스프라이트 렌더링)
       enemiesRef.current.forEach((en) => {
         const isBoss = en.type === 'boss';
         const eBob = Math.sin(gameTick * 4 + Number(en.id.slice(-1) || 0)) * 1.5;
@@ -1285,12 +1489,11 @@ export const KingdomRushTowerDefense: React.FC = () => {
           // 🐺 Goblin Runner: Green hunched body, pointed ears, rusty daggers
           ctx.fillStyle = '#15803D';
           ctx.fillRect(en.x - 4, en.y - 6 + eBob, 8, 8);
-          // Head with Pointy Goblin Ears
           ctx.fillStyle = '#22C55E';
           ctx.beginPath();
           ctx.arc(en.x, en.y - 8 + eBob, 4, 0, Math.PI * 2);
           ctx.fill();
-          // Pointy Ears
+          // Ears
           ctx.beginPath();
           ctx.moveTo(en.x - 7, en.y - 9 + eBob);
           ctx.lineTo(en.x - 3, en.y - 11 + eBob);
@@ -1306,16 +1509,30 @@ export const KingdomRushTowerDefense: React.FC = () => {
           ctx.moveTo(en.x + 4, en.y - 3 + eBob);
           ctx.lineTo(en.x + 8, en.y - 8 + eBob);
           ctx.stroke();
+        } else if (en.type === 'plague_rat') {
+          // 🐀 Plague Rat: Scurrying brown rat with red eyes and tail
+          ctx.fillStyle = '#78350F';
+          ctx.beginPath();
+          ctx.ellipse(en.x, en.y - 4 + eBob, 7, 4, 0, 0, Math.PI * 2);
+          ctx.fill();
+          // Snout & Red Eye
+          ctx.fillStyle = '#DC2626';
+          ctx.fillRect(en.x + 4, en.y - 6 + eBob, 1.5, 1.5);
+          // Tail
+          ctx.strokeStyle = '#D97706';
+          ctx.lineWidth = 1.5;
+          ctx.beginPath();
+          ctx.moveTo(en.x - 6, en.y - 3 + eBob);
+          ctx.quadraticCurveTo(en.x - 10, en.y - 8 + eBob, en.x - 12, en.y - 3 + eBob);
+          ctx.stroke();
         } else if (en.type === 'orc') {
           // 🛡️ Armored Orc Brute: Muscular dark olive, Horned helmet, Spiked Battle Axe
           ctx.fillStyle = '#3F6212';
           ctx.fillRect(en.x - 7, en.y - 8 + eBob, 14, 11);
-          // Iron Horned Helmet
           ctx.fillStyle = '#334155';
           ctx.beginPath();
           ctx.arc(en.x, en.y - 11 + eBob, 6, 0, Math.PI * 2);
           ctx.fill();
-          // White Horns
           ctx.fillStyle = '#F8FAFC';
           ctx.beginPath();
           ctx.moveTo(en.x - 8, en.y - 16 + eBob);
@@ -1325,12 +1542,52 @@ export const KingdomRushTowerDefense: React.FC = () => {
           ctx.lineTo(en.x + 4, en.y - 12 + eBob);
           ctx.lineTo(en.x + 6, en.y - 9 + eBob);
           ctx.fill();
-          // Massive Spiked Axe
           ctx.strokeStyle = '#1E293B';
           ctx.lineWidth = 2.5;
           ctx.beginPath();
           ctx.moveTo(en.x + 6, en.y + 4 + eBob);
           ctx.lineTo(en.x + 11, en.y - 14 + eBob);
+          ctx.stroke();
+        } else if (en.type === 'skeleton_knight') {
+          // 💀 Skeleton Deathknight: White skull, cyan eyes, iron heater shield
+          ctx.fillStyle = '#E2E8F0';
+          ctx.fillRect(en.x - 4, en.y - 6 + eBob, 8, 8);
+          // Skull
+          ctx.fillStyle = '#F8FAFC';
+          ctx.beginPath();
+          ctx.arc(en.x, en.y - 9 + eBob, 4.5, 0, Math.PI * 2);
+          ctx.fill();
+          // Cyan glowing eyes
+          ctx.fillStyle = '#38BDF8';
+          ctx.fillRect(en.x - 2, en.y - 10 + eBob, 1.5, 1.5);
+          ctx.fillRect(en.x + 1, en.y - 10 + eBob, 1.5, 1.5);
+          // Iron Shield
+          ctx.fillStyle = '#475569';
+          ctx.fillRect(en.x - 8, en.y - 8 + eBob, 4, 8);
+          // Bone Sword
+          ctx.strokeStyle = '#F1F5F9';
+          ctx.lineWidth = 2;
+          ctx.beginPath();
+          ctx.moveTo(en.x + 4, en.y + 2 + eBob);
+          ctx.lineTo(en.x + 9, en.y - 9 + eBob);
+          ctx.stroke();
+        } else if (en.type === 'worg_rider') {
+          // 🐗 Worg Rider: Grey wolf carrying a goblin raider
+          ctx.fillStyle = '#4B5563';
+          ctx.beginPath();
+          ctx.ellipse(en.x, en.y - 4 + eBob, 10, 6, 0, 0, Math.PI * 2);
+          ctx.fill();
+          // Goblin Rider on top
+          ctx.fillStyle = '#16A34A';
+          ctx.beginPath();
+          ctx.arc(en.x - 1, en.y - 11 + eBob, 3.5, 0, Math.PI * 2);
+          ctx.fill();
+          // Spear
+          ctx.strokeStyle = '#CA8A04';
+          ctx.lineWidth = 1.5;
+          ctx.beginPath();
+          ctx.moveTo(en.x - 2, en.y - 6 + eBob);
+          ctx.lineTo(en.x + 10, en.y - 16 + eBob);
           ctx.stroke();
         } else if (en.type === 'flying') {
           // 🦇 Flying Gargoyle: Stone demon flapping bat wings
@@ -1339,7 +1596,6 @@ export const KingdomRushTowerDefense: React.FC = () => {
           ctx.beginPath();
           ctx.arc(en.x, en.y - 4, 6, 0, Math.PI * 2);
           ctx.fill();
-          // Flapping Bat Wings
           ctx.fillStyle = '#334155';
           ctx.beginPath();
           ctx.moveTo(en.x - 14, en.y - 12 + wingAngle);
@@ -1349,27 +1605,43 @@ export const KingdomRushTowerDefense: React.FC = () => {
           ctx.lineTo(en.x + 4, en.y - 4);
           ctx.lineTo(en.x + 10, en.y + 2 + wingAngle);
           ctx.fill();
-          // Glowing Red Eyes
           ctx.fillStyle = '#EF4444';
           ctx.fillRect(en.x - 3, en.y - 5, 2, 2);
           ctx.fillRect(en.x + 1, en.y - 5, 2, 2);
+        } else if (en.type === 'wyvern') {
+          // 🦅 Frost Wyvern: Ice dragon with cyan crystal wings
+          const wWing = Math.sin(gameTick * 7) * 7;
+          ctx.fillStyle = '#0284C7';
+          ctx.beginPath();
+          ctx.arc(en.x, en.y - 4, 7, 0, Math.PI * 2);
+          ctx.fill();
+          // Icy Wings
+          ctx.fillStyle = '#38BDF8';
+          ctx.shadowColor = '#38BDF8';
+          ctx.shadowBlur = 8;
+          ctx.beginPath();
+          ctx.moveTo(en.x - 16, en.y - 14 + wWing);
+          ctx.lineTo(en.x - 5, en.y - 4);
+          ctx.lineTo(en.x - 12, en.y + 3 + wWing);
+          ctx.moveTo(en.x + 16, en.y - 14 + wWing);
+          ctx.lineTo(en.x + 5, en.y - 4);
+          ctx.lineTo(en.x + 12, en.y + 3 + wWing);
+          ctx.fill();
+          ctx.shadowBlur = 0;
         } else if (en.type === 'shaman') {
           // 👾 Troll Shaman: Skull Mask, Bone Staff with Poison Smoke
           ctx.fillStyle = '#581C87';
           ctx.fillRect(en.x - 5, en.y - 7 + eBob, 10, 10);
-          // Skull Mask
           ctx.fillStyle = '#F8FAFC';
           ctx.beginPath();
           ctx.arc(en.x, en.y - 10 + eBob, 5, 0, Math.PI * 2);
           ctx.fill();
-          // Bone Skull Staff
           ctx.strokeStyle = '#D97706';
           ctx.lineWidth = 2;
           ctx.beginPath();
           ctx.moveTo(en.x + 6, en.y + 4 + eBob);
           ctx.lineTo(en.x + 8, en.y - 14 + eBob);
           ctx.stroke();
-          // Poison Green Orb
           ctx.fillStyle = '#22C55E';
           ctx.shadowColor = '#22C55E';
           ctx.shadowBlur = 8;
@@ -1377,11 +1649,62 @@ export const KingdomRushTowerDefense: React.FC = () => {
           ctx.arc(en.x + 8, en.y - 15 + eBob, 3.5, 0, Math.PI * 2);
           ctx.fill();
           ctx.shadowBlur = 0;
+        } else if (en.type === 'warlock') {
+          // 🧙 Infernal Warlock: Red hooded robe, floating dark fireball
+          ctx.fillStyle = '#991B1B';
+          ctx.fillRect(en.x - 5, en.y - 7 + eBob, 10, 10);
+          ctx.fillStyle = '#B91C1C';
+          ctx.beginPath();
+          ctx.arc(en.x, en.y - 10 + eBob, 4.5, 0, Math.PI * 2);
+          ctx.fill();
+          // Floating Dark Fireball
+          ctx.fillStyle = '#F97316';
+          ctx.shadowColor = '#EF4444';
+          ctx.shadowBlur = 10;
+          ctx.beginPath();
+          ctx.arc(en.x + 7, en.y - 12 + eBob, 4, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.shadowBlur = 0;
+        } else if (en.type === 'golem') {
+          // 🪨 Rock Golem: Massive boulder torso & stone fists
+          ctx.fillStyle = '#64748B';
+          ctx.fillRect(en.x - 10, en.y - 12 + eBob, 20, 16);
+          // Boulder Head
+          ctx.fillStyle = '#475569';
+          ctx.beginPath();
+          ctx.arc(en.x, en.y - 15 + eBob, 7, 0, Math.PI * 2);
+          ctx.fill();
+          // Glowing Eyes
+          ctx.fillStyle = '#F59E0B';
+          ctx.fillRect(en.x - 3, en.y - 16 + eBob, 2, 2);
+          ctx.fillRect(en.x + 1, en.y - 16 + eBob, 2, 2);
+          // Stone Fists
+          ctx.fillStyle = '#334155';
+          ctx.beginPath();
+          ctx.arc(en.x - 12, en.y - 3 + eBob, 5, 0, Math.PI * 2);
+          ctx.arc(en.x + 12, en.y - 3 + eBob, 5, 0, Math.PI * 2);
+          ctx.fill();
+        } else if (en.type === 'magma_giant') {
+          // 🌋 Magma Giant: Obsidian body with lava fissures
+          ctx.fillStyle = '#1C1917';
+          ctx.fillRect(en.x - 11, en.y - 14 + eBob, 22, 18);
+          // Magma cracks
+          ctx.strokeStyle = '#F97316';
+          ctx.lineWidth = 2;
+          ctx.beginPath();
+          ctx.moveTo(en.x - 7, en.y - 10 + eBob);
+          ctx.lineTo(en.x, en.y - 4 + eBob);
+          ctx.lineTo(en.x + 7, en.y - 10 + eBob);
+          ctx.stroke();
+          // Head with fire horns
+          ctx.fillStyle = '#EA580C';
+          ctx.beginPath();
+          ctx.arc(en.x, en.y - 18 + eBob, 8, 0, Math.PI * 2);
+          ctx.fill();
         } else if (isBoss) {
           // 👑 GIGA BOSS TITAN: 3x Colossal Magma Demon Juggernaut
           ctx.fillStyle = '#18181B';
           ctx.fillRect(en.x - 16, en.y - 18 + eBob, 32, 24);
-          // Glowing Magma Fissures
           ctx.strokeStyle = '#EF4444';
           ctx.lineWidth = 2;
           ctx.beginPath();
@@ -1389,12 +1712,10 @@ export const KingdomRushTowerDefense: React.FC = () => {
           ctx.lineTo(en.x, en.y - 6 + eBob);
           ctx.lineTo(en.x + 10, en.y - 14 + eBob);
           ctx.stroke();
-          // Colossal Horned Skull
           ctx.fillStyle = '#7F1D1D';
           ctx.beginPath();
           ctx.arc(en.x, en.y - 24 + eBob, 12, 0, Math.PI * 2);
           ctx.fill();
-          // Burning Demon Horns
           ctx.fillStyle = '#DC2626';
           ctx.shadowColor = '#EF4444';
           ctx.shadowBlur = 10;
@@ -1407,7 +1728,6 @@ export const KingdomRushTowerDefense: React.FC = () => {
           ctx.lineTo(en.x + 12, en.y - 20 + eBob);
           ctx.fill();
           ctx.shadowBlur = 0;
-          // Giant Magma War Mace
           ctx.strokeStyle = '#450A0A';
           ctx.lineWidth = 4;
           ctx.beginPath();
@@ -1679,6 +1999,21 @@ export const KingdomRushTowerDefense: React.FC = () => {
                   ))}
                 </select>
 
+                {/* Monster Bestiary Button */}
+                <button
+                  onClick={() => {
+                    soundEngine.playClick();
+                    setIsOpenBestiary(!isOpenBestiary);
+                  }}
+                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl border text-xs font-bold transition-all ${
+                    isOpenBestiary
+                      ? 'bg-purple-600 border-purple-400 text-white shadow-lg shadow-purple-500/30'
+                      : 'bg-slate-900 border-slate-700 text-purple-300 hover:border-purple-500'
+                  }`}
+                >
+                  <span>📖 몬스터 도감</span>
+                </button>
+
                 <div className="flex items-center gap-1.5 px-3 py-1 rounded-xl bg-slate-900 border border-slate-800 text-xs">
                   <Sparkles className="w-3.5 h-3.5 text-amber-400" />
                   <span className="text-amber-300 font-bold">{gold} G</span>
@@ -1806,6 +2141,66 @@ export const KingdomRushTowerDefense: React.FC = () => {
                       </div>
                     </div>
                   )}
+                </div>
+              )}
+
+              {/* Monster Bestiary Drawer Modal */}
+              {isOpenBestiary && (
+                <div className="w-full max-w-4xl p-5 rounded-2xl bg-slate-950/95 border border-purple-500/50 shadow-2xl animate-fadeIn space-y-4 font-sans">
+                  <div className="flex items-center justify-between border-b border-slate-800 pb-2">
+                    <div className="flex items-center gap-2">
+                      <span className="text-lg">📖</span>
+                      <h3 className="text-sm font-bold text-white">
+                        왕국 몬스터 도감 (12종 몬스터 스탯 및 공략법)
+                      </h3>
+                    </div>
+                    <button
+                      onClick={() => setIsOpenBestiary(false)}
+                      className="p-1 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800"
+                    >
+                      <X className="w-4 h-4" />
+                    </button>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2.5 max-h-72 overflow-y-auto pr-1">
+                    {Object.values(MONSTER_BESTIARY).map((mon) => (
+                      <div
+                        key={mon.type}
+                        className="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-purple-500/40 transition-all space-y-1.5"
+                      >
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-1.5">
+                            <span className="text-base">{mon.icon}</span>
+                            <span className="text-xs font-bold text-white">{mon.name}</span>
+                          </div>
+                          <span className="text-[9px] px-1.5 py-0.5 rounded-md bg-purple-500/20 text-purple-300 font-bold">
+                            {mon.category}
+                          </span>
+                        </div>
+
+                        <p className="text-[10px] text-slate-400 leading-snug">{mon.desc}</p>
+
+                        <div className="grid grid-cols-2 gap-1 text-[9px] text-slate-300 pt-1 border-t border-slate-800">
+                          <div>
+                            <span className="text-slate-500">체력: </span>
+                            <span className="text-emerald-400 font-bold">{mon.hp}</span>
+                          </div>
+                          <div>
+                            <span className="text-slate-500">속도: </span>
+                            <span className="text-cyan-400">{mon.speed}</span>
+                          </div>
+                          <div className="col-span-2">
+                            <span className="text-slate-500">방어막: </span>
+                            <span className="text-amber-300 font-bold">{mon.armor}</span>
+                          </div>
+                          <div className="col-span-2">
+                            <span className="text-slate-500">추천 공략: </span>
+                            <span className="text-rose-300 font-bold">{mon.weakness}</span>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               )}
             </div>
