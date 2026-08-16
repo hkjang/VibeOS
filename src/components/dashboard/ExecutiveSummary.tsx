@@ -24,6 +24,7 @@ import { TechStackRadar } from './TechStackRadar';
 import { DeveloperRpgHud } from './DeveloperRpgHud';
 import { DeveloperQuestBoard } from './DeveloperQuestBoard';
 import { TeslaMazeGame } from './TeslaMazeGame';
+import { KingdomRushTowerDefense } from './KingdomRushTowerDefense';
 import { DomainConquestRpg } from './DomainConquestRpg';
 import { LiveActivityFeed } from './LiveActivityFeed';
 import { ParticleField } from '../visual/ParticleField';
@@ -227,8 +228,8 @@ export const ExecutiveSummary: React.FC = () => {
       {/* Tesla Cyber Fleet FSD Autopilot Mini-Game */}
       <TeslaMazeGame />
 
-      {/* Cyber Domain Territory Conquest RPG (땅따먹기 RPG) */}
-      <DomainConquestRpg />
+      {/* Kingdom Rush : Cyber Tower Defense (킹덤 러쉬 타워 디펜스) */}
+      <KingdomRushTowerDefense />
 
       {/* Daily Quests & Weekly Boss Bounty Board */}
       <DeveloperQuestBoard />
