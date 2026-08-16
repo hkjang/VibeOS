@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useVibeStore } from '../../store/useVibeStore';
 import { useTranslation } from '../../i18n/useTranslation';
 import { soundEngine } from '../../utils/soundEngine';
+import { TeslaModelYSprite, TeslaPaintColor } from './TeslaModelYSprite';
 import confetti from 'canvas-confetti';
 import {
   Zap,
@@ -21,6 +22,7 @@ import {
   Maximize2,
   ChevronRight as ArrowRight,
   X,
+  Palette,
 } from 'lucide-react';
 
 // 13x13 Maze Layout (0 = Road, 1 = Neon Wall, 2 = Supercharger, 3 = Lego Core, 4 = Goal)
@@ -52,6 +54,7 @@ export const TeslaMazeGame: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [carPos, setCarPos] = useState<Position>({ r: 1, c: 1 });
   const [carAngle, setCarAngle] = useState<number>(0);
+  const [carColor, setCarColor] = useState<TeslaPaintColor>('white');
   const [battery, setBattery] = useState<number>(100);
   const [speed, setSpeed] = useState<number>(0);
   const [score, setScore] = useState<number>(0);
@@ -251,15 +254,22 @@ export const TeslaMazeGame: React.FC = () => {
     setLaserPath([]);
   };
 
+  const colorsList: { id: TeslaPaintColor; label: string; bg: string }[] = [
+    { id: 'white', label: 'Pearl White', bg: 'bg-white' },
+    { id: 'red', label: 'Ultra Red', bg: 'bg-rose-600' },
+    { id: 'black', label: 'Solid Black', bg: 'bg-slate-900' },
+    { id: 'grey', label: 'Quicksilver', bg: 'bg-slate-500' },
+    { id: 'blue', label: 'Deep Blue', bg: 'bg-blue-600' },
+  ];
+
   return (
     <>
       {/* Sleek Arcade Banner Card on Dashboard */}
       <div className="p-4 sm:p-5 rounded-3xl bg-gradient-to-r from-[#0B0F19] via-slate-900 to-[#0B0F19] border border-cyan-500/30 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-xl relative overflow-hidden group">
-        <div className="flex items-center gap-3.5 relative z-10">
-          <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-red-600 via-rose-500 to-amber-500 p-[2px] shadow-lg shadow-red-500/20 shrink-0">
-            <div className="w-full h-full bg-slate-950 rounded-[14px] flex items-center justify-center font-extrabold text-red-400 font-mono text-xl">
-              T
-            </div>
+        <div className="flex items-center gap-4 relative z-10">
+          {/* Realistic Tesla Model Y Preview Vehicle */}
+          <div className="p-2 rounded-2xl bg-slate-950/80 border border-slate-800 flex items-center justify-center shrink-0 shadow-inner">
+            <TeslaModelYSprite color={carColor} angle={0} size={54} headlights={true} />
           </div>
 
           <div>
@@ -294,26 +304,41 @@ export const TeslaMazeGame: React.FC = () => {
 
       {/* Fullscreen / Modal Cyber Arcade Cabinet */}
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-slate-950/85 backdrop-blur-md animate-fadeIn">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-slate-950/85 backdrop-blur-md animate-fadeIn font-sans">
           <div className="relative w-full max-w-4xl rounded-3xl bg-[#080B12] border border-cyan-500/40 shadow-2xl overflow-hidden flex flex-col max-h-[92vh]">
             {/* Header */}
-            <div className="p-4 bg-slate-950 border-b border-slate-800 flex items-center justify-between">
-              <div className="flex items-center gap-2.5">
-                <div className="w-8 h-8 rounded-xl bg-red-600/20 text-red-400 border border-red-500/30 flex items-center justify-center font-bold font-mono text-sm">
-                  T
-                </div>
+            <div className="p-4 bg-slate-950 border-b border-slate-800 flex flex-wrap items-center justify-between gap-3">
+              <div className="flex items-center gap-3">
+                <TeslaModelYSprite color={carColor} angle={0} size={42} headlights={false} />
                 <div>
                   <h2 className="text-sm sm:text-base font-bold text-white font-mono">
                     Tesla Model Y Cyber Maze FSD Autopilot
                   </h2>
                   <span className="text-[10px] text-slate-400 font-mono">
-                    Arrow keys to drive | Spacebar for FSD Autopilot | Esc to close
+                    WASD / Arrow keys | Spacebar: FSD Autopilot | Esc: Exit
                   </span>
                 </div>
               </div>
 
-              {/* Telemetry & Controls */}
-              <div className="flex items-center gap-2">
+              {/* Paint Selector & Telemetry */}
+              <div className="flex items-center gap-2.5 flex-wrap">
+                {/* Paint Color Options */}
+                <div className="flex items-center gap-1 bg-slate-900 p-1 rounded-xl border border-slate-800">
+                  {colorsList.map((c) => (
+                    <button
+                      key={c.id}
+                      onClick={() => {
+                        soundEngine.playClick();
+                        setCarColor(c.id);
+                      }}
+                      className={`w-4 h-4 rounded-full ${c.bg} border transition-all ${
+                        carColor === c.id ? 'scale-125 border-cyan-400 shadow-sm shadow-cyan-400' : 'border-slate-700 opacity-60 hover:opacity-100'
+                      }`}
+                      title={c.label}
+                    />
+                  ))}
+                </div>
+
                 <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-slate-900 border border-slate-800 text-xs font-mono">
                   <BatteryCharging className="w-3.5 h-3.5 text-emerald-400" />
                   <span className="text-emerald-400 font-bold">{battery}%</span>
@@ -328,16 +353,16 @@ export const TeslaMazeGame: React.FC = () => {
                   onClick={toggleFsd}
                   className={`px-3 py-1 rounded-xl text-xs font-bold font-mono transition-all ${
                     isFsdActive
-                      ? 'bg-cyan-500 text-slate-950 border border-cyan-400 animate-pulse'
+                      ? 'bg-cyan-500 text-slate-950 border border-cyan-400 animate-pulse shadow-md shadow-cyan-500/40'
                       : 'bg-slate-900 text-cyan-400 border border-cyan-500/30 hover:bg-slate-800'
                   }`}
                 >
-                  {isFsdActive ? '⚡ FSD ON' : 'ENGAGE FSD'}
+                  {isFsdActive ? '⚡ FSD ENGAGED' : 'ENGAGE FSD'}
                 </button>
 
                 <button
                   onClick={handleReset}
-                  className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800"
+                  className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
                   title="Reset Circuit"
                 >
                   <RotateCcw className="w-4 h-4" />
@@ -345,7 +370,7 @@ export const TeslaMazeGame: React.FC = () => {
 
                 <button
                   onClick={() => setIsOpen(false)}
-                  className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800"
+                  className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
                 >
                   <X className="w-4 h-4" />
                 </button>
@@ -407,19 +432,14 @@ export const TeslaMazeGame: React.FC = () => {
                             </div>
                           )}
 
-                          {/* Model Y Car Top-Down Sprite */}
+                          {/* High-Fidelity Tesla Model Y Vector Car */}
                           {isCarHere && (
-                            <div
-                              className="relative z-20 w-full h-full flex items-center justify-center transition-transform duration-150"
-                              style={{ transform: `rotate(${carAngle}deg)` }}
-                            >
-                              <div className="w-4 sm:w-5 h-2.5 sm:h-3.5 bg-gradient-to-r from-slate-200 via-white to-slate-300 rounded-[3px] border border-slate-400 relative flex items-center justify-between px-0.5 shadow-md shadow-cyan-500/50">
-                                <div className="w-1.5 sm:w-2 h-1.5 sm:h-2 bg-slate-950 rounded-[2px] border border-cyan-400/60 flex items-center justify-center">
-                                  <span className="text-[5px] text-red-500 font-mono font-bold scale-75">T</span>
-                                </div>
-                                <div className="w-0.5 h-1.5 bg-cyan-300 rounded-full" />
-                              </div>
-                            </div>
+                            <TeslaModelYSprite
+                              color={carColor}
+                              angle={carAngle}
+                              headlights={true}
+                              size={28}
+                            />
                           )}
                         </div>
                       );
@@ -428,43 +448,68 @@ export const TeslaMazeGame: React.FC = () => {
                 </div>
               </div>
 
-              {/* D-Pad Controller */}
-              <div className="p-4 rounded-2xl bg-slate-950 border border-slate-800 flex flex-col items-center justify-center space-y-2 font-mono">
-                <span className="text-[10px] text-slate-400 font-bold uppercase">Touch Navigation</span>
-                <button
-                  onClick={() => moveCar(-1, 0, 270)}
-                  className="p-2.5 rounded-xl bg-slate-900 border border-slate-800 hover:bg-slate-800 text-slate-300 active:scale-95"
-                >
-                  <ChevronUp className="w-5 h-5" />
-                </button>
-                <div className="flex items-center gap-3">
+              {/* D-Pad & Vehicle Telemetry */}
+              <div className="space-y-4 font-mono w-full max-w-xs">
+                {/* Vehicle Specs */}
+                <div className="p-3.5 rounded-2xl bg-slate-950 border border-slate-800 space-y-1.5 text-xs">
+                  <div className="flex justify-between text-slate-400">
+                    <span>Model:</span>
+                    <span className="text-white font-bold">Model Y Dual Motor AWD</span>
+                  </div>
+                  <div className="flex justify-between text-slate-400">
+                    <span>Paint:</span>
+                    <span className="text-cyan-300 capitalize">{carColor} Multi-Coat</span>
+                  </div>
+                  <div className="flex justify-between text-slate-400">
+                    <span>Autopilot:</span>
+                    <span className={isFsdActive ? 'text-cyan-400 font-bold' : 'text-slate-400'}>
+                      {isFsdActive ? 'FSD V13 (Active)' : 'Manual'}
+                    </span>
+                  </div>
+                  <div className="flex justify-between text-slate-400">
+                    <span>Battery Range:</span>
+                    <span className="text-emerald-400 font-bold">{Math.round(battery * 5.2)} km</span>
+                  </div>
+                </div>
+
+                {/* Touch Controller */}
+                <div className="p-3 rounded-2xl bg-slate-950 border border-slate-800 flex flex-col items-center justify-center space-y-1.5">
+                  <span className="text-[10px] text-slate-500 font-bold uppercase">Touch Navigation</span>
                   <button
-                    onClick={() => moveCar(0, -1, 180)}
-                    className="p-2.5 rounded-xl bg-slate-900 border border-slate-800 hover:bg-slate-800 text-slate-300 active:scale-95"
+                    onClick={() => moveCar(-1, 0, 270)}
+                    className="p-2 rounded-xl bg-slate-900 border border-slate-800 hover:bg-slate-800 text-slate-300 active:scale-95"
                   >
-                    <ChevronLeft className="w-5 h-5" />
+                    <ChevronUp className="w-5 h-5" />
                   </button>
+                  <div className="flex items-center gap-3">
+                    <button
+                      onClick={() => moveCar(0, -1, 180)}
+                      className="p-2 rounded-xl bg-slate-900 border border-slate-800 hover:bg-slate-800 text-slate-300 active:scale-95"
+                    >
+                      <ChevronLeft className="w-5 h-5" />
+                    </button>
+                    <button
+                      onClick={toggleFsd}
+                      className={`px-3 py-1.5 rounded-xl text-xs font-bold font-mono border ${
+                        isFsdActive ? 'bg-cyan-500 text-slate-950 border-cyan-400 shadow-md shadow-cyan-500/40' : 'bg-slate-900 text-cyan-400 border-slate-700'
+                      }`}
+                    >
+                      FSD
+                    </button>
+                    <button
+                      onClick={() => moveCar(0, 1, 0)}
+                      className="p-2 rounded-xl bg-slate-900 border border-slate-800 hover:bg-slate-800 text-slate-300 active:scale-95"
+                    >
+                      <ChevronRight className="w-5 h-5" />
+                    </button>
+                  </div>
                   <button
-                    onClick={toggleFsd}
-                    className={`px-3 py-2 rounded-xl text-xs font-bold font-mono border ${
-                      isFsdActive ? 'bg-cyan-500 text-slate-950 border-cyan-400' : 'bg-slate-900 text-cyan-400 border-slate-700'
-                    }`}
+                    onClick={() => moveCar(1, 0, 90)}
+                    className="p-2 rounded-xl bg-slate-900 border border-slate-800 hover:bg-slate-800 text-slate-300 active:scale-95"
                   >
-                    FSD
-                  </button>
-                  <button
-                    onClick={() => moveCar(0, 1, 0)}
-                    className="p-2.5 rounded-xl bg-slate-900 border border-slate-800 hover:bg-slate-800 text-slate-300 active:scale-95"
-                  >
-                    <ChevronRight className="w-5 h-5" />
+                    <ChevronDown className="w-5 h-5" />
                   </button>
                 </div>
-                <button
-                  onClick={() => moveCar(1, 0, 90)}
-                  className="p-2.5 rounded-xl bg-slate-900 border border-slate-800 hover:bg-slate-800 text-slate-300 active:scale-95"
-                >
-                  <ChevronDown className="w-5 h-5" />
-                </button>
               </div>
             </div>
           </div>
