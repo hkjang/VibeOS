@@ -17,6 +17,7 @@ import {
 import { StageBadge } from '../common/StageBadge';
 import { ScoreBadge } from '../common/ScoreBadge';
 import { ContributionHeatmap } from './ContributionHeatmap';
+import { RoiLeverageCalculator } from './RoiLeverageCalculator';
 import {
   ResponsiveContainer,
   BarChart,
@@ -202,6 +203,9 @@ export const ExecutiveSummary: React.FC = () => {
 
       {/* 365-Day Contribution & Activity Heatmap */}
       <ContributionHeatmap />
+
+      {/* Compound ROI & Developer Leverage Calculator */}
+      <RoiLeverageCalculator />
 
       {/* TODAY High-Leverage Actions & Monthly Synthesis */}
       <section className="grid grid-cols-1 lg:grid-cols-3 gap-5 sm:gap-6" aria-label="Today Actions">

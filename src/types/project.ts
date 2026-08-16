@@ -108,6 +108,7 @@ export interface GitHubAuthToken {
 export type ActiveTab =
   | 'dashboard'
   | 'radar'
+  | 'sprints'
   | 'synergy'
   | 'assets'
   | 'graveyard'

@@ -52,6 +52,14 @@ export const Sidebar: React.FC = () => {
       badgeColor: 'bg-cyan-500/10 text-cyan-400 border-cyan-500/20',
     },
     {
+      id: 'sprints',
+      label: t.nav.sprints || 'Sprint Kanban',
+      description: t.nav.sprintsDesc || 'Weekend coding flow',
+      icon: <Flame className="w-4 h-4 text-amber-400" />,
+      badge: 'Flow',
+      badgeColor: 'bg-amber-500/20 text-amber-300 border-amber-500/40 font-bold',
+    },
+    {
       id: 'synergy',
       label: t.nav.synergy || 'Synergy Graph',
       description: t.nav.synergyDesc || 'Cross-project transfer',
