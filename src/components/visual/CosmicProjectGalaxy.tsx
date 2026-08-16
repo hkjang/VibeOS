@@ -50,11 +50,18 @@ export const CosmicProjectGalaxy: React.FC<CosmicProjectGalaxyProps> = ({
   const angleRef = useRef<number>(0);
   const starsRef = useRef<Star[]>([]);
   const animFrameRef = useRef<number | null>(null);
+  const hoveredProjectRef = useRef<ProjectItem | null>(null);
 
   // Group projects into orbital rings
   const growingProjects = projects.filter((p) => p.stage === 'grow' && p.status === 'active');
   const midTierProjects = projects.filter(
-    (p) => (p.stage === 'experiment' || p.stage === 'maintain' || p.stage === 'prototype') && p.status === 'active'
+    (p) =>
+      (p.stage === 'experiment' ||
+        p.stage === 'maintain' ||
+        p.stage === 'prototype' ||
+        p.stage === 'dormant' ||
+        p.stage === 'idea') &&
+      p.status === 'active'
   );
   const graveyardProjects = projects.filter((p) => p.status === 'graveyard' || p.stage === 'archived');
 
@@ -286,7 +293,7 @@ export const CosmicProjectGalaxy: React.FC<CosmicProjectGalaxyProps> = ({
 
       // 8. Draw Planetary Project Nodes
       allNodes.forEach((node) => {
-        const isHovered = hoveredProject?.id === node.project.id;
+        const isHovered = hoveredProjectRef.current?.id === node.project.id;
         const matchesFilter = filterStage === 'all' || node.project.stage === filterStage;
 
         ctx.save();
@@ -385,6 +392,7 @@ export const CosmicProjectGalaxy: React.FC<CosmicProjectGalaxyProps> = ({
       checkNodes(midTierProjects, rMid, 0.7, true);
       checkNodes(graveyardProjects, rOuter, 0.3);
 
+      hoveredProjectRef.current = found;
       setHoveredProject(found);
       if (!found) setHoverPos(null);
       canvas.style.cursor = found ? 'pointer' : 'default';
@@ -392,8 +400,8 @@ export const CosmicProjectGalaxy: React.FC<CosmicProjectGalaxyProps> = ({
 
     // Click Handler
     const handleClick = () => {
-      if (hoveredProject) {
-        onSelectProject(hoveredProject.id);
+      if (hoveredProjectRef.current) {
+        onSelectProject(hoveredProjectRef.current.id);
       }
     };
 
@@ -406,7 +414,7 @@ export const CosmicProjectGalaxy: React.FC<CosmicProjectGalaxyProps> = ({
       canvas.removeEventListener('click', handleClick);
       if (animFrameRef.current) cancelAnimationFrame(animFrameRef.current);
     };
-  }, [growingProjects, midTierProjects, graveyardProjects, simSpeed, showTethers, showAssets, filterStage, hoveredProject]);
+  }, [growingProjects, midTierProjects, graveyardProjects, simSpeed, showTethers, showAssets, filterStage]);
 
   return (
     <div className="relative rounded-3xl bg-[#090D16] border border-slate-800 overflow-hidden shadow-2xl space-y-4 p-4 sm:p-6 select-none">

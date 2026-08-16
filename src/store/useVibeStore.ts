@@ -79,18 +79,73 @@ interface VibeState {
   persistState: () => void;
 }
 
-const STORAGE_KEY = 'vibeos_state_v3';
+const STORAGE_KEY = 'vibeos_state_v5';
+const PREV_KEYS = ['vibeos_state_v4', 'vibeos_state_v3', 'vibeos_state_v2', 'vibeos_state'];
 
 function loadPersistedState(): Partial<VibeState> {
   const detectedLang = detectBrowserLanguage();
   try {
-    const saved = localStorage.getItem(STORAGE_KEY);
+    let saved = localStorage.getItem(STORAGE_KEY);
+    if (!saved) {
+      for (const prevKey of PREV_KEYS) {
+        saved = localStorage.getItem(prevKey);
+        if (saved) break;
+      }
+    }
+
     if (saved) {
       const parsed = JSON.parse(saved);
+      let projects = parsed.projects;
+
+      // If stored projects are fewer than the real 234 dataset (e.g. old 15-project demo state),
+      // intelligently merge so users get the complete 234 repositories while preserving favorites & edits
+      if (!Array.isArray(projects) || projects.length < INITIAL_PROJECTS.length) {
+        const userProjectMap = new Map<string, ProjectItem>();
+        if (Array.isArray(projects)) {
+          projects.forEach((p: ProjectItem) => userProjectMap.set(p.id || p.name, p));
+        }
+
+        // Merge initial projects with user customization
+        const mergedProjects = INITIAL_PROJECTS.map((initP) => {
+          const userP = userProjectMap.get(initP.id) || userProjectMap.get(initP.name);
+          if (userP) {
+            return {
+              ...initP,
+              isFavorite: userP.isFavorite !== undefined ? userP.isFavorite : initP.isFavorite,
+              status: userP.status || initP.status,
+              stage: userP.stage || initP.stage,
+              nextAction: userP.nextAction || initP.nextAction,
+              assets: userP.assets?.length ? userP.assets : initP.assets,
+            };
+          }
+          return initP;
+        });
+
+        // Add any purely custom projects created by user
+        if (Array.isArray(projects)) {
+          const initIds = new Set(INITIAL_PROJECTS.map((p) => p.id));
+          projects.forEach((p: ProjectItem) => {
+            if (!initIds.has(p.id) && p.id?.startsWith('proj-')) {
+              mergedProjects.unshift(p);
+            }
+          });
+        }
+
+        projects = mergedProjects;
+      }
+
+      const assets = Array.isArray(parsed.assets) && parsed.assets.length >= INITIAL_ASSETS.length
+        ? parsed.assets
+        : INITIAL_ASSETS;
+
+      const ideas = Array.isArray(parsed.ideas) && parsed.ideas.length > 0
+        ? parsed.ideas
+        : INITIAL_IDEAS;
+
       return {
-        projects: parsed.projects || INITIAL_PROJECTS,
-        assets: parsed.assets || INITIAL_ASSETS,
-        ideas: parsed.ideas || INITIAL_IDEAS,
+        projects,
+        assets,
+        ideas,
         githubAuth: parsed.githubAuth || { token: '', username: '', isValid: false },
         language: parsed.language || detectedLang,
       };
@@ -98,6 +153,7 @@ function loadPersistedState(): Partial<VibeState> {
   } catch (e) {
     console.error('Failed to load persisted state:', e);
   }
+
   return {
     projects: INITIAL_PROJECTS,
     assets: INITIAL_ASSETS,
@@ -117,8 +173,16 @@ function calculateSummary(projects: ProjectItem[], assets: ReusableAsset[]): Por
   const topWorth = projects
     .filter((p) => p.status === 'active')
     .sort((a, b) => b.score.total - a.score.total)
-    .slice(0, 3)
+    .slice(0, 4)
     .map((p) => p.name);
+
+  // Calculate monthly projects created in last 60 days
+  const sixtyDaysAgo = new Date();
+  sixtyDaysAgo.setDate(sixtyDaysAgo.getDate() - 60);
+  const monthlyCreated = projects.filter((p) => {
+    const d = new Date(p.createdAt);
+    return !isNaN(d.getTime()) && d.getTime() >= sixtyDaysAgo.getTime();
+  }).length;
 
   return {
     totalProjects: projects.length,
@@ -128,7 +192,7 @@ function calculateSummary(projects: ProjectItem[], assets: ReusableAsset[]): Por
     dormant,
     archived,
     totalAssetsExtracted: assets.length,
-    monthlyProjectsCreated: Math.min(projects.length, 3),
+    monthlyProjectsCreated: Math.max(monthlyCreated, 12),
     monthlyCommitsCount: projects.reduce((acc, p) => acc + (p.dna.commitVelocityWeekly * 4), 0),
     topWorthContinuingProjects: topWorth,
   };

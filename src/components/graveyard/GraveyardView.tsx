@@ -20,7 +20,9 @@ export const GraveyardView: React.FC = () => {
   const { t } = useTranslation();
   const [expandedId, setExpandedId] = useState<string | null>(null);
 
-  const graveyardProjects = projects.filter((p) => p.status === 'graveyard');
+  const graveyardProjects = projects.filter(
+    (p) => p.status === 'graveyard' || p.stage === 'archived'
+  );
 
   const totalHoursRescued = graveyardProjects.reduce(
     (acc, p) => acc + (p.postMortem?.totalHoursInvested || 30),

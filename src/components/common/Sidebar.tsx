@@ -23,8 +23,8 @@ export const Sidebar: React.FC = () => {
   const { t } = useTranslation();
   const [isResumeOpen, setIsResumeOpen] = useState(false);
 
-  const activeProjectsCount = projects.filter((p) => p.status === 'active').length;
-  const graveyardCount = projects.filter((p) => p.status === 'graveyard').length;
+  const activeProjectsCount = projects.filter((p) => p.status === 'active' && p.stage !== 'archived').length;
+  const graveyardCount = projects.filter((p) => p.status === 'graveyard' || p.stage === 'archived').length;
   const ideasCount = ideas.filter((i) => i.status === 'inbox').length;
 
   const navItems: {

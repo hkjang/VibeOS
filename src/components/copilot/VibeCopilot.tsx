@@ -47,8 +47,8 @@ export const VibeCopilot: React.FC = () => {
       sender: 'assistant',
       text:
         language === 'ko'
-          ? `안녕하세요! **VibeOS AI 코파일럿**입니다. 234개 프로젝트, ${assets.length}개 재사용 자산, ${ideas.length}개 아이디어 데이터베이스가 로드되었습니다.\n\n어떤 프로젝트를 분석하거나 새로운 조합 아이디어를 도출해드릴까요?`
-          : `Hello! I am your **VibeOS AI Portfolio Copilot**. Loaded 234 repositories, ${assets.length} mined assets, and ${ideas.length} ideas.\n\nHow can I help you query, audit, or generate new architecture mashups?`,
+          ? `안녕하세요! **VibeOS AI 코파일럿**입니다. ${projects.length}개 프로젝트, ${assets.length}개 재사용 자산, ${ideas.length}개 아이디어 데이터베이스가 로드되었습니다.\n\n어떤 프로젝트를 분석하거나 새로운 조합 아이디어를 도출해드릴까요?`
+          : `Hello! I am your **VibeOS AI Portfolio Copilot**. Loaded ${projects.length} repositories, ${assets.length} mined assets, and ${ideas.length} ideas.\n\nHow can I help you query, audit, or generate new architecture mashups?`,
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
       suggestions: [
         language === 'ko' ? '🚀 성장 엔진 프로젝트 4D 점수 분석' : '🚀 Analyze Growth Engines 4D Scores',
@@ -114,8 +114,8 @@ export const VibeCopilot: React.FC = () => {
         id: `ai-${Date.now()}`,
         sender: 'assistant',
         text: isKo
-          ? `### 📊 234개 전체 프로젝트 건전성 진단 리포트\n\n현재 총 **234개** 프로젝트 중 **${summary.growing}개**가 고속 성장 엔진(Grow), **${summary.experiment}개**가 가설 검증(Experiment) 단계입니다.\n\n**최우선 집중 권장 상위 프로젝트:**\n\n${listStr}\n\n💡 **AI 제언**: 3개 이상의 프로젝트에 동시 커밋을 분산하기보다, 이번 주말에는 \`${topProjects[0]?.name}\` 및 \`${topProjects[1]?.name}\`에 80% 이상의 시간을 집중 투입하는 것이 가장 높은 레버리지를 만듭니다.`
-          : `### 📊 234 Projects Health Audit Report\n\nCurrently across **234** repositories, **${summary.growing}** are Growth Engines and **${summary.experiment}** are in validation stage.\n\n**Top Priority Recommended Projects:**\n\n${listStr}\n\n💡 **AI Recommendation**: Dedicate 80% of focus hours to \`${topProjects[0]?.name}\` to maximize shipping velocity.`,
+          ? `### 📊 ${projects.length}개 전체 프로젝트 건전성 진단 리포트\n\n현재 총 **${projects.length}개** 프로젝트 중 **${summary.growing}개**가 고속 성장 엔진(Grow), **${summary.experiment}개**가 가설 검증(Experiment) 단계입니다.\n\n**최우선 집중 권장 상위 프로젝트:**\n\n${listStr}\n\n💡 **AI 제언**: 3개 이상의 프로젝트에 동시 커밋을 분산하기보다, 이번 주말에는 \`${topProjects[0]?.name}\` 및 \`${topProjects[1]?.name}\`에 80% 이상의 시간을 집중 투입하는 것이 가장 높은 레버리지를 만듭니다.`
+          : `### 📊 ${projects.length} Projects Health Audit Report\n\nCurrently across **${projects.length}** repositories, **${summary.growing}** are Growth Engines and **${summary.experiment}** are in validation stage.\n\n**Top Priority Recommended Projects:**\n\n${listStr}\n\n💡 **AI Recommendation**: Dedicate 80% of focus hours to \`${topProjects[0]?.name}\` to maximize shipping velocity.`,
         timestamp: timeStr,
         suggestions: ['/mashup', '/graveyard-stats', '자산 마이닝 허브 열기'],
         actionLink: { tab: 'radar', label: isKo ? '프로젝트 레이더에서 확인' : 'Open Project Radar' },
@@ -138,7 +138,7 @@ export const VibeCopilot: React.FC = () => {
 
     // 3. Graveyard & Post-Mortem query
     if (q.includes('graveyard') || q.includes('묘지') || q.includes('실패') || q.includes('postmortem') || q.includes('교훈')) {
-      const graveyardCount = projects.filter((p) => p.status === 'graveyard').length;
+      const graveyardCount = projects.filter((p) => p.status === 'graveyard' || p.stage === 'archived').length;
       return {
         id: `ai-${Date.now()}`,
         sender: 'assistant',
@@ -186,36 +186,36 @@ export const VibeCopilot: React.FC = () => {
 
     // Fallback general guidance
     return {
-      id: `ai-${Date.now()}`,
-      sender: 'assistant',
-      text: isKo
-        ? `질문하신 내용에 대해 234개 프로젝트 데이터베이스를 조회했습니다. 다음과 같은 전역 명령을 사용해보세요:\n\n- \`/audit\`: 전체 포트폴리오 건전성 및 최우선 과제 진단\n- \`/mashup\`: 기존 재사용 코드를 조합한 신규 AI 프로젝트 청사진\n- \`/graveyard\`: 과거 142개 중단 프로젝트의 실패 원인 및 교훈 리포트\n- \`React\`, \`Go\`, \`SQL\`, \`Mattermost\` 등 키워드로 프로젝트 검색`
-        : `Queried the 234 project database. Try these global commands:\n\n- \`/audit\`: Comprehensive portfolio health diagnosis\n- \`/mashup\`: New AI project blueprint mashups\n- \`/graveyard\`: Lessons from 142 archived projects\n- Search by keywords like \`React\`, \`Go\`, \`SQL\`, \`Mattermost\`.`,
-      timestamp: timeStr,
-      suggestions: ['/audit', '/mashup', '/graveyard', 'AI 에이전트 프로젝트 목록'],
+        id: `ai-${Date.now()}`,
+        sender: 'assistant',
+        text: isKo
+          ? `질문하신 내용에 대해 ${projects.length}개 프로젝트 데이터베이스를 조회했습니다. 다음과 같은 전역 명령을 사용해보세요:\n\n- \`/audit\`: 전체 포트폴리오 건전성 및 최우선 과제 진단\n- \`/mashup\`: 기존 재사용 코드를 조합한 신규 AI 프로젝트 청사진\n- \`/graveyard\`: 과거 ${summary.archived}개 아카이브 프로젝트의 실패 원인 및 교훈 리포트\n- \`React\`, \`Go\`, \`SQL\`, \`Mattermost\` 등 키워드로 프로젝트 검색`
+          : `Queried the ${projects.length} project database. Try these global commands:\n\n- \`/audit\`: Comprehensive portfolio health diagnosis\n- \`/mashup\`: New AI project blueprint mashups\n- \`/graveyard\`: Lessons from ${summary.archived} archived projects\n- Search by keywords like \`React\`, \`Go\`, \`SQL\`, \`Mattermost\`.`,
+        timestamp: timeStr,
+        suggestions: ['/audit', '/mashup', '/graveyard', 'AI 에이전트 프로젝트 목록'],
+      };
     };
-  };
 
-  return (
-    <div className="space-y-5 sm:space-y-6 animate-fadeIn pb-12">
-      {/* Header */}
-      <div className="p-5 sm:p-7 md:p-8 rounded-3xl bg-gradient-to-r from-slate-900 via-cyan-950/40 to-slate-900 border border-slate-800 flex flex-col md:flex-row md:items-center justify-between gap-5 shadow-xl">
-        <div className="space-y-1.5">
-          <div className="flex items-center gap-2 text-cyan-400">
-            <Bot className="w-5 h-5 text-cyan-400" />
-            <span className="text-[10px] sm:text-xs uppercase font-mono tracking-widest font-bold">
-              Portfolio Intelligence AI Terminal
-            </span>
+    return (
+      <div className="space-y-5 sm:space-y-6 animate-fadeIn pb-12">
+        {/* Header */}
+        <div className="p-5 sm:p-7 md:p-8 rounded-3xl bg-gradient-to-r from-slate-900 via-cyan-950/40 to-slate-900 border border-slate-800 flex flex-col md:flex-row md:items-center justify-between gap-5 shadow-xl">
+          <div className="space-y-1.5">
+            <div className="flex items-center gap-2 text-cyan-400">
+              <Bot className="w-5 h-5 text-cyan-400" />
+              <span className="text-[10px] sm:text-xs uppercase font-mono tracking-widest font-bold">
+                Portfolio Intelligence AI Terminal
+              </span>
+            </div>
+            <h1 className="text-xl sm:text-3xl md:text-4xl font-extrabold text-white tracking-tight">
+              VibeOS Copilot
+            </h1>
+            <p className="text-slate-300 text-xs sm:text-sm max-w-2xl leading-relaxed">
+              {language === 'ko'
+                ? `${projects.length}개 프로젝트, 재사용 자산, 아키텍처 DNA 전반에 대한 실시간 지능형 질의응답 및 합성 터미널`
+                : `Real-time conversational intelligence and synthesis terminal across all ${projects.length} repositories.`}
+            </p>
           </div>
-          <h1 className="text-xl sm:text-3xl md:text-4xl font-extrabold text-white tracking-tight">
-            VibeOS Copilot
-          </h1>
-          <p className="text-slate-300 text-xs sm:text-sm max-w-2xl leading-relaxed">
-            {language === 'ko'
-              ? '234개 프로젝트, 재사용 자산, 아키텍처 DNA 전반에 대한 실시간 지능형 질의응답 및 합성 터미널'
-              : 'Real-time conversational intelligence and synthesis terminal across all 234 repositories.'}
-          </p>
-        </div>
 
         <div className="flex items-center gap-2">
           <button

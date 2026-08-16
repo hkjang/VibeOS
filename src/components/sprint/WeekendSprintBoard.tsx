@@ -100,13 +100,43 @@ export const WeekendSprintBoard: React.FC = () => {
     },
   ];
 
-  // Helper to get items for column
+  // Helper to get items for column (only projects explicitly tracked on sprint board)
   const getColumnProjects = (colId: SprintStatus) => {
     return activeProjects.filter((p) => {
-      const status = sprintState[p.id] || sprintState[p.name.toLowerCase()] || 'planned';
+      const status = sprintState[p.id] || sprintState[p.name.toLowerCase()];
       return status === colId;
     });
   };
+
+  const [isAddingProject, setIsAddingProject] = useState(false);
+  const [selectedToAdd, setSelectedToAdd] = useState('');
+
+  const handleAddProjectToSprint = (projectId: string) => {
+    if (!projectId) return;
+    setSprintState((prev) => ({
+      ...prev,
+      [projectId]: 'planned',
+    }));
+    const proj = projects.find((p) => p.id === projectId);
+    showToast(`Added "${proj?.name || projectId}" to Weekend Sprint! 🎯`, 'info');
+    setSelectedToAdd('');
+    setIsAddingProject(false);
+  };
+
+  const handleRemoveFromSprint = (projectId: string) => {
+    setSprintState((prev) => {
+      const next = { ...prev };
+      delete next[projectId];
+      delete next[projectId.toLowerCase()];
+      return next;
+    });
+    showToast('Removed from active sprint', 'info');
+  };
+
+  // Projects not currently on board
+  const availableToAdd = activeProjects.filter(
+    (p) => !sprintState[p.id] && !sprintState[p.name.toLowerCase()]
+  );
 
   return (
     <div className="space-y-6 animate-fadeIn pb-12">
@@ -127,6 +157,22 @@ export const WeekendSprintBoard: React.FC = () => {
               ? '주말에 집중할 2~3개 프로젝트를 선정하고, VS Code 직접 실행 및 Antigravity 프롬프트로 고속 배포를 달성하세요.'
               : 'Select 2-3 focus repositories for this weekend, launch into IDE, and ship with AI prompts.'}
           </p>
+        </div>
+
+        {/* Add Project to Sprint Action */}
+        <div className="flex items-center gap-2 shrink-0">
+          <select
+            value={selectedToAdd}
+            onChange={(e) => handleAddProjectToSprint(e.target.value)}
+            className="bg-slate-900 text-slate-200 text-xs font-mono px-3 py-2 rounded-xl border border-slate-700 hover:border-amber-500/50 transition-colors focus:outline-none focus:border-amber-400"
+          >
+            <option value="">+ {language === 'ko' ? '스프린트에 프로젝트 추가...' : 'Add Repo to Sprint...'}</option>
+            {availableToAdd.map((p) => (
+              <option key={p.id} value={p.id}>
+                {p.name} ({p.score.total} pts)
+              </option>
+            ))}
+          </select>
         </div>
       </div>
 
@@ -201,6 +247,13 @@ export const WeekendSprintBoard: React.FC = () => {
                           title="Copy AI Prompt Blueprint"
                         >
                           <Bot className="w-3.5 h-3.5" />
+                        </button>
+                        <button
+                          onClick={() => handleRemoveFromSprint(proj.id)}
+                          className="p-1.5 rounded-lg bg-slate-800 text-slate-500 hover:text-rose-400 hover:bg-rose-500/10 border border-slate-700"
+                          title="Remove from Sprint"
+                        >
+                          ×
                         </button>
                       </div>
 
