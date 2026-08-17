@@ -33,10 +33,12 @@ interface VibeState {
   isSettingsOpen: boolean;
   isNewProjectOpen: boolean;
   language: 'ko' | 'en';
+  radarViewMode: 'grid' | 'matrix' | 'cosmos' | 'table';
 
   // Actions
   setLanguage: (lang: 'ko' | 'en') => void;
   setActiveTab: (tab: ActiveTab) => void;
+  setRadarViewMode: (mode: 'grid' | 'matrix' | 'cosmos' | 'table') => void;
   setSearchQuery: (query: string) => void;
   setStageFilter: (filter: ProjectStage | 'all') => void;
   setSelectedProjectId: (id: string | null) => void;
@@ -230,6 +232,7 @@ export const useVibeStore = create<VibeState>((set, get) => ({
   isSettingsOpen: false,
   isNewProjectOpen: false,
   language: initialLang,
+  radarViewMode: 'grid',
 
   setLanguage: (lang) => {
     set({ language: lang });
@@ -237,6 +240,7 @@ export const useVibeStore = create<VibeState>((set, get) => ({
     get().persistState();
   },
   setActiveTab: (tab) => set({ activeTab: tab }),
+  setRadarViewMode: (mode) => set({ radarViewMode: mode }),
   setSearchQuery: (query) => set({ searchQuery: query }),
   setStageFilter: (filter) => set({ stageFilter: filter }),
   setSelectedProjectId: (id) => set({ selectedProjectId: id }),

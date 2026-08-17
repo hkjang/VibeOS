@@ -26,11 +26,12 @@ export const ProjectRadarView: React.FC = () => {
     selectedProjectId,
     setSelectedProjectId,
     setIsNewProjectOpen,
+    radarViewMode: viewMode,
+    setRadarViewMode: setViewMode,
   } = useVibeStore();
 
   const { t } = useTranslation();
 
-  const [viewMode, setViewMode] = useState<'grid' | 'matrix' | 'cosmos' | 'table'>('grid');
   const [sortBy, setSortBy] = useState<'score' | 'activity' | 'potential' | 'activityDate' | 'name'>('score');
   const [onlyFavorites, setOnlyFavorites] = useState<boolean>(false);
 
